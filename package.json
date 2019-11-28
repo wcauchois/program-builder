@@ -1,7 +1,15 @@
 {
   "name": "program-builder",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "types": "dist/index.d.ts",
   "author": "Bill Cauchois <wcauchois@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  }
 }
