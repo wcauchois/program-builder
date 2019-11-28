@@ -1,0 +1,7 @@
+{
+  "name": "program-builder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Bill Cauchois <wcauchois@gmail.com>",
+  "license": "MIT"
+}
