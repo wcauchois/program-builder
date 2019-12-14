@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "types": "dist/index.d.ts",
   "author": "Bill Cauchois <wcauchois@gmail.com>",
@@ -11,6 +12,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^12.12.14",
+    "prettier": "^1.19.1",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.2"
   }

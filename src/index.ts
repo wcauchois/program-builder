@@ -1,6 +1,3 @@
 import ProgramBuilder, { Arguments } from "./ProgramBuilder";
 
-export {
-  ProgramBuilder,
-  Arguments
-};
+export { ProgramBuilder, Arguments };

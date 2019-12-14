@@ -1,4 +1,3 @@
-
 interface IArgumentMetadata {
   required: boolean;
   description?: string;
@@ -54,7 +53,11 @@ abstract class BaseArgument implements IArgument {
   readonly names: string[];
   readonly metadata: IArgumentMetadata;
 
-  constructor(dest: string, names: string[] | string, metadata: IArgumentMetadata) {
+  constructor(
+    dest: string,
+    names: string[] | string,
+    metadata: IArgumentMetadata
+  ) {
     this.dest = dest;
     this.names = Array.isArray(names) ? names : [names];
     this.metadata = metadata;
@@ -70,7 +73,7 @@ class StringArgument extends BaseArgument {}
 class IntArgument extends BaseArgument {
   convert(inputString: string): any {
     if (!validInt(inputString)) {
-      throw new ArgumentError('TODO');
+      throw new ArgumentError("TODO");
     }
     return parseInt(inputString, 10);
   }
@@ -79,7 +82,7 @@ class IntArgument extends BaseArgument {
 class FloatArgument extends BaseArgument {
   convert(inputString: string): any {
     if (!validFloat(inputString)) {
-      throw new ArgumentError('TODO');
+      throw new ArgumentError("TODO");
     }
     return parseFloat(inputString);
   }
@@ -90,15 +93,19 @@ interface IArgumentCommonOptions<K extends string> {
   description?: string;
 }
 
-interface IRequiredArgumentOptions<K extends string> extends IArgumentCommonOptions<K> {
+interface IRequiredArgumentOptions<K extends string>
+  extends IArgumentCommonOptions<K> {
   required: true;
 }
 
-interface IOptionalArgumentOptions<K extends string> extends IArgumentCommonOptions<K> {
+interface IOptionalArgumentOptions<K extends string>
+  extends IArgumentCommonOptions<K> {
   required?: false;
 }
 
-type ArgumentOptions<K extends string> = IRequiredArgumentOptions<K> | IOptionalArgumentOptions<K>;
+type ArgumentOptions<K extends string> =
+  | IRequiredArgumentOptions<K>
+  | IOptionalArgumentOptions<K>;
 
 interface IProgramMetadata {
   description?: string;
@@ -108,17 +115,27 @@ abstract class ProgramBase {
   protected readonly argumentRegistry: IArgument[];
   protected readonly programMetadata: IProgramMetadata;
 
-  constructor(argumentRegistry: IArgument[], programMetadata: IProgramMetadata) {
+  constructor(
+    argumentRegistry: IArgument[],
+    programMetadata: IProgramMetadata
+  ) {
     this.argumentRegistry = argumentRegistry;
     this.programMetadata = programMetadata;
   }
 }
 
-type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<T & { [P in K]?: U }>;
-type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBuilder<T & { [P in K]: U }>;
+type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<
+  T & { [P in K]?: U }
+>;
+type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBuilder<
+  T & { [P in K]: U }
+>;
 
 export default class ProgramBuilder<T> extends ProgramBase {
-  private constructor(argumentRegistry: IArgument[], programMetadata: IProgramMetadata) {
+  private constructor(
+    argumentRegistry: IArgument[],
+    programMetadata: IProgramMetadata
+  ) {
     super(argumentRegistry, programMetadata);
   }
 
@@ -135,7 +152,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
   }
 
   private convertNames(names: string): string[] {
-    return names.split(',').map(x => x.trim());
+    return names.split(",").map(x => x.trim());
   }
 
   /**
@@ -148,28 +165,64 @@ export default class ProgramBuilder<T> extends ProgramBase {
     return this;
   }
 
-  stringArg<K extends string>(names: string, options: IRequiredArgumentOptions<K>): ExtendProgramBuilderWithRequired<T, K, string>;
+  stringArg<K extends string>(
+    names: string,
+    options: IRequiredArgumentOptions<K>
+  ): ExtendProgramBuilderWithRequired<T, K, string>;
 
-  stringArg<K extends string>(names: string, options: IOptionalArgumentOptions<K>): ExtendProgramBuilderWithOptional<T, K, string>;
+  stringArg<K extends string>(
+    names: string,
+    options: IOptionalArgumentOptions<K>
+  ): ExtendProgramBuilderWithOptional<T, K, string>;
 
   stringArg<K extends string>(names: string, options: ArgumentOptions<K>) {
-    return this.withArgument(new StringArgument(options.dest, this.convertNames(names), this.optionsToMetadata(options)));
+    return this.withArgument(
+      new StringArgument(
+        options.dest,
+        this.convertNames(names),
+        this.optionsToMetadata(options)
+      )
+    );
   }
 
-  intArg<K extends string>(names: string, options: IRequiredArgumentOptions<K>): ExtendProgramBuilderWithRequired<T, K, number>;
+  intArg<K extends string>(
+    names: string,
+    options: IRequiredArgumentOptions<K>
+  ): ExtendProgramBuilderWithRequired<T, K, number>;
 
-  intArg<K extends string>(names: string, options: IOptionalArgumentOptions<K>): ExtendProgramBuilderWithOptional<T, K, number>;
+  intArg<K extends string>(
+    names: string,
+    options: IOptionalArgumentOptions<K>
+  ): ExtendProgramBuilderWithOptional<T, K, number>;
 
   intArg<K extends string>(names: string, options: ArgumentOptions<K>) {
-    return this.withArgument(new IntArgument(options.dest, this.convertNames(names), this.optionsToMetadata(options)));
+    return this.withArgument(
+      new IntArgument(
+        options.dest,
+        this.convertNames(names),
+        this.optionsToMetadata(options)
+      )
+    );
   }
 
-  floatArg<K extends string>(names: string, options: IRequiredArgumentOptions<K>): ExtendProgramBuilderWithRequired<T, K, number>;
+  floatArg<K extends string>(
+    names: string,
+    options: IRequiredArgumentOptions<K>
+  ): ExtendProgramBuilderWithRequired<T, K, number>;
 
-  floatArg<K extends string>(names: string, options: IOptionalArgumentOptions<K>): ExtendProgramBuilderWithOptional<T, K, number>;
+  floatArg<K extends string>(
+    names: string,
+    options: IOptionalArgumentOptions<K>
+  ): ExtendProgramBuilderWithOptional<T, K, number>;
 
   floatArg<K extends string>(names: string, options: ArgumentOptions<K>) {
-    return this.withArgument(new FloatArgument(options.dest, this.convertNames(names), this.optionsToMetadata(options)));
+    return this.withArgument(
+      new FloatArgument(
+        options.dest,
+        this.convertNames(names),
+        this.optionsToMetadata(options)
+      )
+    );
   }
 
   flag(name: string) {
@@ -188,11 +241,11 @@ export default class ProgramBuilder<T> extends ProgramBase {
 class ParseError extends Error {}
 
 interface IParseHelpResult {
-  resultType: 'help';
+  resultType: "help";
 }
 
 interface IParseArgumentsResult<T> {
-  resultType: 'arguments';
+  resultType: "arguments";
   parsedArgs: T;
 }
 
@@ -203,18 +256,25 @@ type ProgramMain<T> = ((args: T) => Promise<void>) | ((args: T) => void);
 class Program<T> extends ProgramBase {
   private readonly argumentMap: Map<string, IArgument>;
 
-  static readonly helpArgumentsSet = new Set(['-h', '--help']);
+  static readonly helpArgumentsSet = new Set(["-h", "--help"]);
 
-  constructor(argumentRegistry: IArgument[], programMetadata: IProgramMetadata) {
+  constructor(
+    argumentRegistry: IArgument[],
+    programMetadata: IProgramMetadata
+  ) {
     super(argumentRegistry, programMetadata);
-    this.argumentMap = new Map(argumentRegistry.flatMap(argument => argument.names.map(name => [name, argument])));
+    this.argumentMap = new Map(
+      argumentRegistry.flatMap(argument =>
+        argument.names.map(name => [name, argument])
+      )
+    );
   }
 
   generateHelpText() {
-    let buffer = '';
+    let buffer = "";
     buffer += `program\n\n`;
     for (const argument of this.argumentRegistry) {
-      buffer += `  ${argument.names.join(', ')}`;
+      buffer += `  ${argument.names.join(", ")}`;
     }
     return buffer;
   }
@@ -231,7 +291,7 @@ class Program<T> extends ProgramBase {
       process.exit(1);
       throw new Error(); // TEMP: Isn't there supposed to be better handling for never-returning functions?
     }
-    if (parseResult.resultType === 'help') {
+    if (parseResult.resultType === "help") {
       const helpText = this.generateHelpText();
       console.log(helpText);
       process.exit(0); // TODO: Is this the right return code?
@@ -251,10 +311,12 @@ class Program<T> extends ProgramBase {
     const argStack = rawArgs.slice();
     let currentParsedArgs: { [key: string]: any } = {};
     let currentArg: string | undefined;
-    let unspecifiedRequiredArguments = this.argumentRegistry.filter(argument => argument.metadata.required);
-    while (currentArg = argStack.shift()) {
+    let unspecifiedRequiredArguments = this.argumentRegistry.filter(
+      argument => argument.metadata.required
+    );
+    while ((currentArg = argStack.shift())) {
       if (Program.helpArgumentsSet.has(currentArg)) {
-        return { resultType: 'help' };
+        return { resultType: "help" };
       }
       const argument = this.argumentMap.get(currentArg);
       if (argument) {
@@ -263,7 +325,9 @@ class Program<T> extends ProgramBase {
           throw new ParseError(`Missing argument value`);
         }
         currentParsedArgs[argument.dest] = argument.convert(argumentValue);
-        unspecifiedRequiredArguments = unspecifiedRequiredArguments.filter(a => argument !== a);
+        unspecifiedRequiredArguments = unspecifiedRequiredArguments.filter(
+          a => argument !== a
+        );
         continue;
       }
       throw new ParseError(`Unrecognized argument: ${currentArg}`);
@@ -272,7 +336,7 @@ class Program<T> extends ProgramBase {
       throw new ParseError(`Missing required arguments`);
     }
     return {
-      resultType: 'arguments',
+      resultType: "arguments",
       parsedArgs: currentParsedArgs as any
     };
   }
