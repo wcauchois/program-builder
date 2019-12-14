@@ -111,16 +111,31 @@ interface IProgramMetadata {
   description?: string;
 }
 
+class PositionalArgument {
+  readonly dest: string;
+  readonly index: number;
+  readonly required: boolean;
+
+  constructor(dest: string, index: number, required: boolean) {
+    this.dest = dest;
+    this.index = index;
+    this.required = required;
+  }
+}
+
 abstract class ProgramBase {
   protected readonly argumentRegistry: IArgument[];
   protected readonly programMetadata: IProgramMetadata;
+  protected readonly positionalArguments: PositionalArgument[];
 
   constructor(
     argumentRegistry: IArgument[],
-    programMetadata: IProgramMetadata
+    programMetadata: IProgramMetadata,
+    positionalArguments: PositionalArgument[]
   ) {
     this.argumentRegistry = argumentRegistry;
     this.programMetadata = programMetadata;
+    this.positionalArguments = positionalArguments;
   }
 }
 
@@ -132,11 +147,15 @@ type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBuilder<
 >;
 
 export default class ProgramBuilder<T> extends ProgramBase {
+  private currentArgumentPosition: number;
+
   private constructor(
     argumentRegistry: IArgument[],
-    programMetadata: IProgramMetadata
+    programMetadata: IProgramMetadata,
+    positionalArguments: PositionalArgument[]
   ) {
-    super(argumentRegistry, programMetadata);
+    super(argumentRegistry, programMetadata, positionalArguments);
+    this.currentArgumentPosition = 0;
   }
 
   private withArgument(argument: IArgument) {
@@ -163,6 +182,22 @@ export default class ProgramBuilder<T> extends ProgramBase {
   description(newDescription: string) {
     this.programMetadata.description = newDescription;
     return this;
+  }
+
+  arg<K extends string>(
+    dest: K
+  ): ExtendProgramBuilderWithRequired<T, K, string> {
+    this.positionalArguments.push(new PositionalArgument(dest, this.currentArgumentPosition, true));
+    this.currentArgumentPosition++;
+    return this as any;
+  }
+
+  optionalArg<K extends string>(
+    dest: K
+  ): ExtendProgramBuilderWithOptional<T, K, string> {
+    this.positionalArguments.push(new PositionalArgument(dest, this.currentArgumentPosition, false));
+    this.currentArgumentPosition++;
+    return this as any;
   }
 
   stringArg<K extends string>(
@@ -230,11 +265,11 @@ export default class ProgramBuilder<T> extends ProgramBase {
   }
 
   build() {
-    return new Program<T>(this.argumentRegistry, this.programMetadata);
+    return new Program<T>(this.argumentRegistry, this.programMetadata, this.positionalArguments);
   }
 
   static newProgram(): ProgramBuilder<{}> {
-    return new ProgramBuilder([], {});
+    return new ProgramBuilder([], {}, []);
   }
 }
 
@@ -260,9 +295,10 @@ class Program<T> extends ProgramBase {
 
   constructor(
     argumentRegistry: IArgument[],
-    programMetadata: IProgramMetadata
+    programMetadata: IProgramMetadata,
+    positionalArguments: PositionalArgument[]
   ) {
-    super(argumentRegistry, programMetadata);
+    super(argumentRegistry, programMetadata, positionalArguments);
     this.argumentMap = new Map(
       argumentRegistry.flatMap(argument =>
         argument.names.map(name => [name, argument])
