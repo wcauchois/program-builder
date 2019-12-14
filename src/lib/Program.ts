@@ -78,11 +78,22 @@ export default class Program<T> extends ProgramBase {
   parse(rawArgs: string[]): ParseResult<T> {
     const argStack = rawArgs.slice();
     let currentParsedArgs: { [key: string]: any } = {};
+
+    const requiredPositionalArgumentStack = this.positionalArguments.slice();
+    let currentRequiredPositionalArgument: PositionalArgument | undefined;
+    while (currentRequiredPositionalArgument = requiredPositionalArgumentStack.shift()) {
+      const argumentValue = argStack.shift();
+      currentParsedArgs[currentRequiredPositionalArgument.dest] = argumentValue;
+    }
+    if (requiredPositionalArgumentStack.length > 0) {
+      throw new ParseError(`Missing ${requiredPositionalArgumentStack.length} required arguments`);
+    }
+
     let currentArg: string | undefined;
     let unspecifiedRequiredArguments = this.keywordArguments.filter(
       argument => argument.metadata.required
     );
-    while ((currentArg = argStack.shift())) {
+    while (currentArg = argStack.shift()) {
       if (Program.helpArgumentsSet.has(currentArg)) {
         return { resultType: "help" };
       }

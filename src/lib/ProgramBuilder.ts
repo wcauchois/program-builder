@@ -72,6 +72,9 @@ export default class ProgramBuilder<T> extends ProgramBase {
     return this as any;
   }
 
+  /*
+  TODO: Optional arguments (needs support in Program)
+
   optionalArg<K extends string>(
     dest: K
   ): ExtendProgramBuilderWithOptional<T, K, string> {
@@ -81,6 +84,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
     this.currentArgumentPosition++;
     return this as any;
   }
+  */
 
   stringArg<K extends string>(
     names: string,
