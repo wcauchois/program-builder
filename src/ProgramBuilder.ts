@@ -1,13 +1,13 @@
 import path = require('path');
 
-interface IArgumentMetadata {
+interface IKeywordArgumentMetadata {
   required: boolean;
   description?: string;
 }
 
 class ArgumentError extends Error {}
 
-interface IArgument {
+interface IKeywordArgument {
   readonly dest: string;
 
   /**
@@ -15,7 +15,7 @@ interface IArgument {
    */
   readonly names: string[];
 
-  readonly metadata: IArgumentMetadata;
+  readonly metadata: IKeywordArgumentMetadata;
 
   convert(inputString: string): any;
 }
@@ -50,15 +50,15 @@ function validFloat(s: string) {
   return !isNaN(parseFloat(s));
 }
 
-abstract class BaseArgument implements IArgument {
+abstract class BaseKeywordArgument implements IKeywordArgument {
   readonly dest: string;
   readonly names: string[];
-  readonly metadata: IArgumentMetadata;
+  readonly metadata: IKeywordArgumentMetadata;
 
   constructor(
     dest: string,
     names: string[] | string,
-    metadata: IArgumentMetadata
+    metadata: IKeywordArgumentMetadata
   ) {
     this.dest = dest;
     this.names = Array.isArray(names) ? names : [names];
@@ -70,9 +70,9 @@ abstract class BaseArgument implements IArgument {
   }
 }
 
-class StringArgument extends BaseArgument {}
+class StringKeywordArgument extends BaseKeywordArgument {}
 
-class IntArgument extends BaseArgument {
+class IntKeywordArgument extends BaseKeywordArgument {
   convert(inputString: string): any {
     if (!validInt(inputString)) {
       throw new ArgumentError("TODO");
@@ -81,7 +81,7 @@ class IntArgument extends BaseArgument {
   }
 }
 
-class FloatArgument extends BaseArgument {
+class FloatKeywordArgument extends BaseKeywordArgument {
   convert(inputString: string): any {
     if (!validFloat(inputString)) {
       throw new ArgumentError("TODO");
@@ -90,24 +90,24 @@ class FloatArgument extends BaseArgument {
   }
 }
 
-interface IArgumentCommonOptions<K extends string> {
+interface IKeywordArgumentCommonOptions<K extends string> {
   dest: K;
   description?: string;
 }
 
-interface IRequiredArgumentOptions<K extends string>
-  extends IArgumentCommonOptions<K> {
+interface IRequiredKeywordArgumentOptions<K extends string>
+  extends IKeywordArgumentCommonOptions<K> {
   required: true;
 }
 
-interface IOptionalArgumentOptions<K extends string>
-  extends IArgumentCommonOptions<K> {
+interface IOptionalKeywordArgumentOptions<K extends string>
+  extends IKeywordArgumentCommonOptions<K> {
   required?: false;
 }
 
-type ArgumentOptions<K extends string> =
-  | IRequiredArgumentOptions<K>
-  | IOptionalArgumentOptions<K>;
+type KeywordArgumentOptions<K extends string> =
+  | IRequiredKeywordArgumentOptions<K>
+  | IOptionalKeywordArgumentOptions<K>;
 
 interface IProgramMetadata {
   description?: string;
@@ -126,16 +126,16 @@ class PositionalArgument {
 }
 
 abstract class ProgramBase {
-  protected readonly argumentRegistry: IArgument[];
+  protected readonly keywordArguments: IKeywordArgument[];
   protected readonly programMetadata: IProgramMetadata;
   protected readonly positionalArguments: PositionalArgument[];
 
   constructor(
-    argumentRegistry: IArgument[],
+    keywordArguments: IKeywordArgument[],
     programMetadata: IProgramMetadata,
     positionalArguments: PositionalArgument[]
   ) {
-    this.argumentRegistry = argumentRegistry;
+    this.keywordArguments = keywordArguments;
     this.programMetadata = programMetadata;
     this.positionalArguments = positionalArguments;
   }
@@ -152,20 +152,20 @@ export default class ProgramBuilder<T> extends ProgramBase {
   private currentArgumentPosition: number;
 
   private constructor(
-    argumentRegistry: IArgument[],
+    keywordArguments: IKeywordArgument[],
     programMetadata: IProgramMetadata,
     positionalArguments: PositionalArgument[]
   ) {
-    super(argumentRegistry, programMetadata, positionalArguments);
+    super(keywordArguments, programMetadata, positionalArguments);
     this.currentArgumentPosition = 0;
   }
 
-  private withArgument(argument: IArgument) {
-    this.argumentRegistry.push(argument);
+  private withArgument(argument: IKeywordArgument) {
+    this.keywordArguments.push(argument);
     return this as any;
   }
 
-  private optionsToMetadata(options: ArgumentOptions<any>): IArgumentMetadata {
+  private optionsToMetadata(options: KeywordArgumentOptions<any>): IKeywordArgumentMetadata {
     return {
       description: options.description,
       required: !!options.required
@@ -204,17 +204,17 @@ export default class ProgramBuilder<T> extends ProgramBase {
 
   stringArg<K extends string>(
     names: string,
-    options: IRequiredArgumentOptions<K>
+    options: IRequiredKeywordArgumentOptions<K>
   ): ExtendProgramBuilderWithRequired<T, K, string>;
 
   stringArg<K extends string>(
     names: string,
-    options: IOptionalArgumentOptions<K>
+    options: IOptionalKeywordArgumentOptions<K>
   ): ExtendProgramBuilderWithOptional<T, K, string>;
 
-  stringArg<K extends string>(names: string, options: ArgumentOptions<K>) {
+  stringArg<K extends string>(names: string, options: KeywordArgumentOptions<K>) {
     return this.withArgument(
-      new StringArgument(
+      new StringKeywordArgument(
         options.dest,
         this.convertNames(names),
         this.optionsToMetadata(options)
@@ -224,17 +224,17 @@ export default class ProgramBuilder<T> extends ProgramBase {
 
   intArg<K extends string>(
     names: string,
-    options: IRequiredArgumentOptions<K>
+    options: IRequiredKeywordArgumentOptions<K>
   ): ExtendProgramBuilderWithRequired<T, K, number>;
 
   intArg<K extends string>(
     names: string,
-    options: IOptionalArgumentOptions<K>
+    options: IOptionalKeywordArgumentOptions<K>
   ): ExtendProgramBuilderWithOptional<T, K, number>;
 
-  intArg<K extends string>(names: string, options: ArgumentOptions<K>) {
+  intArg<K extends string>(names: string, options: KeywordArgumentOptions<K>) {
     return this.withArgument(
-      new IntArgument(
+      new IntKeywordArgument(
         options.dest,
         this.convertNames(names),
         this.optionsToMetadata(options)
@@ -244,17 +244,17 @@ export default class ProgramBuilder<T> extends ProgramBase {
 
   floatArg<K extends string>(
     names: string,
-    options: IRequiredArgumentOptions<K>
+    options: IRequiredKeywordArgumentOptions<K>
   ): ExtendProgramBuilderWithRequired<T, K, number>;
 
   floatArg<K extends string>(
     names: string,
-    options: IOptionalArgumentOptions<K>
+    options: IOptionalKeywordArgumentOptions<K>
   ): ExtendProgramBuilderWithOptional<T, K, number>;
 
-  floatArg<K extends string>(names: string, options: ArgumentOptions<K>) {
+  floatArg<K extends string>(names: string, options: KeywordArgumentOptions<K>) {
     return this.withArgument(
-      new FloatArgument(
+      new FloatKeywordArgument(
         options.dest,
         this.convertNames(names),
         this.optionsToMetadata(options)
@@ -267,7 +267,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
   }
 
   build() {
-    return new Program<T>(this.argumentRegistry, this.programMetadata, this.positionalArguments);
+    return new Program<T>(this.keywordArguments, this.programMetadata, this.positionalArguments);
   }
 
   static newProgram(): ProgramBuilder<{}> {
@@ -291,18 +291,18 @@ type ParseResult<T> = IParseHelpResult | IParseArgumentsResult<T>;
 type ProgramMain<T> = ((args: T) => Promise<void>) | ((args: T) => void);
 
 class Program<T> extends ProgramBase {
-  private readonly argumentMap: Map<string, IArgument>;
+  private readonly keywordArgumentMap: Map<string, IKeywordArgument>;
 
   static readonly helpArgumentsSet = new Set(["-h", "--help"]);
 
   constructor(
-    argumentRegistry: IArgument[],
+    keywordArguments: IKeywordArgument[],
     programMetadata: IProgramMetadata,
     positionalArguments: PositionalArgument[]
   ) {
-    super(argumentRegistry, programMetadata, positionalArguments);
-    this.argumentMap = new Map(
-      argumentRegistry.flatMap(argument =>
+    super(keywordArguments, programMetadata, positionalArguments);
+    this.keywordArgumentMap = new Map(
+      keywordArguments.flatMap(argument =>
         argument.names.map(name => [name, argument])
       )
     );
@@ -313,7 +313,7 @@ class Program<T> extends ProgramBase {
     buffer += `Usage: ${path.basename(process.argv[1])}`;
     // TODO: Positional args
     buffer += '\n\n';
-    for (const argument of this.argumentRegistry) {
+    for (const argument of this.keywordArguments) {
       buffer += `  ${argument.names.join(", ")}`;
     }
     return buffer;
@@ -351,14 +351,14 @@ class Program<T> extends ProgramBase {
     const argStack = rawArgs.slice();
     let currentParsedArgs: { [key: string]: any } = {};
     let currentArg: string | undefined;
-    let unspecifiedRequiredArguments = this.argumentRegistry.filter(
+    let unspecifiedRequiredArguments = this.keywordArguments.filter(
       argument => argument.metadata.required
     );
     while ((currentArg = argStack.shift())) {
       if (Program.helpArgumentsSet.has(currentArg)) {
         return { resultType: "help" };
       }
-      const argument = this.argumentMap.get(currentArg);
+      const argument = this.keywordArgumentMap.get(currentArg);
       if (argument) {
         const argumentValue = argStack.shift();
         if (!argumentValue) {
