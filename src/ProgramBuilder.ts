@@ -119,17 +119,12 @@ abstract class ProgramBase {
 type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<T & { [P in K]?: U }>;
 type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBuilder<T & { [P in K]: U }>;
 
-class ProgramBuilder<T> extends ProgramBase {
+export default class ProgramBuilder<T> extends ProgramBase {
   private constructor(argumentRegistry: IArgument[], programMetadata: IProgramMetadata) {
     super(argumentRegistry, programMetadata);
   }
 
-  private withRequiredArgument<K extends string, U>(key: K, argument: IArgument): ExtendProgramBuilderWithRequired<T, K, U> {
-    this.argumentRegistry.push(argument);
-    return this as any;
-  }
-
-  private withOptionalArgument<K extends string, U>(key: K, argument: IArgument): ExtendProgramBuilderWithOptional<T, K, U> {
+  private withArgument(argument: IArgument) {
     this.argumentRegistry.push(argument);
     return this as any;
   }
@@ -156,8 +151,7 @@ class ProgramBuilder<T> extends ProgramBase {
   stringArg<K extends string>(key: K, names: string[] | string, options: IOptionalArgumentOptions): ExtendProgramBuilderWithOptional<T, K, string>;
 
   stringArg<K extends string>(key: K, names: string[] | string, options: ArgumentOptions) {
-    const argument = new StringArgument(key, names, this.optionsToMetadata(options));
-    return options.required ? this.withRequiredArgument(key, argument) : this.withOptionalArgument(key, argument);
+    return this.withArgument(new StringArgument(key, names, this.optionsToMetadata(options)));
   }
 
   intArg<K extends string>(key: K, names: string[] | string, options: IRequiredArgumentOptions): ExtendProgramBuilderWithRequired<T, K, number>;
@@ -165,8 +159,7 @@ class ProgramBuilder<T> extends ProgramBase {
   intArg<K extends string>(key: K, names: string[] | string, options: IOptionalArgumentOptions): ExtendProgramBuilderWithOptional<T, K, number>;
 
   intArg<K extends string>(key: K, names: string[] | string, options: ArgumentOptions) {
-    const argument = new IntArgument(key, names, this.optionsToMetadata(options));
-    return options.required ? this.withRequiredArgument(key, argument) : this.withOptionalArgument(key, argument);
+    return this.withArgument(new IntArgument(key, names, this.optionsToMetadata(options)));
   }
 
   floatArg<K extends string>(key: K, names: string[] | string, options: IRequiredArgumentOptions): ExtendProgramBuilderWithRequired<T, K, number>;
@@ -174,8 +167,7 @@ class ProgramBuilder<T> extends ProgramBase {
   floatArg<K extends string>(key: K, names: string[] | string, options: IOptionalArgumentOptions): ExtendProgramBuilderWithOptional<T, K, number>;
 
   floatArg<K extends string>(key: K, names: string[] | string, options: ArgumentOptions) {
-    const argument = new FloatArgument(key, names, this.optionsToMetadata(options));
-    return options.required ? this.withRequiredArgument(key, argument) : this.withOptionalArgument(key, argument);
+    return this.withArgument(new FloatArgument(key, names, this.optionsToMetadata(options)));
   }
 
   flag(name: string) {
@@ -258,13 +250,13 @@ class Program<T> extends ProgramBase {
     let currentParsedArgs: { [key: string]: any } = {};
     let currentArg: string | undefined;
     let unspecifiedRequiredArguments = this.argumentRegistry.filter(argument => argument.metadata.required);
-    while (currentArg = argStack.pop()) {
+    while (currentArg = argStack.shift()) {
       if (Program.helpArgumentsSet.has(currentArg)) {
         return { resultType: 'help' };
       }
       const argument = this.argumentMap.get(currentArg);
       if (argument) {
-        const argumentValue = argStack.pop();
+        const argumentValue = argStack.shift();
         if (!argumentValue) {
           throw new ParseError(`Missing argument value`);
         }

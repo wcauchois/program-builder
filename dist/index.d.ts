@@ -1,1 +1,2 @@
-export declare function hello(): void;
+import ProgramBuilder, { Arguments } from "./ProgramBuilder";
+export { ProgramBuilder, Arguments };

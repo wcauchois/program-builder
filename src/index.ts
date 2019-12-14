@@ -1,4 +1,6 @@
+import ProgramBuilder, { Arguments } from "./ProgramBuilder";
 
-export function hello() {
-  console.log('hello, world');
-}
+export {
+  ProgramBuilder,
+  Arguments
+};
