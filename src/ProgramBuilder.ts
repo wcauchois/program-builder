@@ -1,3 +1,5 @@
+import path = require('path');
+
 interface IArgumentMetadata {
   required: boolean;
   description?: string;
@@ -308,7 +310,9 @@ class Program<T> extends ProgramBase {
 
   generateHelpText() {
     let buffer = "";
-    buffer += `program\n\n`;
+    buffer += `Usage: ${path.basename(process.argv[1])}`;
+    // TODO: Positional args
+    buffer += '\n\n';
     for (const argument of this.argumentRegistry) {
       buffer += `  ${argument.names.join(", ")}`;
     }
