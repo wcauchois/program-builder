@@ -1,3 +1,4 @@
+import { IKeywordArgument, IKeywordArgumentMetadata } from "./types";
 declare abstract class BaseKeywordArgument implements IKeywordArgument {
     readonly dest: string;
     readonly names: string[];

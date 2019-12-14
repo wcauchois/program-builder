@@ -1,4 +1,5 @@
 import PositionalArgument from "./PositionalArgument";
+import { IKeywordArgument, IProgramMetadata } from "./types";
 export default abstract class ProgramBase {
     protected readonly keywordArguments: IKeywordArgument[];
     protected readonly programMetadata: IProgramMetadata;

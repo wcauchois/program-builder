@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const path = require("path");
 const errors_1 = require("./errors");
 const ProgramBase_1 = __importDefault(require("./ProgramBase"));
-const path = require("path");
 class Program extends ProgramBase_1.default {
     constructor(keywordArguments, programMetadata, positionalArguments) {
         super(keywordArguments, programMetadata, positionalArguments);
@@ -15,7 +15,7 @@ class Program extends ProgramBase_1.default {
         let buffer = "";
         buffer += `Usage: ${path.basename(process.argv[1])}`;
         // TODO: Positional args
-        buffer += '\n\n';
+        buffer += "\n\n";
         for (const argument of this.keywordArguments) {
             buffer += `  ${argument.names.join(", ")}`;
         }

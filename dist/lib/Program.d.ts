@@ -1,5 +1,6 @@
-import PositionalArgument from './PositionalArgument';
-import ProgramBase from './ProgramBase';
+import PositionalArgument from "./PositionalArgument";
+import ProgramBase from "./ProgramBase";
+import { IKeywordArgument, IProgramMetadata } from "./types";
 interface IParseHelpResult {
     resultType: "help";
 }

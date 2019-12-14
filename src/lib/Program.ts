@@ -1,8 +1,9 @@
+import path = require("path");
+
 import PositionalArgument from "./PositionalArgument";
 import { ParseError } from "./errors";
 import ProgramBase from "./ProgramBase";
-
-import path = require("path");
+import { IKeywordArgument, IProgramMetadata } from "./types";
 
 interface IParseHelpResult {
   resultType: "help";

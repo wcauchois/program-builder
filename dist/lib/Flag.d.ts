@@ -1,3 +1,4 @@
+import { IFlag } from "./types";
 export default class Flag implements IFlag {
     readonly dest: string;
     readonly positiveNames: string[];

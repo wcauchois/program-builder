@@ -6,6 +6,14 @@ import {
   FloatKeywordArgument
 } from "./keywordArguments";
 import Program from "./Program";
+import {
+  IKeywordArgument,
+  IProgramMetadata,
+  KeywordArgumentOptions,
+  IKeywordArgumentMetadata,
+  IRequiredKeywordArgumentOptions,
+  IOptionalKeywordArgumentOptions
+} from "./types";
 
 type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<
   T & { [P in K]?: U }

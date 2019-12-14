@@ -1,9 +1,9 @@
-interface IKeywordArgumentMetadata {
+export interface IKeywordArgumentMetadata {
   required: boolean;
   description?: string;
 }
 
-interface IKeywordArgument {
+export interface IKeywordArgument {
   readonly dest: string;
 
   /**
@@ -16,7 +16,7 @@ interface IKeywordArgument {
   convert(inputString: string): any;
 }
 
-interface IFlag {
+export interface IFlag {
   readonly dest: string;
 
   readonly positiveNames: string[];
@@ -24,25 +24,25 @@ interface IFlag {
   readonly negativeNames: string[];
 }
 
-interface IKeywordArgumentCommonOptions<K extends string> {
+export interface IKeywordArgumentCommonOptions<K extends string> {
   dest: K;
   description?: string;
 }
 
-interface IRequiredKeywordArgumentOptions<K extends string>
+export interface IRequiredKeywordArgumentOptions<K extends string>
   extends IKeywordArgumentCommonOptions<K> {
   required: true;
 }
 
-interface IOptionalKeywordArgumentOptions<K extends string>
+export interface IOptionalKeywordArgumentOptions<K extends string>
   extends IKeywordArgumentCommonOptions<K> {
   required?: false;
 }
 
-type KeywordArgumentOptions<K extends string> =
+export type KeywordArgumentOptions<K extends string> =
   | IRequiredKeywordArgumentOptions<K>
   | IOptionalKeywordArgumentOptions<K>;
 
-interface IProgramMetadata {
+export interface IProgramMetadata {
   description?: string;
 }

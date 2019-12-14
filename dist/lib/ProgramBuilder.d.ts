@@ -1,5 +1,6 @@
 import ProgramBase from "./ProgramBase";
 import Program from "./Program";
+import { IRequiredKeywordArgumentOptions, IOptionalKeywordArgumentOptions } from "./types";
 declare type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<T & {
     [P in K]?: U;
 }>;

@@ -1,4 +1,5 @@
 import { ArgumentError } from "./errors";
+import { IKeywordArgument, IKeywordArgumentMetadata } from "./types";
 
 const intRegex = /^-?[0-9]+$/;
 
