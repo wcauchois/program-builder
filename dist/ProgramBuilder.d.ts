@@ -3,10 +3,7 @@ interface IArgumentMetadata {
     description?: string;
 }
 interface IArgument {
-    /**
-     * Key into which this argument will be stored.
-     */
-    readonly key: string;
+    readonly dest: string;
     /**
      * Names for this argument including short names (i.e. `-s`, `--string`).
      */
@@ -14,13 +11,14 @@ interface IArgument {
     readonly metadata: IArgumentMetadata;
     convert(inputString: string): any;
 }
-interface IArgumentCommonOptions {
+interface IArgumentCommonOptions<K extends string> {
+    dest: K;
     description?: string;
 }
-interface IRequiredArgumentOptions extends IArgumentCommonOptions {
+interface IRequiredArgumentOptions<K extends string> extends IArgumentCommonOptions<K> {
     required: true;
 }
-interface IOptionalArgumentOptions extends IArgumentCommonOptions {
+interface IOptionalArgumentOptions<K extends string> extends IArgumentCommonOptions<K> {
     required?: false;
 }
 interface IProgramMetadata {
@@ -47,12 +45,12 @@ export default class ProgramBuilder<T> extends ProgramBase {
      * @param newDescription The new description for the program.
      */
     description(newDescription: string): this;
-    stringArg<K extends string>(key: K, names: string[] | string, options: IRequiredArgumentOptions): ExtendProgramBuilderWithRequired<T, K, string>;
-    stringArg<K extends string>(key: K, names: string[] | string, options: IOptionalArgumentOptions): ExtendProgramBuilderWithOptional<T, K, string>;
-    intArg<K extends string>(key: K, names: string[] | string, options: IRequiredArgumentOptions): ExtendProgramBuilderWithRequired<T, K, number>;
-    intArg<K extends string>(key: K, names: string[] | string, options: IOptionalArgumentOptions): ExtendProgramBuilderWithOptional<T, K, number>;
-    floatArg<K extends string>(key: K, names: string[] | string, options: IRequiredArgumentOptions): ExtendProgramBuilderWithRequired<T, K, number>;
-    floatArg<K extends string>(key: K, names: string[] | string, options: IOptionalArgumentOptions): ExtendProgramBuilderWithOptional<T, K, number>;
+    stringArg<K extends string>(names: string[] | string, options: IRequiredArgumentOptions<K>): ExtendProgramBuilderWithRequired<T, K, string>;
+    stringArg<K extends string>(names: string[] | string, options: IOptionalArgumentOptions<K>): ExtendProgramBuilderWithOptional<T, K, string>;
+    intArg<K extends string>(names: string[] | string, options: IRequiredArgumentOptions<K>): ExtendProgramBuilderWithRequired<T, K, number>;
+    intArg<K extends string>(names: string[] | string, options: IOptionalArgumentOptions<K>): ExtendProgramBuilderWithOptional<T, K, number>;
+    floatArg<K extends string>(names: string[] | string, options: IRequiredArgumentOptions<K>): ExtendProgramBuilderWithRequired<T, K, number>;
+    floatArg<K extends string>(names: string[] | string, options: IOptionalArgumentOptions<K>): ExtendProgramBuilderWithOptional<T, K, number>;
     flag(name: string): void;
     build(): Program<T>;
     static newProgram(): ProgramBuilder<{}>;

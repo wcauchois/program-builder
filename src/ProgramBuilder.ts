@@ -7,10 +7,7 @@ interface IArgumentMetadata {
 class ArgumentError extends Error {}
 
 interface IArgument {
-  /**
-   * Key into which this argument will be stored.
-   */
-  readonly key: string;
+  readonly dest: string;
 
   /**
    * Names for this argument including short names (i.e. `-s`, `--string`).
@@ -23,7 +20,7 @@ interface IArgument {
 }
 
 interface IFlag {
-  readonly key: string;
+  readonly dest: string;
 
   readonly positiveNames: string[];
 
@@ -31,12 +28,12 @@ interface IFlag {
 }
 
 class Flag implements IFlag {
-  readonly key: string;
+  readonly dest: string;
   readonly positiveNames: string[];
   readonly negativeNames: string[];
 
-  constructor(key: string, positiveNames: string[], negativeNames: string[]) {
-    this.key = key;
+  constructor(dest: string, positiveNames: string[], negativeNames: string[]) {
+    this.dest = dest;
     this.positiveNames = positiveNames;
     this.negativeNames = negativeNames;
   }
@@ -53,12 +50,12 @@ function validFloat(s: string) {
 }
 
 abstract class BaseArgument implements IArgument {
-  readonly key: string;
+  readonly dest: string;
   readonly names: string[];
   readonly metadata: IArgumentMetadata;
 
-  constructor(key: string, names: string[] | string, metadata: IArgumentMetadata) {
-    this.key = key;
+  constructor(dest: string, names: string[] | string, metadata: IArgumentMetadata) {
+    this.dest = dest;
     this.names = Array.isArray(names) ? names : [names];
     this.metadata = metadata;
   }
@@ -88,19 +85,20 @@ class FloatArgument extends BaseArgument {
   }
 }
 
-interface IArgumentCommonOptions {
+interface IArgumentCommonOptions<K extends string> {
+  dest: K;
   description?: string;
 }
 
-interface IRequiredArgumentOptions extends IArgumentCommonOptions {
+interface IRequiredArgumentOptions<K extends string> extends IArgumentCommonOptions<K> {
   required: true;
 }
 
-interface IOptionalArgumentOptions extends IArgumentCommonOptions {
+interface IOptionalArgumentOptions<K extends string> extends IArgumentCommonOptions<K> {
   required?: false;
 }
 
-type ArgumentOptions = IRequiredArgumentOptions | IOptionalArgumentOptions;
+type ArgumentOptions<K extends string> = IRequiredArgumentOptions<K> | IOptionalArgumentOptions<K>;
 
 interface IProgramMetadata {
   description?: string;
@@ -129,11 +127,15 @@ export default class ProgramBuilder<T> extends ProgramBase {
     return this as any;
   }
 
-  private optionsToMetadata(options: ArgumentOptions): IArgumentMetadata {
+  private optionsToMetadata(options: ArgumentOptions<any>): IArgumentMetadata {
     return {
       description: options.description,
       required: !!options.required
     };
+  }
+
+  private convertNames(names: string): string[] {
+    return names.split(',').map(x => x.trim());
   }
 
   /**
@@ -146,28 +148,28 @@ export default class ProgramBuilder<T> extends ProgramBase {
     return this;
   }
 
-  stringArg<K extends string>(key: K, names: string[] | string, options: IRequiredArgumentOptions): ExtendProgramBuilderWithRequired<T, K, string>;
+  stringArg<K extends string>(names: string, options: IRequiredArgumentOptions<K>): ExtendProgramBuilderWithRequired<T, K, string>;
 
-  stringArg<K extends string>(key: K, names: string[] | string, options: IOptionalArgumentOptions): ExtendProgramBuilderWithOptional<T, K, string>;
+  stringArg<K extends string>(names: string, options: IOptionalArgumentOptions<K>): ExtendProgramBuilderWithOptional<T, K, string>;
 
-  stringArg<K extends string>(key: K, names: string[] | string, options: ArgumentOptions) {
-    return this.withArgument(new StringArgument(key, names, this.optionsToMetadata(options)));
+  stringArg<K extends string>(names: string, options: ArgumentOptions<K>) {
+    return this.withArgument(new StringArgument(options.dest, this.convertNames(names), this.optionsToMetadata(options)));
   }
 
-  intArg<K extends string>(key: K, names: string[] | string, options: IRequiredArgumentOptions): ExtendProgramBuilderWithRequired<T, K, number>;
+  intArg<K extends string>(names: string, options: IRequiredArgumentOptions<K>): ExtendProgramBuilderWithRequired<T, K, number>;
 
-  intArg<K extends string>(key: K, names: string[] | string, options: IOptionalArgumentOptions): ExtendProgramBuilderWithOptional<T, K, number>;
+  intArg<K extends string>(names: string, options: IOptionalArgumentOptions<K>): ExtendProgramBuilderWithOptional<T, K, number>;
 
-  intArg<K extends string>(key: K, names: string[] | string, options: ArgumentOptions) {
-    return this.withArgument(new IntArgument(key, names, this.optionsToMetadata(options)));
+  intArg<K extends string>(names: string, options: ArgumentOptions<K>) {
+    return this.withArgument(new IntArgument(options.dest, this.convertNames(names), this.optionsToMetadata(options)));
   }
 
-  floatArg<K extends string>(key: K, names: string[] | string, options: IRequiredArgumentOptions): ExtendProgramBuilderWithRequired<T, K, number>;
+  floatArg<K extends string>(names: string, options: IRequiredArgumentOptions<K>): ExtendProgramBuilderWithRequired<T, K, number>;
 
-  floatArg<K extends string>(key: K, names: string[] | string, options: IOptionalArgumentOptions): ExtendProgramBuilderWithOptional<T, K, number>;
+  floatArg<K extends string>(names: string, options: IOptionalArgumentOptions<K>): ExtendProgramBuilderWithOptional<T, K, number>;
 
-  floatArg<K extends string>(key: K, names: string[] | string, options: ArgumentOptions) {
-    return this.withArgument(new FloatArgument(key, names, this.optionsToMetadata(options)));
+  floatArg<K extends string>(names: string, options: ArgumentOptions<K>) {
+    return this.withArgument(new FloatArgument(options.dest, this.convertNames(names), this.optionsToMetadata(options)));
   }
 
   flag(name: string) {
@@ -260,11 +262,11 @@ class Program<T> extends ProgramBase {
         if (!argumentValue) {
           throw new ParseError(`Missing argument value`);
         }
-        currentParsedArgs[argument.key] = argument.convert(argumentValue);
+        currentParsedArgs[argument.dest] = argument.convert(argumentValue);
         unspecifiedRequiredArguments = unspecifiedRequiredArguments.filter(a => argument !== a);
         continue;
       }
-      throw new ParseError(`Unrecognized argument`);
+      throw new ParseError(`Unrecognized argument: ${currentArg}`);
     }
     if (unspecifiedRequiredArguments.length > 0) {
       throw new ParseError(`Missing required arguments`);

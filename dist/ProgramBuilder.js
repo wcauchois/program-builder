@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 class ArgumentError extends Error {
 }
 class Flag {
-    constructor(key, positiveNames, negativeNames) {
-        this.key = key;
+    constructor(dest, positiveNames, negativeNames) {
+        this.dest = dest;
         this.positiveNames = positiveNames;
         this.negativeNames = negativeNames;
     }
@@ -17,8 +17,8 @@ function validFloat(s) {
     return !isNaN(parseFloat(s));
 }
 class BaseArgument {
-    constructor(key, names, metadata) {
-        this.key = key;
+    constructor(dest, names, metadata) {
+        this.dest = dest;
         this.names = Array.isArray(names) ? names : [names];
         this.metadata = metadata;
     }
@@ -73,14 +73,14 @@ class ProgramBuilder extends ProgramBase {
         this.programMetadata.description = newDescription;
         return this;
     }
-    stringArg(key, names, options) {
-        return this.withArgument(new StringArgument(key, names, this.optionsToMetadata(options)));
+    stringArg(names, options) {
+        return this.withArgument(new StringArgument(options.dest, names, this.optionsToMetadata(options)));
     }
-    intArg(key, names, options) {
-        return this.withArgument(new IntArgument(key, names, this.optionsToMetadata(options)));
+    intArg(names, options) {
+        return this.withArgument(new IntArgument(options.dest, names, this.optionsToMetadata(options)));
     }
-    floatArg(key, names, options) {
-        return this.withArgument(new FloatArgument(key, names, this.optionsToMetadata(options)));
+    floatArg(names, options) {
+        return this.withArgument(new FloatArgument(options.dest, names, this.optionsToMetadata(options)));
     }
     flag(name) {
         // TODO
@@ -152,7 +152,7 @@ class Program extends ProgramBase {
                 if (!argumentValue) {
                     throw new ParseError(`Missing argument value`);
                 }
-                currentParsedArgs[argument.key] = argument.convert(argumentValue);
+                currentParsedArgs[argument.dest] = argument.convert(argumentValue);
                 unspecifiedRequiredArguments = unspecifiedRequiredArguments.filter(a => argument !== a);
                 continue;
             }
