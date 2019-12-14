@@ -54,10 +54,10 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_programbuilder_.html">&quot;ProgramBuilder&quot;</a>
+					<a href="../modules/_lib_programbuilder_.html">&quot;lib/ProgramBuilder&quot;</a>
 				</li>
 				<li>
-					<a href="_programbuilder_.programbuilder.html">ProgramBuilder</a>
+					<a href="_lib_programbuilder_.programbuilder.html">ProgramBuilder</a>
 				</li>
 			</ul>
 			<h1>Class ProgramBuilder&lt;T&gt;</h1>
@@ -79,7 +79,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">ProgramBase</span>
+						<a href="_lib_programbase_.programbase.html" class="tsd-signature-type">ProgramBase</a>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">ProgramBuilder</span>
@@ -95,19 +95,20 @@
 						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="_programbuilder_.programbuilder.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="_lib_programbuilder_.programbuilder.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_programbuilder_.programbuilder.html#build" class="tsd-kind-icon">build</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_programbuilder_.programbuilder.html#description" class="tsd-kind-icon">description</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_programbuilder_.programbuilder.html#flag" class="tsd-kind-icon">flag</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="_programbuilder_.programbuilder.html#floatarg" class="tsd-kind-icon">float<wbr>Arg</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="_programbuilder_.programbuilder.html#intarg" class="tsd-kind-icon">int<wbr>Arg</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="_programbuilder_.programbuilder.html#stringarg" class="tsd-kind-icon">string<wbr>Arg</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_programbuilder_.programbuilder.html#newprogram" class="tsd-kind-icon">new<wbr>Program</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="_lib_programbuilder_.programbuilder.html#arg" class="tsd-kind-icon">arg</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_lib_programbuilder_.programbuilder.html#build" class="tsd-kind-icon">build</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_lib_programbuilder_.programbuilder.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_lib_programbuilder_.programbuilder.html#flag" class="tsd-kind-icon">flag</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="_lib_programbuilder_.programbuilder.html#floatarg" class="tsd-kind-icon">float<wbr>Arg</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="_lib_programbuilder_.programbuilder.html#intarg" class="tsd-kind-icon">int<wbr>Arg</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="_lib_programbuilder_.programbuilder.html#stringarg" class="tsd-kind-icon">string<wbr>Arg</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_lib_programbuilder_.programbuilder.html#newprogram" class="tsd-kind-icon">new<wbr>Program</a></li>
 							</ul>
 						</section>
 					</div>
@@ -119,46 +120,78 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Program<wbr>Builder<span class="tsd-signature-symbol">(</span>argumentRegistry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IArgument</span><span class="tsd-signature-symbol">[]</span>, programMetadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IProgramMetadata</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_programbuilder_.programbuilder.html" class="tsd-signature-type">ProgramBuilder</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Program<wbr>Builder<span class="tsd-signature-symbol">(</span>keywordArguments<span class="tsd-signature-symbol">: </span><a href="../interfaces/_lib_types_.ikeywordargument.html" class="tsd-signature-type">IKeywordArgument</a><span class="tsd-signature-symbol">[]</span>, programMetadata<span class="tsd-signature-symbol">: </span><a href="../interfaces/_lib_types_.iprogrammetadata.html" class="tsd-signature-type">IProgramMetadata</a>, positionalArguments<span class="tsd-signature-symbol">: </span><a href="_lib_positionalargument_.positionalargument.html" class="tsd-signature-type">PositionalArgument</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_lib_programbuilder_.programbuilder.html" class="tsd-signature-type">ProgramBuilder</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from ProgramBase.__constructor</p>
+								<p>Inherited from <a href="_lib_programbase_.programbase.html">ProgramBase</a>.<a href="_lib_programbase_.programbase.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/39d106f/src/ProgramBuilder.ts#L116">ProgramBuilder.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/2755d15/src/lib/ProgramBase.ts#L7">src/lib/ProgramBase.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>argumentRegistry: <span class="tsd-signature-type">IArgument</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>keywordArguments: <a href="../interfaces/_lib_types_.ikeywordargument.html" class="tsd-signature-type">IKeywordArgument</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 								<li>
-									<h5>programMetadata: <span class="tsd-signature-type">IProgramMetadata</span></h5>
+									<h5>programMetadata: <a href="../interfaces/_lib_types_.iprogrammetadata.html" class="tsd-signature-type">IProgramMetadata</a></h5>
+								</li>
+								<li>
+									<h5>positionalArguments: <a href="_lib_positionalargument_.positionalargument.html" class="tsd-signature-type">PositionalArgument</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_programbuilder_.programbuilder.html" class="tsd-signature-type">ProgramBuilder</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_lib_programbuilder_.programbuilder.html" class="tsd-signature-type">ProgramBuilder</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="build" class="tsd-anchor"></a>
-					<h3>build</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">build<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Program</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+					<a name="arg" class="tsd-anchor"></a>
+					<h3>arg</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">arg&lt;K&gt;<span class="tsd-signature-symbol">(</span>dest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ExtendProgramBuilderWithRequired</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/39d106f/src/ProgramBuilder.ts#L232">ProgramBuilder.ts:232</a></li>
+									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/2755d15/src/lib/ProgramBuilder.ts#L65">src/lib/ProgramBuilder.ts:65</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Program</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>dest: <span class="tsd-signature-type">K</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ExtendProgramBuilderWithRequired</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="build" class="tsd-anchor"></a>
+					<h3>build</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">build<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_lib_program_.program.html" class="tsd-signature-type">Program</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/2755d15/src/lib/ProgramBuilder.ts#L159">src/lib/ProgramBuilder.ts:159</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_lib_program_.program.html" class="tsd-signature-type">Program</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -172,7 +205,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/39d106f/src/ProgramBuilder.ts#L163">ProgramBuilder.ts:163</a></li>
+									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/2755d15/src/lib/ProgramBuilder.ts#L60">src/lib/ProgramBuilder.ts:60</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -203,7 +236,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/39d106f/src/ProgramBuilder.ts#L228">ProgramBuilder.ts:228</a></li>
+									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/2755d15/src/lib/ProgramBuilder.ts#L155">src/lib/ProgramBuilder.ts:155</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -220,14 +253,14 @@
 					<a name="floatarg" class="tsd-anchor"></a>
 					<h3>float<wbr>Arg</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">float<wbr>Arg&lt;K&gt;<span class="tsd-signature-symbol">(</span>names<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IRequiredArgumentOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ExtendProgramBuilderWithRequired</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">float<wbr>Arg&lt;K&gt;<span class="tsd-signature-symbol">(</span>names<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IOptionalArgumentOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ExtendProgramBuilderWithOptional</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">float<wbr>Arg&lt;K&gt;<span class="tsd-signature-symbol">(</span>names<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_lib_types_.irequiredkeywordargumentoptions.html" class="tsd-signature-type">IRequiredKeywordArgumentOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ExtendProgramBuilderWithRequired</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">float<wbr>Arg&lt;K&gt;<span class="tsd-signature-symbol">(</span>names<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_lib_types_.ioptionalkeywordargumentoptions.html" class="tsd-signature-type">IOptionalKeywordArgumentOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ExtendProgramBuilderWithOptional</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/39d106f/src/ProgramBuilder.ts#L208">ProgramBuilder.ts:208</a></li>
+									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/2755d15/src/lib/ProgramBuilder.ts#L132">src/lib/ProgramBuilder.ts:132</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -242,7 +275,7 @@
 									<h5>names: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>options: <span class="tsd-signature-type">IRequiredArgumentOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>options: <a href="../interfaces/_lib_types_.irequiredkeywordargumentoptions.html" class="tsd-signature-type">IRequiredKeywordArgumentOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ExtendProgramBuilderWithRequired</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -250,7 +283,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/39d106f/src/ProgramBuilder.ts#L213">ProgramBuilder.ts:213</a></li>
+									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/2755d15/src/lib/ProgramBuilder.ts#L137">src/lib/ProgramBuilder.ts:137</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -265,7 +298,7 @@
 									<h5>names: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>options: <span class="tsd-signature-type">IOptionalArgumentOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>options: <a href="../interfaces/_lib_types_.ioptionalkeywordargumentoptions.html" class="tsd-signature-type">IOptionalKeywordArgumentOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ExtendProgramBuilderWithOptional</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -276,14 +309,14 @@
 					<a name="intarg" class="tsd-anchor"></a>
 					<h3>int<wbr>Arg</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">int<wbr>Arg&lt;K&gt;<span class="tsd-signature-symbol">(</span>names<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IRequiredArgumentOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ExtendProgramBuilderWithRequired</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">int<wbr>Arg&lt;K&gt;<span class="tsd-signature-symbol">(</span>names<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IOptionalArgumentOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ExtendProgramBuilderWithOptional</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">int<wbr>Arg&lt;K&gt;<span class="tsd-signature-symbol">(</span>names<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_lib_types_.irequiredkeywordargumentoptions.html" class="tsd-signature-type">IRequiredKeywordArgumentOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ExtendProgramBuilderWithRequired</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">int<wbr>Arg&lt;K&gt;<span class="tsd-signature-symbol">(</span>names<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_lib_types_.ioptionalkeywordargumentoptions.html" class="tsd-signature-type">IOptionalKeywordArgumentOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ExtendProgramBuilderWithOptional</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/39d106f/src/ProgramBuilder.ts#L188">ProgramBuilder.ts:188</a></li>
+									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/2755d15/src/lib/ProgramBuilder.ts#L112">src/lib/ProgramBuilder.ts:112</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -298,7 +331,7 @@
 									<h5>names: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>options: <span class="tsd-signature-type">IRequiredArgumentOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>options: <a href="../interfaces/_lib_types_.irequiredkeywordargumentoptions.html" class="tsd-signature-type">IRequiredKeywordArgumentOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ExtendProgramBuilderWithRequired</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -306,7 +339,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/39d106f/src/ProgramBuilder.ts#L193">ProgramBuilder.ts:193</a></li>
+									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/2755d15/src/lib/ProgramBuilder.ts#L117">src/lib/ProgramBuilder.ts:117</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -321,7 +354,7 @@
 									<h5>names: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>options: <span class="tsd-signature-type">IOptionalArgumentOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>options: <a href="../interfaces/_lib_types_.ioptionalkeywordargumentoptions.html" class="tsd-signature-type">IOptionalKeywordArgumentOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ExtendProgramBuilderWithOptional</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -332,14 +365,14 @@
 					<a name="stringarg" class="tsd-anchor"></a>
 					<h3>string<wbr>Arg</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">string<wbr>Arg&lt;K&gt;<span class="tsd-signature-symbol">(</span>names<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IRequiredArgumentOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ExtendProgramBuilderWithRequired</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">string<wbr>Arg&lt;K&gt;<span class="tsd-signature-symbol">(</span>names<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IOptionalArgumentOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ExtendProgramBuilderWithOptional</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">string<wbr>Arg&lt;K&gt;<span class="tsd-signature-symbol">(</span>names<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_lib_types_.irequiredkeywordargumentoptions.html" class="tsd-signature-type">IRequiredKeywordArgumentOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ExtendProgramBuilderWithRequired</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">string<wbr>Arg&lt;K&gt;<span class="tsd-signature-symbol">(</span>names<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_lib_types_.ioptionalkeywordargumentoptions.html" class="tsd-signature-type">IOptionalKeywordArgumentOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ExtendProgramBuilderWithOptional</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/39d106f/src/ProgramBuilder.ts#L168">ProgramBuilder.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/2755d15/src/lib/ProgramBuilder.ts#L89">src/lib/ProgramBuilder.ts:89</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -354,7 +387,7 @@
 									<h5>names: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>options: <span class="tsd-signature-type">IRequiredArgumentOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>options: <a href="../interfaces/_lib_types_.irequiredkeywordargumentoptions.html" class="tsd-signature-type">IRequiredKeywordArgumentOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ExtendProgramBuilderWithRequired</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -362,7 +395,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/39d106f/src/ProgramBuilder.ts#L173">ProgramBuilder.ts:173</a></li>
+									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/2755d15/src/lib/ProgramBuilder.ts#L94">src/lib/ProgramBuilder.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -377,7 +410,7 @@
 									<h5>names: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>options: <span class="tsd-signature-type">IOptionalArgumentOptions</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>options: <a href="../interfaces/_lib_types_.ioptionalkeywordargumentoptions.html" class="tsd-signature-type">IOptionalKeywordArgumentOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ExtendProgramBuilderWithOptional</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -388,16 +421,16 @@
 					<a name="newprogram" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> new<wbr>Program</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">new<wbr>Program<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_programbuilder_.programbuilder.html" class="tsd-signature-type">ProgramBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">new<wbr>Program<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_lib_programbuilder_.programbuilder.html" class="tsd-signature-type">ProgramBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/39d106f/src/ProgramBuilder.ts#L236">ProgramBuilder.ts:236</a></li>
+									<li>Defined in <a href="https://github.com/wcauchois/program-builder/blob/2755d15/src/lib/ProgramBuilder.ts#L167">src/lib/ProgramBuilder.ts:167</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_programbuilder_.programbuilder.html" class="tsd-signature-type">ProgramBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_lib_programbuilder_.programbuilder.html" class="tsd-signature-type">ProgramBuilder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -410,13 +443,34 @@
 						<a href="../index.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_program_.html">&quot;<wbr>Program&quot;</a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/_programbuilder_.html">&quot;<wbr>Program<wbr>Builder&quot;</a>
+						<a href="../modules/_index_.html">&quot;index&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">&quot;index&quot;</a>
+						<a href="../modules/_lib_flag_.html">&quot;lib/<wbr>Flag&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_lib_positionalargument_.html">&quot;lib/<wbr>Positional<wbr>Argument&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_lib_program_.html">&quot;lib/<wbr>Program&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_lib_programbase_.html">&quot;lib/<wbr>Program<wbr>Base&quot;</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_lib_programbuilder_.html">&quot;lib/<wbr>Program<wbr>Builder&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_lib_arguments_.html">&quot;lib/arguments&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_lib_errors_.html">&quot;lib/errors&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_lib_keywordarguments_.html">&quot;lib/keyword<wbr>Arguments&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_lib_types_.html">&quot;lib/types&quot;</a>
 					</li>
 				</ul>
 			</nav>
@@ -425,39 +479,39 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_programbuilder_.programbuilder.html" class="tsd-kind-icon">Program<wbr>Builder</a>
+						<a href="_lib_programbuilder_.programbuilder.html" class="tsd-kind-icon">Program<wbr>Builder</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-								<a href="_programbuilder_.programbuilder.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_programbuilder_.programbuilder.html#build" class="tsd-kind-icon">build</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_programbuilder_.programbuilder.html#description" class="tsd-kind-icon">description</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_programbuilder_.programbuilder.html#flag" class="tsd-kind-icon">flag</a>
+								<a href="_lib_programbuilder_.programbuilder.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-								<a href="_programbuilder_.programbuilder.html#floatarg" class="tsd-kind-icon">float<wbr>Arg</a>
+								<a href="_lib_programbuilder_.programbuilder.html#arg" class="tsd-kind-icon">arg</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_lib_programbuilder_.programbuilder.html#build" class="tsd-kind-icon">build</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_lib_programbuilder_.programbuilder.html#description" class="tsd-kind-icon">description</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_lib_programbuilder_.programbuilder.html#flag" class="tsd-kind-icon">flag</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-								<a href="_programbuilder_.programbuilder.html#intarg" class="tsd-kind-icon">int<wbr>Arg</a>
+								<a href="_lib_programbuilder_.programbuilder.html#floatarg" class="tsd-kind-icon">float<wbr>Arg</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-								<a href="_programbuilder_.programbuilder.html#stringarg" class="tsd-kind-icon">string<wbr>Arg</a>
+								<a href="_lib_programbuilder_.programbuilder.html#intarg" class="tsd-kind-icon">int<wbr>Arg</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+								<a href="_lib_programbuilder_.programbuilder.html#stringarg" class="tsd-kind-icon">string<wbr>Arg</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="_programbuilder_.programbuilder.html#newprogram" class="tsd-kind-icon">new<wbr>Program</a>
+								<a href="_lib_programbuilder_.programbuilder.html#newprogram" class="tsd-kind-icon">new<wbr>Program</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../modules/_programbuilder_.html#arguments" class="tsd-kind-icon">Arguments</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
