@@ -1,0 +1,7 @@
+{
+  "out": "docs",
+  "excludeNotExported": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "readme": "none"
+}
