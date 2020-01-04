@@ -9,6 +9,34 @@ import Flag from "./Flag";
 
 type ProgramMain<T> = ((args: T) => Promise<void>) | ((args: T) => void);
 
+function rightPad(s: string, n: number) {
+  let r = s;
+  while (r.length < n) {
+    r = r + " ";
+  }
+  return r;
+}
+
+function renderColumnarData(data: string[][], padding = 2) {
+  const maxColumnLengths = new Map<number, number>();
+  for (const row of data) {
+    for (let colNum = 0; colNum < row.length; colNum++) {
+      maxColumnLengths.set(
+        colNum,
+        Math.max(maxColumnLengths.get(colNum) || 0, row[colNum].length)
+      );
+    }
+  }
+  const lines = [];
+  for (const row of data) {
+    const paddedCols = row.map((col, i) =>
+      rightPad(col, (maxColumnLengths.get(i) || 0) + padding)
+    );
+    lines.push(rightPad("", padding) + paddedCols.join(""));
+  }
+  return lines.join("\n");
+}
+
 export default class Program<T> extends ProgramBase {
   private readonly flagsByName: Map<string, KeywordArgument | Flag>;
 
@@ -36,10 +64,23 @@ export default class Program<T> extends ProgramBase {
   generateHelpText() {
     let buffer = "";
     buffer += `Usage: ${path.basename(process.argv[1])}`;
-    // TODO: Positional args
-    buffer += "\n\n";
-    for (const argument of this.keywordArguments) {
-      buffer += `  ${argument.names.join(", ")}`;
+    if (this.positionalArguments.nonEmpty) {
+      buffer += ` ${this.positionalArguments.getSpecForUsage()}`;
+    }
+    if (this.programMetadata.description) {
+      buffer += `\n\n${this.programMetadata.description}`;
+    }
+    if (this.keywordArguments.length || this.flags.length) {
+      const sortedArgumentsAndFlags = (this.keywordArguments as Array<
+        KeywordArgument | Flag
+      >).concat(this.flags);
+      sortedArgumentsAndFlags.sort((a, b) => a.order - b.order);
+      buffer += `\n\nOptions:\n`;
+      buffer += renderColumnarData(
+        sortedArgumentsAndFlags.map(argOrFlag =>
+          argOrFlag.generateHelpColumns()
+        )
+      );
     }
     return buffer;
   }

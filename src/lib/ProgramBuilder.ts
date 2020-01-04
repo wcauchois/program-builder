@@ -25,17 +25,21 @@ type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBuilder<
 >;
 
 export default class ProgramBuilder<T> extends ProgramBase {
+  private flagNumber: number;
+
   private constructor(options: IProgramBaseOptions) {
     super(options);
+    this.flagNumber = 0;
   }
 
   private keywordOptionsToMetadata(
     options: KeywordArgumentOptions<any, any>
-  ): IKeywordArgumentMetadata {
+  ): Complete<IKeywordArgumentMetadata> {
     return {
       description: options.description,
       default: options.default,
-      required: typeof options.default === "undefined"
+      required: typeof options.default === "undefined",
+      metavar: options.metavar
     };
   }
 
@@ -93,7 +97,8 @@ export default class ProgramBuilder<T> extends ProgramBase {
         this.splitNames(name),
         options.dest,
         converter,
-        this.keywordOptionsToMetadata(options)
+        this.keywordOptionsToMetadata(options),
+        ++this.flagNumber
       )
     );
     return this;
@@ -173,7 +178,8 @@ export default class ProgramBuilder<T> extends ProgramBase {
         !inverted ? names : [],
         inverted ? [] : names,
         inverted,
-        metadata
+        metadata,
+        ++this.flagNumber
       )
     );
     return this as any;

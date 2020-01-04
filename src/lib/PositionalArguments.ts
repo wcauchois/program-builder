@@ -16,4 +16,15 @@ export default class PositionalArguments {
   pushOptional(arg: PositionalArgument) {
     this.optional.push(arg);
   }
+
+  get nonEmpty() {
+    return this.required.length > 0 || this.optional.length > 0;
+  }
+
+  getSpecForUsage() {
+    return this.required
+      .map(x => `${x.destOrMetavar}`)
+      .concat(this.optional.map(x => `[${x.destOrMetavar}]`))
+      .join(" ");
+  }
 }

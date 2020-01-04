@@ -22,3 +22,7 @@ export type Complete<T> = {
     ? T[P]
     : T[P] | undefined;
 };
+
+export function isFlag(arg: string) {
+  return arg.startsWith("-");
+}

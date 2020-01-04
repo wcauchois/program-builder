@@ -1,6 +1,7 @@
 export interface IKeywordArgumentMetadata {
   default?: any;
   description?: string;
+  metavar?: string;
   required: boolean;
 }
 
@@ -46,3 +47,7 @@ export interface IFlagOptions<K extends string> {
 }
 
 export type Converter<V> = (input: string, argName: string) => V;
+
+export interface IKeywordArgumentOrFlag {
+  generateHelpColumns(): string[];
+}

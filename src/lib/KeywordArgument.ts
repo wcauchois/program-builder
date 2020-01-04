@@ -1,17 +1,23 @@
-import { IKeywordArgumentMetadata, Converter } from "./types";
+import {
+  IKeywordArgumentMetadata,
+  Converter,
+  IKeywordArgumentOrFlag
+} from "./types";
 import { isFlag } from "./utils";
 
-export default class KeywordArgument {
+export default class KeywordArgument implements IKeywordArgumentOrFlag {
   readonly names: string[];
   readonly dest: string;
   readonly metadata: IKeywordArgumentMetadata;
   readonly converter: Converter<any>;
+  readonly order: number;
 
   constructor(
     names: string[],
     dest: string,
     converter: Converter<any>,
-    metadata: IKeywordArgumentMetadata
+    metadata: IKeywordArgumentMetadata,
+    order: number
   ) {
     const invalidNames = names.filter(name => !isFlag(name));
     if (invalidNames.length > 0) {
@@ -28,9 +34,17 @@ export default class KeywordArgument {
     this.dest = dest;
     this.converter = converter;
     this.metadata = metadata;
+    this.order = order;
   }
 
   get firstName() {
     return this.names[0];
+  }
+
+  generateHelpColumns() {
+    return [
+      `${this.names.join(", ")} [${this.metadata.metavar || this.dest}]`,
+      this.metadata.description
+    ].filter(x => x) as string[];
   }
 }

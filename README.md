@@ -6,13 +6,19 @@ You define your arguments and keyword arguments using a fluent [builder](https:/
 
 ## Features
 
-- Type-safe arguments.
+- Positional and keyword arguments.
+- Automatic generation of help text and handling of a help argument (`-h`, `--help`).
 - Executes Promise-returning `main` functions and correctly exits the process.
+
+## Planned Features
+
+- Subcommands.
 
 ## Example
 
 ```typescript
 const program = ProgramBuilder.newProgram()
+  .arg('filename', { description: `A file name` })
   .intArg('--count,-c', { dest: 'count' })
   .intArg('--requiredCount', { dest: 'requiredCount', required: true })
   .build();

@@ -8,4 +8,8 @@ export default class PositionalArgument {
     this.dest = dest;
     this.metadata = metadata;
   }
+
+  get destOrMetavar() {
+    return this.dest ?? this.metadata.metavar;
+  }
 }
