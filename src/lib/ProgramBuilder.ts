@@ -15,7 +15,7 @@ import KeywordArgument from "./KeywordArgument";
 import PositionalArguments from "./PositionalArguments";
 import { convertString, convertInt, convertFloat } from "./converters";
 import Flag from "./Flag";
-import { Complete, ReplaceReturnType } from "./utils";
+import { Complete } from "./utils";
 
 type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<
   T & { [P in K]?: U }
@@ -23,20 +23,6 @@ type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<
 type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBuilder<
   T & { [P in K]: U }
 >;
-
-/**
- * A program builder with an optional argument may no longer specify required positional arguments.
- *
- * This type utility removes the "arg" method from ProgramBuilder to help enforce this invariant
- * at compile-time.
- */
-type ProgramBuilderWithOptionalArg<T> = {
-  [K in Exclude<keyof ProgramBuilder<T>, "arg">]: ProgramBuilder<T>[K] extends (
-    ...args: any
-  ) => ProgramBuilder<any>
-    ? ReplaceReturnType<ProgramBuilder<T>[K], ProgramBuilderWithOptionalArg<T>>
-    : ProgramBuilder<T>[K];
-};
 
 export default class ProgramBuilder<T> extends ProgramBase {
   private constructor(options: IProgramBaseOptions) {
@@ -78,7 +64,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
   optionalArg<K extends string>(
     dest: K,
     options: IPositionalArgumentMetadata = {}
-  ): ProgramBuilderWithOptionalArg<T & { [P in K]?: string }> {
+  ): ExtendProgramBuilderWithOptional<T, K, string> {
     this.positionalArguments.pushOptional(
       new PositionalArgument(dest, options)
     );
