@@ -1,13 +1,15 @@
 import { ProgramBuilder, Arguments } from "../../src";
 
-const program = ProgramBuilder.newProgram()
-  .intArg('--count,-c', { dest: 'count' })
-  .intArg('--requiredCount', { dest: 'requiredCount', required: true })
+const program = ProgramBuilder.newBuilder()
+  .arg('filename')
+  .optionalArg('optional')
+  .intFlag('--count,-c', { dest: 'count', default: 0 })
+  .intFlag('--requiredCount', { dest: 'requiredCount' })
   .build();
 
 function main(args: Arguments<typeof program>) {
-  console.log('count is', args.count);
-  console.log('required count is', args.requiredCount);
+  console.log('Arguments are:');
+  console.log(JSON.stringify(args, null, 2));
 }
 
 program.exec(main);

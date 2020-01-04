@@ -23,9 +23,29 @@ export type Complete<T> = {
     : T[P] | undefined;
 };
 
-export type ArgumentTypes<T> = T extends (...args: infer U) => infer R
-  ? U
-  : never;
+/**
+ * Get all the argument types for a potentially overloaded function.
+ *
+ * https://stackoverflow.com/a/52761156/1480571
+ */
+type OverloadedArguments<T> = T extends {
+  (...args: infer A1): any;
+  (...args: infer A2): any;
+  (...args: infer A3): any;
+  (...args: infer A4): any;
+}
+  ? A1 | A2 | A3 | A4
+  : T extends {
+      (...args: infer A1): any;
+      (...args: infer A2): any;
+      (...args: infer A3): any;
+    }
+  ? A1 | A2 | A3
+  : T extends { (...args: infer A1): any; (...args: infer A2): any }
+  ? A1 | A2
+  : T extends (...args: infer A) => any
+  ? A
+  : any;
 
 /**
  * Changes the return type of a function.
@@ -33,7 +53,7 @@ export type ArgumentTypes<T> = T extends (...args: infer U) => infer R
  * https://stackoverflow.com/a/50014868/1480571
  */
 export type ReplaceReturnType<T, TNewReturn> = (
-  ...a: ArgumentTypes<T>
+  ...args: OverloadedArguments<T>
 ) => TNewReturn;
 
 export function isFlag(arg: string) {

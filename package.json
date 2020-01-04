@@ -5,7 +5,8 @@
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "docs": "typedoc src"
+    "docs": "typedoc src",
+    "run-example": "ts-node examples/simple/main.ts"
   },
   "types": "dist/index.d.ts",
   "author": "Bill Cauchois <wcauchois@gmail.com>",
