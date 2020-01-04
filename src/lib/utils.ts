@@ -1,4 +1,3 @@
-
 const intRegex = /^-?[0-9]+$/;
 
 export function validInt(s: string) {
@@ -19,18 +18,24 @@ export function validFloat(s: string) {
  * From https://medium.com/terria/typescript-transforming-optional-properties-to-required-properties-that-may-be-undefined-7482cb4e1585
  */
 export type Complete<T> = {
-  [P in keyof Required<T>]: Pick<T, P> extends Required<Pick<T, P>> ? T[P] : T[P] | undefined;
+  [P in keyof Required<T>]: Pick<T, P> extends Required<Pick<T, P>>
+    ? T[P]
+    : T[P] | undefined;
 };
 
-export type ArgumentTypes<T> = T extends (... args: infer U ) => infer R ? U : never;
+export type ArgumentTypes<T> = T extends (...args: infer U) => infer R
+  ? U
+  : never;
 
 /**
  * Changes the return type of a function.
  *
  * https://stackoverflow.com/a/50014868/1480571
  */
-export type ReplaceReturnType<T, TNewReturn> = (...a: ArgumentTypes<T>) => TNewReturn;
+export type ReplaceReturnType<T, TNewReturn> = (
+  ...a: ArgumentTypes<T>
+) => TNewReturn;
 
 export function isFlag(arg: string) {
-  return arg.startsWith('-');
+  return arg.startsWith("-");
 }

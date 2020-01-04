@@ -24,16 +24,24 @@ type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBuilder<
   T & { [P in K]: U }
 >;
 
-type RemoveMethodFromProgramBuilder<T, K extends keyof ProgramBuilder<T>> = { [K in Exclude<keyof ProgramBuilder<T>, K>]:
-  ProgramBuilder<T>[K] extends (...args: any) => ProgramBuilder<any> ? ReplaceReturnType<ProgramBuilder<T>[K], BuilderWithOptionalArg<T>> : ProgramBuilder<T>[K] };
+type RemoveMethodFromProgramBuilder<T, K extends keyof ProgramBuilder<T>> = {
+  [K in Exclude<keyof ProgramBuilder<T>, K>]: ProgramBuilder<T>[K] extends (
+    ...args: any
+  ) => ProgramBuilder<any>
+    ? ReplaceReturnType<ProgramBuilder<T>[K], BuilderWithOptionalArg<T>>
+    : ProgramBuilder<T>[K];
+};
 
 /**
  * A program builder with an optional argument may no longer specify required positional arguments.
- * 
+ *
  * This type utility removes the "arg" method from ProgramBuilder to help enforce this invariant
  * at compile-time.
  */
-type ProgramBuilderWithOptionalArg<T> = RemoveMethodFromProgramBuilder<T, 'arg'>;
+type ProgramBuilderWithOptionalArg<T> = RemoveMethodFromProgramBuilder<
+  T,
+  "arg"
+>;
 
 export default class ProgramBuilder<T> extends ProgramBase {
   private constructor(options: IProgramBaseOptions) {
@@ -46,7 +54,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
     return {
       description: options.description,
       default: options.default,
-      required: typeof options.default === 'undefined'
+      required: typeof options.default === "undefined"
     };
   }
 
@@ -75,8 +83,12 @@ export default class ProgramBuilder<T> extends ProgramBase {
   optionalArg<K extends string>(
     dest: K,
     options: IPositionalArgumentMetadata = {}
-  ): ProgramBuilderWithOptionalArg<ExtendProgramBuilderWithRequired<T, K, string>> {
-    this.positionalArguments.pushOptional(new PositionalArgument(dest, options));
+  ): ProgramBuilderWithOptionalArg<
+    ExtendProgramBuilderWithRequired<T, K, string>
+  > {
+    this.positionalArguments.pushOptional(
+      new PositionalArgument(dest, options)
+    );
     return this as any;
   }
 
@@ -97,12 +109,14 @@ export default class ProgramBuilder<T> extends ProgramBase {
     options: KeywordArgumentOptions<K, V>,
     converter: Converter<V>
   ): any {
-    this.keywordArguments.push(new KeywordArgument(
-      this.splitNames(name),
-      options.dest,
-      converter,
-      this.keywordOptionsToMetadata(options)
-    ));
+    this.keywordArguments.push(
+      new KeywordArgument(
+        this.splitNames(name),
+        options.dest,
+        converter,
+        this.keywordOptionsToMetadata(options)
+      )
+    );
     return this;
   }
 
@@ -161,20 +175,28 @@ export default class ProgramBuilder<T> extends ProgramBase {
 
   // #endregion
 
-  flag<K extends string>(name: string, options: IFlagOptions<K>): ExtendProgramBuilderWithRequired<T, K, boolean> {
+  flag<K extends string>(
+    name: string,
+    options: IFlagOptions<K>
+  ): ExtendProgramBuilderWithRequired<T, K, boolean> {
     const names = this.splitNames(name);
-    const inverted = typeof options.inverted === 'boolean' ? options.inverted : names[0].startsWith('--no');
+    const inverted =
+      typeof options.inverted === "boolean"
+        ? options.inverted
+        : names[0].startsWith("--no");
     const metadata: Complete<IFlagMetadata> = {
       description: options.description,
       metavar: options.metavar
     };
-    this.flags.push(new Flag(
-      options.dest,
-      !inverted ? names : [],
-      inverted ? [] : names,
-      inverted,
-      metadata
-    ));
+    this.flags.push(
+      new Flag(
+        options.dest,
+        !inverted ? names : [],
+        inverted ? [] : names,
+        inverted,
+        metadata
+      )
+    );
     return this as any;
   }
 

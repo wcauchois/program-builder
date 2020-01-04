@@ -17,10 +17,19 @@ export default class Program<T> extends ProgramBase {
   constructor(options: IProgramBaseOptions) {
     super(options);
     this.flagsByName = new Map(
-      options.keywordArguments.flatMap(argument =>
-        argument.names.map(name => [name, argument] as [string, KeywordArgument | Flag])
-      ).concat(options.flags.flatMap(flag =>
-        flag.allNames.map(name => [name, flag] as [string, KeywordArgument | Flag])))
+      options.keywordArguments
+        .flatMap(argument =>
+          argument.names.map(
+            name => [name, argument] as [string, KeywordArgument | Flag]
+          )
+        )
+        .concat(
+          options.flags.flatMap(flag =>
+            flag.allNames.map(
+              name => [name, flag] as [string, KeywordArgument | Flag]
+            )
+          )
+        )
     );
   }
 
@@ -98,7 +107,9 @@ export default class Program<T> extends ProgramBase {
             throw new ArgumentError(`Missing value for flag '${currentArg}'`);
           }
           parsedArgs[flag.dest] = flag.converter(argumentValue, currentArg);
-          unspecifiedRequiredArguments = unspecifiedRequiredArguments.filter(x => x !== flag);
+          unspecifiedRequiredArguments = unspecifiedRequiredArguments.filter(
+            x => x !== flag
+          );
         }
       } else {
         let arg: PositionalArgument | undefined;
@@ -116,10 +127,16 @@ export default class Program<T> extends ProgramBase {
 
     // Validate that all required arguments were specified
     if (requiredArgumentStack.length > 0) {
-      throw new ArgumentError(`Not enough positional arguments were specified. Expected: at least ${this.positionalArguments.required.length}`);
+      throw new ArgumentError(
+        `Not enough positional arguments were specified. Expected: at least ${this.positionalArguments.required.length}`
+      );
     }
     if (unspecifiedRequiredArguments.length > 0) {
-      throw new ArgumentError(`The following required keyword flags were not specified: ${unspecifiedRequiredArguments.map(x => x.firstName).join(', ')}`);
+      throw new ArgumentError(
+        `The following required keyword flags were not specified: ${unspecifiedRequiredArguments
+          .map(x => x.firstName)
+          .join(", ")}`
+      );
     }
 
     return parsedArgs as T;

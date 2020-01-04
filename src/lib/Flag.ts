@@ -7,7 +7,13 @@ export default class Flag {
   readonly default: boolean;
   readonly metadata: IFlagMetadata;
 
-  constructor(dest: string, positiveNames: string[], negativeNames: string[], theDefault: boolean, metadata: IFlagMetadata) {
+  constructor(
+    dest: string,
+    positiveNames: string[],
+    negativeNames: string[],
+    theDefault: boolean,
+    metadata: IFlagMetadata
+  ) {
     this.dest = dest;
     this.positiveNames = positiveNames;
     this.negativeNames = negativeNames;

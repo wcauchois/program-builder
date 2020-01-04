@@ -7,11 +7,20 @@ export default class KeywordArgument {
   readonly metadata: IKeywordArgumentMetadata;
   readonly converter: Converter<any>;
 
-  constructor(names: string[], dest: string, converter: Converter<any>, metadata: IKeywordArgumentMetadata) {
+  constructor(
+    names: string[],
+    dest: string,
+    converter: Converter<any>,
+    metadata: IKeywordArgumentMetadata
+  ) {
     const invalidNames = names.filter(name => !isFlag(name));
     if (invalidNames.length > 0) {
       // There might be a better place for this..
-      console.error(`Error constructing program: Flag names must start with "-". Provided: ${invalidNames.join(', ')}`);
+      console.error(
+        `Error constructing program: Flag names must start with "-". Provided: ${invalidNames.join(
+          ", "
+        )}`
+      );
       process.exit(1);
     }
 
