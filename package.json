@@ -5,7 +5,6 @@
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "docs": "typedoc src",
     "run-example": "ts-node examples/simple/main.ts"
   },
   "types": "dist/index.d.ts",
@@ -16,7 +15,6 @@
     "@types/node": "^13.1.4",
     "prettier": "^1.19.1",
     "ts-node": "^8.5.4",
-    "typedoc": "^0.15.4",
     "typescript": "^3.7.2"
   }
 }
