@@ -1,19 +1,21 @@
-import ProgramBase from "./ProgramBase";
+import ProgramBase, { IProgramBaseOptions } from "./ProgramBase";
 import PositionalArgument from "./PositionalArgument";
-import {
-  StringKeywordArgument,
-  IntKeywordArgument,
-  FloatKeywordArgument
-} from "./keywordArguments";
 import Program from "./Program";
 import {
-  IKeywordArgument,
-  IProgramMetadata,
   KeywordArgumentOptions,
   IKeywordArgumentMetadata,
   IRequiredKeywordArgumentOptions,
-  IOptionalKeywordArgumentOptions
+  IOptionalKeywordArgumentOptions,
+  IPositionalArgumentMetadata,
+  Converter,
+  IFlagOptions,
+  IFlagMetadata
 } from "./types";
+import KeywordArgument from "./KeywordArgument";
+import PositionalArguments from "./PositionalArguments";
+import { convertString, convertInt, convertFloat } from "./converters";
+import Flag from "./Flag";
+import { Complete } from "./utils";
 
 type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<
   T & { [P in K]?: U }
@@ -22,33 +24,33 @@ type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBuilder<
   T & { [P in K]: U }
 >;
 
+type RemoveMethodFromProgramBuilder<T, K extends keyof ProgramBuilder<T>> = { [K in Exclude<keyof ProgramBuilder<T>, K>]:
+  ProgramBuilder<T>[K] extends (...args: any) => ProgramBuilder<any> ? ReplaceReturnType<ProgramBuilder<T>[K], BuilderWithOptionalArg<T>> : ProgramBuilder<T>[K] };
+
+/**
+ * A program builder with an optional argument may no longer specify required positional arguments.
+ * 
+ * This type utility removes the "arg" method from ProgramBuilder to help enforce this invariant
+ * at compile-time.
+ */
+type ProgramBuilderWithOptionalArg<T> = RemoveMethodFromProgramBuilder<T, 'arg'>;
+
 export default class ProgramBuilder<T> extends ProgramBase {
-  private currentArgumentPosition: number;
-
-  private constructor(
-    keywordArguments: IKeywordArgument[],
-    programMetadata: IProgramMetadata,
-    positionalArguments: PositionalArgument[]
-  ) {
-    super(keywordArguments, programMetadata, positionalArguments);
-    this.currentArgumentPosition = 0;
+  private constructor(options: IProgramBaseOptions) {
+    super(options);
   }
 
-  private withKeywordArgument(argument: IKeywordArgument) {
-    this.keywordArguments.push(argument);
-    return this as any;
-  }
-
-  private optionsToMetadata(
-    options: KeywordArgumentOptions<any>
+  private keywordOptionsToMetadata(
+    options: KeywordArgumentOptions<any, any>
   ): IKeywordArgumentMetadata {
     return {
       description: options.description,
-      required: !!options.required
+      default: options.default,
+      required: typeof options.default === 'undefined'
     };
   }
 
-  private convertNames(names: string): string[] {
+  private splitNames(names: string): string[] {
     return names.split(",").map(x => x.trim());
   }
 
@@ -63,108 +65,129 @@ export default class ProgramBuilder<T> extends ProgramBase {
   }
 
   arg<K extends string>(
-    dest: K
+    dest: K,
+    options: IPositionalArgumentMetadata = {}
   ): ExtendProgramBuilderWithRequired<T, K, string> {
-    this.positionalArguments.push(
-      new PositionalArgument(dest, this.currentArgumentPosition, true)
-    );
-    this.currentArgumentPosition++;
+    this.positionalArguments.push(new PositionalArgument(dest, options));
     return this as any;
   }
-
-  /*
-  TODO: Optional arguments (needs support in Program)
 
   optionalArg<K extends string>(
-    dest: K
-  ): ExtendProgramBuilderWithOptional<T, K, string> {
-    this.positionalArguments.push(
-      new PositionalArgument(dest, this.currentArgumentPosition, false)
-    );
-    this.currentArgumentPosition++;
+    dest: K,
+    options: IPositionalArgumentMetadata = {}
+  ): ProgramBuilderWithOptionalArg<ExtendProgramBuilderWithRequired<T, K, string>> {
+    this.positionalArguments.pushOptional(new PositionalArgument(dest, options));
     return this as any;
   }
-  */
 
-  stringArg<K extends string>(
-    names: string,
-    options: IRequiredKeywordArgumentOptions<K>
-  ): ExtendProgramBuilderWithRequired<T, K, string>;
+  customFlag<K extends string, V>(
+    name: string,
+    options: IOptionalKeywordArgumentOptions<K, V>,
+    converter: Converter<V>
+  ): ExtendProgramBuilderWithOptional<T, K, V>;
 
-  stringArg<K extends string>(
-    names: string,
-    options: IOptionalKeywordArgumentOptions<K>
+  customFlag<K extends string, V>(
+    name: string,
+    options: IRequiredKeywordArgumentOptions<K, V>,
+    converter: Converter<V>
+  ): ExtendProgramBuilderWithRequired<T, K, V>;
+
+  customFlag<K extends string, V>(
+    name: string,
+    options: KeywordArgumentOptions<K, V>,
+    converter: Converter<V>
+  ): any {
+    this.keywordArguments.push(new KeywordArgument(
+      this.splitNames(name),
+      options.dest,
+      converter,
+      this.keywordOptionsToMetadata(options)
+    ));
+    return this;
+  }
+
+  // #region Typed flags based on customFlag
+
+  stringFlag<K extends string>(
+    name: string,
+    options: IOptionalKeywordArgumentOptions<K, string>
   ): ExtendProgramBuilderWithOptional<T, K, string>;
 
-  stringArg<K extends string>(
-    names: string,
-    options: KeywordArgumentOptions<K>
-  ) {
-    return this.withKeywordArgument(
-      new StringKeywordArgument(
-        options.dest,
-        this.convertNames(names),
-        this.optionsToMetadata(options)
-      )
-    );
+  stringFlag<K extends string>(
+    name: string,
+    options: IRequiredKeywordArgumentOptions<K, string>
+  ): ExtendProgramBuilderWithRequired<T, K, string>;
+
+  stringFlag<K extends string>(
+    name: string,
+    options: KeywordArgumentOptions<K, string>
+  ): any {
+    return this.customFlag<K, string>(name, options as any, convertString);
   }
 
-  intArg<K extends string>(
-    names: string,
-    options: IRequiredKeywordArgumentOptions<K>
-  ): ExtendProgramBuilderWithRequired<T, K, number>;
-
-  intArg<K extends string>(
-    names: string,
-    options: IOptionalKeywordArgumentOptions<K>
+  intFlag<K extends string>(
+    name: string,
+    options: IOptionalKeywordArgumentOptions<K, number>
   ): ExtendProgramBuilderWithOptional<T, K, number>;
 
-  intArg<K extends string>(names: string, options: KeywordArgumentOptions<K>) {
-    return this.withKeywordArgument(
-      new IntKeywordArgument(
-        options.dest,
-        this.convertNames(names),
-        this.optionsToMetadata(options)
-      )
-    );
-  }
-
-  floatArg<K extends string>(
-    names: string,
-    options: IRequiredKeywordArgumentOptions<K>
+  intFlag<K extends string>(
+    name: string,
+    options: IRequiredKeywordArgumentOptions<K, number>
   ): ExtendProgramBuilderWithRequired<T, K, number>;
 
-  floatArg<K extends string>(
-    names: string,
-    options: IOptionalKeywordArgumentOptions<K>
-  ): ExtendProgramBuilderWithOptional<T, K, number>;
-
-  floatArg<K extends string>(
-    names: string,
-    options: KeywordArgumentOptions<K>
-  ) {
-    return this.withKeywordArgument(
-      new FloatKeywordArgument(
-        options.dest,
-        this.convertNames(names),
-        this.optionsToMetadata(options)
-      )
-    );
+  intFlag<K extends string>(
+    name: string,
+    options: KeywordArgumentOptions<K, number>
+  ): any {
+    return this.customFlag<K, number>(name, options as any, convertInt);
   }
 
-  flag(name: string) {
-    // TODO
+  floatFlag<K extends string>(
+    name: string,
+    options: IOptionalKeywordArgumentOptions<K, number>
+  ): ExtendProgramBuilderWithOptional<T, K, number>;
+
+  floatFlag<K extends string>(
+    name: string,
+    options: IRequiredKeywordArgumentOptions<K, number>
+  ): ExtendProgramBuilderWithRequired<T, K, number>;
+
+  floatFlag<K extends string>(
+    name: string,
+    options: KeywordArgumentOptions<K, number>
+  ): any {
+    return this.customFlag<K, number>(name, options as any, convertFloat);
+  }
+
+  // #endregion
+
+  flag<K extends string>(name: string, options: IFlagOptions<K>): ExtendProgramBuilderWithRequired<T, K, boolean> {
+    const names = this.splitNames(name);
+    const inverted = typeof options.inverted === 'boolean' ? options.inverted : names[0].startsWith('--no');
+    const metadata: Complete<IFlagMetadata> = {
+      description: options.description,
+      metavar: options.metavar
+    };
+    this.flags.push(new Flag(
+      options.dest,
+      !inverted ? names : [],
+      inverted ? [] : names,
+      inverted,
+      metadata
+    ));
+    return this as any;
   }
 
   build() {
-    return new Program<T>(
-      this.keywordArguments,
-      this.programMetadata,
-      this.positionalArguments
-    );
+    return new Program<T>(this);
   }
 
-  static newProgram(): ProgramBuilder<{}> {
-    return new ProgramBuilder([], {}, []);
+  static newBuilder(): ProgramBuilder<{}> {
+    return new ProgramBuilder({
+      flags: [],
+      keywordArguments: [],
+      positionalArguments: new PositionalArguments(),
+      programMetadata: {}
+    });
   }
 }

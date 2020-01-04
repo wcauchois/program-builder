@@ -1,11 +1,11 @@
+import { IPositionalArgumentMetadata } from "./types";
+
 export default class PositionalArgument {
   readonly dest: string;
-  readonly index: number;
-  readonly required: boolean;
+  readonly metadata: IPositionalArgumentMetadata;
 
-  constructor(dest: string, index: number, required: boolean) {
+  constructor(dest: string, metadata: IPositionalArgumentMetadata) {
     this.dest = dest;
-    this.index = index;
-    this.required = required;
+    this.metadata = metadata;
   }
 }
