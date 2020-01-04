@@ -63,14 +63,26 @@ export default class Program<T> extends ProgramBase {
 
   generateHelpText() {
     let buffer = "";
-    buffer += `Usage: ${path.basename(process.argv[1])}`;
-    if (this.positionalArguments.nonEmpty) {
-      buffer += ` ${this.positionalArguments.getSpecForUsage()}`;
-    }
+    const haveAnyOptions =
+      this.keywordArguments.length > 0 || this.flags.length > 0;
+
+    // Usage
+    const usageParts = [
+      path.basename(process.argv[1]),
+      haveAnyOptions ? "[options]" : undefined,
+      this.positionalArguments.nonEmpty
+        ? this.positionalArguments.getSpecForUsage()
+        : undefined
+    ].filter(x => x) as string[];
+    buffer += `Usage: ${usageParts.join(" ")}`;
+
+    // Description
     if (this.programMetadata.description) {
       buffer += `\n\n${this.programMetadata.description}`;
     }
-    if (this.keywordArguments.length || this.flags.length) {
+
+    // Options (flags and keyword arguments)
+    if (haveAnyOptions) {
       const sortedArgumentsAndFlags = (this.keywordArguments as Array<
         KeywordArgument | Flag
       >).concat(this.flags);

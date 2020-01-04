@@ -23,7 +23,7 @@ export default class PositionalArguments {
 
   getSpecForUsage() {
     return this.required
-      .map(x => `${x.destOrMetavar}`)
+      .map(x => `<${x.destOrMetavar}>`)
       .concat(this.optional.map(x => `[${x.destOrMetavar}]`))
       .join(" ");
   }
