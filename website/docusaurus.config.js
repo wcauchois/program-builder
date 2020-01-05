@@ -1,22 +1,18 @@
 module.exports = {
-  title: 'My Site',
-  tagline: 'The tagline of my site',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'Program Builder',
+  tagline: 'A TypeScript library for building command-line interfaces',
+  url: 'https://program-builder.netlify.com',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'wcauchois', // Usually your GitHub org/user name.
+  projectName: 'program-builder', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'My Site',
-      logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
-      },
+      title: 'Program Builder',
       links: [
         {to: 'docs/doc1', label: 'Docs', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/wcauchois/program-builder',
           label: 'GitHub',
           position: 'right',
         },
@@ -65,7 +61,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Bill Cauchois. Built with Docusaurus.`,
     },
   },
   presets: [
@@ -75,7 +71,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+            'https://github.com/wcauchois/program-builder/edit/master/website/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
