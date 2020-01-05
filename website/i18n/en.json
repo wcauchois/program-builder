@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "A website for testing",
+    "tagline": "A library for building command-line interfaces in TypeScript",
     "docs": {
       "doc1": {
         "title": "Latin-ish",
@@ -20,6 +20,10 @@
       },
       "doc5": {
         "title": "Fifth Document"
+      },
+      "getting-started": {
+        "title": "Getting Started",
+        "sidebar_label": "Getting Started"
       }
     },
     "links": {
@@ -28,7 +32,7 @@
       "Help": "Help"
     },
     "categories": {
-      "Docusaurus": "Docusaurus",
+      "Getting Started": "Getting Started",
       "First Category": "First Category",
       "Second Category": "Second Category"
     }
