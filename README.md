@@ -1,5 +1,7 @@
 # program-builder
 
+[![npm version](https://badge.fury.io/js/%40wcauchois%2Fprogram-builder.svg)](https://badge.fury.io/js/%40wcauchois%2Fprogram-builder)
+
 This is a TypeScript-first library for building type safe command-line interfaces.
 
 You define your arguments and keyword arguments using a fluent [builder](https://en.wikipedia.org/wiki/Builder_pattern), which gives you a `Program` object. You can then define a `main` function in terms of the strongly typed arguments of that `Program`, and finally execute the main function against your program which will parse and provide commandline arguments.
