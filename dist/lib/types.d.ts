@@ -1,32 +1,39 @@
 export interface IKeywordArgumentMetadata {
-    required: boolean;
+    default?: any;
     description?: string;
+    metavar?: string;
+    required: boolean;
 }
-export interface IKeywordArgument {
-    readonly dest: string;
-    /**
-     * Names for this argument including short names (i.e. `-s`, `--string`).
-     */
-    readonly names: string[];
-    readonly metadata: IKeywordArgumentMetadata;
-    convert(inputString: string): any;
+export interface IFlagMetadata {
+    description?: string;
+    metavar?: string;
 }
-export interface IFlag {
-    readonly dest: string;
-    readonly positiveNames: string[];
-    readonly negativeNames: string[];
+export interface IPositionalArgumentMetadata {
+    description?: string;
+    metavar?: string;
 }
 export interface IKeywordArgumentCommonOptions<K extends string> {
     dest: K;
     description?: string;
+    metavar?: string;
 }
-export interface IRequiredKeywordArgumentOptions<K extends string> extends IKeywordArgumentCommonOptions<K> {
-    required: true;
+export interface IRequiredKeywordArgumentOptions<K extends string, V> extends IKeywordArgumentCommonOptions<K> {
+    default?: undefined;
 }
-export interface IOptionalKeywordArgumentOptions<K extends string> extends IKeywordArgumentCommonOptions<K> {
-    required?: false;
+export interface IOptionalKeywordArgumentOptions<K extends string, V> extends IKeywordArgumentCommonOptions<K> {
+    default: V;
 }
-export declare type KeywordArgumentOptions<K extends string> = IRequiredKeywordArgumentOptions<K> | IOptionalKeywordArgumentOptions<K>;
+export declare type KeywordArgumentOptions<K extends string, V> = IRequiredKeywordArgumentOptions<K, V> | IOptionalKeywordArgumentOptions<K, V>;
 export interface IProgramMetadata {
     description?: string;
+}
+export interface IFlagOptions<K extends string> {
+    dest: K;
+    description?: string;
+    metavar?: string;
+    inverted?: boolean;
+}
+export declare type Converter<V> = (input: string, argName: string) => V;
+export interface IKeywordArgumentOrFlag {
+    generateHelpColumns(): string[];
 }

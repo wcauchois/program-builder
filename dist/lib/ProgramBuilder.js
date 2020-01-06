@@ -5,24 +5,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const ProgramBase_1 = __importDefault(require("./ProgramBase"));
 const PositionalArgument_1 = __importDefault(require("./PositionalArgument"));
-const keywordArguments_1 = require("./keywordArguments");
 const Program_1 = __importDefault(require("./Program"));
+const KeywordArgument_1 = __importDefault(require("./KeywordArgument"));
+const PositionalArguments_1 = __importDefault(require("./PositionalArguments"));
+const converters_1 = require("./converters");
+const Flag_1 = __importDefault(require("./Flag"));
 class ProgramBuilder extends ProgramBase_1.default {
-    constructor(keywordArguments, programMetadata, positionalArguments) {
-        super(keywordArguments, programMetadata, positionalArguments);
-        this.currentArgumentPosition = 0;
+    constructor(options) {
+        super(options);
+        this.flagNumber = 0;
     }
-    withKeywordArgument(argument) {
-        this.keywordArguments.push(argument);
-        return this;
-    }
-    optionsToMetadata(options) {
+    keywordOptionsToMetadata(options) {
         return {
             description: options.description,
-            required: !!options.required
+            default: options.default,
+            required: typeof options.default === "undefined",
+            metavar: options.metavar
         };
     }
-    convertNames(names) {
+    splitNames(names) {
         return names.split(",").map(x => x.trim());
     }
     /**
@@ -34,33 +35,50 @@ class ProgramBuilder extends ProgramBase_1.default {
         this.programMetadata.description = newDescription;
         return this;
     }
-    arg(dest) {
-        this.positionalArguments.push(new PositionalArgument_1.default(dest, this.currentArgumentPosition, true));
-        this.currentArgumentPosition++;
+    arg(dest, options = {}) {
+        this.positionalArguments.push(new PositionalArgument_1.default(dest, options));
         return this;
     }
-    optionalArg(dest) {
-        this.positionalArguments.push(new PositionalArgument_1.default(dest, this.currentArgumentPosition, false));
-        this.currentArgumentPosition++;
+    optionalArg(dest, options = {}) {
+        this.positionalArguments.pushOptional(new PositionalArgument_1.default(dest, options));
         return this;
     }
-    stringArg(names, options) {
-        return this.withKeywordArgument(new keywordArguments_1.StringKeywordArgument(options.dest, this.convertNames(names), this.optionsToMetadata(options)));
+    customFlag(name, options, converter) {
+        this.keywordArguments.push(new KeywordArgument_1.default(this.splitNames(name), options.dest, converter, this.keywordOptionsToMetadata(options), ++this.flagNumber));
+        return this;
     }
-    intArg(names, options) {
-        return this.withKeywordArgument(new keywordArguments_1.IntKeywordArgument(options.dest, this.convertNames(names), this.optionsToMetadata(options)));
+    stringFlag(name, options) {
+        return this.customFlag(name, options, converters_1.convertString);
     }
-    floatArg(names, options) {
-        return this.withKeywordArgument(new keywordArguments_1.FloatKeywordArgument(options.dest, this.convertNames(names), this.optionsToMetadata(options)));
+    intFlag(name, options) {
+        return this.customFlag(name, options, converters_1.convertInt);
     }
-    flag(name) {
-        // TODO
+    floatFlag(name, options) {
+        return this.customFlag(name, options, converters_1.convertFloat);
+    }
+    // #endregion
+    flag(name, options) {
+        const names = this.splitNames(name);
+        const inverted = typeof options.inverted === "boolean"
+            ? options.inverted
+            : names[0].startsWith("--no");
+        const metadata = {
+            description: options.description,
+            metavar: options.metavar
+        };
+        this.flags.push(new Flag_1.default(options.dest, !inverted ? names : [], inverted ? [] : names, inverted, metadata, ++this.flagNumber));
+        return this;
     }
     build() {
-        return new Program_1.default(this.keywordArguments, this.programMetadata, this.positionalArguments);
+        return new Program_1.default(this);
     }
-    static newProgram() {
-        return new ProgramBuilder([], {}, []);
+    static newBuilder() {
+        return new ProgramBuilder({
+            flags: [],
+            keywordArguments: [],
+            positionalArguments: new PositionalArguments_1.default(),
+            programMetadata: {}
+        });
     }
 }
 exports.default = ProgramBuilder;

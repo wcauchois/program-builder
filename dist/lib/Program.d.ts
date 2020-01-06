@@ -1,21 +1,13 @@
-import PositionalArgument from "./PositionalArgument";
-import ProgramBase from "./ProgramBase";
-import { IKeywordArgument, IProgramMetadata } from "./types";
-interface IParseHelpResult {
-    resultType: "help";
-}
-interface IParseArgumentsResult<T> {
-    resultType: "arguments";
-    parsedArgs: T;
-}
-declare type ParseResult<T> = IParseHelpResult | IParseArgumentsResult<T>;
+import ProgramBase, { IProgramBaseOptions } from "./ProgramBase";
 declare type ProgramMain<T> = ((args: T) => Promise<void>) | ((args: T) => void);
 export default class Program<T> extends ProgramBase {
-    private readonly keywordArgumentMap;
+    private readonly flagsByName;
     static readonly helpArgumentsSet: Set<string>;
-    constructor(keywordArguments: IKeywordArgument[], programMetadata: IProgramMetadata, positionalArguments: PositionalArgument[]);
+    constructor(options: IProgramBaseOptions);
     generateHelpText(): string;
+    private isHelpRequested;
+    printHelpAndExit(): never;
     exec(main: ProgramMain<T>, rawArgs?: string[]): void;
-    parse(rawArgs: string[]): ParseResult<T>;
+    parseArgs(rawArgs: string[]): T;
 }
 export {};

@@ -1,6 +1,6 @@
 import ProgramBase from "./ProgramBase";
 import Program from "./Program";
-import { IRequiredKeywordArgumentOptions, IOptionalKeywordArgumentOptions } from "./types";
+import { IRequiredKeywordArgumentOptions, IOptionalKeywordArgumentOptions, IPositionalArgumentMetadata, Converter, IFlagOptions } from "./types";
 declare type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<T & {
     [P in K]?: U;
 }>;
@@ -8,27 +8,28 @@ declare type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramB
     [P in K]: U;
 }>;
 export default class ProgramBuilder<T> extends ProgramBase {
-    private currentArgumentPosition;
+    private flagNumber;
     private constructor();
-    private withKeywordArgument;
-    private optionsToMetadata;
-    private convertNames;
+    private keywordOptionsToMetadata;
+    private splitNames;
     /**
      * Set the program description.
      *
      * @param newDescription The new description for the program.
      */
     description(newDescription: string): this;
-    arg<K extends string>(dest: K): ExtendProgramBuilderWithRequired<T, K, string>;
-    optionalArg<K extends string>(dest: K): ExtendProgramBuilderWithOptional<T, K, string>;
-    stringArg<K extends string>(names: string, options: IRequiredKeywordArgumentOptions<K>): ExtendProgramBuilderWithRequired<T, K, string>;
-    stringArg<K extends string>(names: string, options: IOptionalKeywordArgumentOptions<K>): ExtendProgramBuilderWithOptional<T, K, string>;
-    intArg<K extends string>(names: string, options: IRequiredKeywordArgumentOptions<K>): ExtendProgramBuilderWithRequired<T, K, number>;
-    intArg<K extends string>(names: string, options: IOptionalKeywordArgumentOptions<K>): ExtendProgramBuilderWithOptional<T, K, number>;
-    floatArg<K extends string>(names: string, options: IRequiredKeywordArgumentOptions<K>): ExtendProgramBuilderWithRequired<T, K, number>;
-    floatArg<K extends string>(names: string, options: IOptionalKeywordArgumentOptions<K>): ExtendProgramBuilderWithOptional<T, K, number>;
-    flag(name: string): void;
+    arg<K extends string>(dest: K, options?: IPositionalArgumentMetadata): ExtendProgramBuilderWithRequired<T, K, string>;
+    optionalArg<K extends string>(dest: K, options?: IPositionalArgumentMetadata): ExtendProgramBuilderWithOptional<T, K, string>;
+    customFlag<K extends string, V>(name: string, options: IOptionalKeywordArgumentOptions<K, V>, converter: Converter<V>): ExtendProgramBuilderWithOptional<T, K, V>;
+    customFlag<K extends string, V>(name: string, options: IRequiredKeywordArgumentOptions<K, V>, converter: Converter<V>): ExtendProgramBuilderWithRequired<T, K, V>;
+    stringFlag<K extends string>(name: string, options: IOptionalKeywordArgumentOptions<K, string>): ExtendProgramBuilderWithOptional<T, K, string>;
+    stringFlag<K extends string>(name: string, options: IRequiredKeywordArgumentOptions<K, string>): ExtendProgramBuilderWithRequired<T, K, string>;
+    intFlag<K extends string>(name: string, options: IOptionalKeywordArgumentOptions<K, number>): ExtendProgramBuilderWithOptional<T, K, number>;
+    intFlag<K extends string>(name: string, options: IRequiredKeywordArgumentOptions<K, number>): ExtendProgramBuilderWithRequired<T, K, number>;
+    floatFlag<K extends string>(name: string, options: IOptionalKeywordArgumentOptions<K, number>): ExtendProgramBuilderWithOptional<T, K, number>;
+    floatFlag<K extends string>(name: string, options: IRequiredKeywordArgumentOptions<K, number>): ExtendProgramBuilderWithRequired<T, K, number>;
+    flag<K extends string>(name: string, options: IFlagOptions<K>): ExtendProgramBuilderWithRequired<T, K, boolean>;
     build(): Program<T>;
-    static newProgram(): ProgramBuilder<{}>;
+    static newBuilder(): ProgramBuilder<{}>;
 }
 export {};
