@@ -1,0 +1,69 @@
+---
+id: api
+title: API
+sidebar_label: API
+---
+
+export const C = ({ children }) => React.createElement('code', { children });
+
+export const ParamList = ({ title, items }) => (
+  <>
+    <p>
+      <strong>{title || 'Parameters'}:</strong>
+    </p>
+    <ul>
+      {items.map(([first, second]) => (
+        <li><C>{first}</C> - {second}</li>
+      ))}
+    </ul>
+  </>
+);
+
+export const CommonFlagParams = ({ defaultType }) => (
+  <>
+    <ParamList items={[
+      ['name: string', <>
+        The name for the flag, including any leading dashes. Multiple alternative
+        names may be separated by commas, like <C>'-c, --count'</C>.
+      </>],
+      ['options: object', `See below`]
+    ]} />
+    <ParamList title="Options" items={[
+      ['dest: string', `The destination key into which to store this value.`],
+      ['description: string | undefined', `A description of the flag for help text generation.`],
+      [`default: ${defaultType} | undefined`, `A default value. If omitted, the flag is considered optional.`],
+      ['metavar: string | undefined', `A metavariable that will be used in the help text.`]
+    ]} />
+  </>
+);
+
+# `ProgramBuilder`
+
+Program builder.
+
+## `description(newDescription)`
+
+Sets the description for the program, which will be displayed when the user
+invokes the program with a help argument (`-h`, `--help`).
+
+<ParamList items={[
+  ['newDescription: string', 'The new description for the program.']
+]} />
+
+## `stringFlag(name, options)`
+
+Adds a string-valued flag to the program.
+
+<CommonFlagParams />
+
+## `intFlag(name, options)`
+
+Adds an integer-valued flag to the program.
+
+<CommonFlagParams />
+
+## `floatFlag(name, options)`
+
+Adds a float-valued flag to the program.
+
+<CommonFlagParams />
