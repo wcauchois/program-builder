@@ -22,6 +22,12 @@
   justify-content: center;
 }
 
+.getStarted {
+  font-size: 24px;
+  border-width: 2px;
+  --ifm-font-base-color: white;
+}
+
 .features {
   display: flex;
   align-items: center;

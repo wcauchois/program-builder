@@ -1,11 +1,13 @@
 import React from 'react';
 import classnames from 'classnames';
 import Layout from '@theme/Layout';
+import CodeBlock from '@theme/CodeBlock';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 
+/*
 const features = [
   {
     title: <>Easy to Use</>,
@@ -14,6 +16,22 @@ const features = [
       <>
         Docusaurus was designed from the ground up to be easily installed and
         used to get your website up and running quickly.
+        <br />
+        <CodeBlock language="python">
+          {`const program = ProgramBuilder.newBuilder()
+            .arg('filename', { description: A file name\` })
+            .optionalArg('extraFilename', { description: \`An additional optional file name\`})
+            .intFlag('--count,-c', { dest: 'count', default: 0, description: \`A count\` })
+            .intFlag('--requiredCount', { dest: 'requiredCount', description: \`A count that is required\` })
+            .build();
+
+          function main(args: Arguments<typeof program>) {
+            console.log(\`filename is: \${args.filename}\`); // args.filename: string
+            console.log(\`extraFilename is: \${args.extraFilename}\`); // args.extraFilename: string | undefined
+            console.log(\`count is: \${args.count}\`); // args.count: number | undefined
+            console.log(\`requiredCount is: \${args.requiredCount}\`); // args.requiredCount: number
+          `}
+        </CodeBlock>
       </>
     ),
   },
@@ -38,6 +56,8 @@ const features = [
     ),
   },
 ];
+*/
+const features = [];
 
 function Feature({imageUrl, title, description}) {
   const imgUrl = useBaseUrl(imageUrl);
@@ -59,8 +79,8 @@ function Home() {
   const {siteConfig = {}} = context;
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`Program Builder`}
+      description="A TypeScript library for building command-line interfaces">
       <header className={classnames('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
@@ -71,7 +91,7 @@ function Home() {
                 'button button--outline button--secondary button--lg',
                 styles.getStarted,
               )}
-              to={useBaseUrl('docs/doc1')}>
+              to={useBaseUrl('docs/getting-started')}>
               Get Started
             </Link>
           </div>
