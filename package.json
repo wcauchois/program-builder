@@ -1,12 +1,11 @@
 {
   "name": "@wcauchois/program-builder",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "run-example": "ts-node examples/simple/main.ts",
-    "publish": "yarn publish --access public"
+    "run-example": "ts-node examples/simple/main.ts"
   },
   "types": "dist/index.d.ts",
   "author": "Bill Cauchois <wcauchois@gmail.com>",
