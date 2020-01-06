@@ -8,6 +8,11 @@
     "run-example": "ts-node examples/simple/main.ts"
   },
   "types": "dist/index.d.ts",
+  "homepage": "https://program-builder.netlify.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wcauchois/program-builder.git"
+  },
   "author": "Bill Cauchois <wcauchois@gmail.com>",
   "license": "MIT",
   "dependencies": {},
