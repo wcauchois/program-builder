@@ -8,6 +8,6 @@
 module.exports = {
   someSidebar: {
     Introduction: ['getting-started'],
-    API: ['api'],
+    ['API Reference']: ['api'],
   },
 };

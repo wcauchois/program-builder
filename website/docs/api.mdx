@@ -1,7 +1,7 @@
 ---
 id: api
-title: API
-sidebar_label: API
+title: API Reference
+sidebar_label: API Reference
 ---
 
 export const C = ({ children }) => React.createElement('code', { children });
@@ -19,19 +19,32 @@ export const ParamList = ({ title, items }) => (
   </>
 );
 
-export const CommonFlagParams = ({ defaultType }) => (
+export const CommonFlagParams = ({ defaultType, forFlag }) => (
   <>
     <ParamList items={[
       ['name: string', <>
         The name for the flag, including any leading dashes. Multiple alternative
         names may be separated by commas, like <C>'-c, --count'</C>.
       </>],
-      ['options: object', `See below`]
+      ['options: object', `See below.`]
     ]} />
     <ParamList title="Options" items={[
       ['dest: string', `The destination key into which to store this value.`],
       ['description: string | undefined', `A description of the flag for help text generation.`],
-      [`default: ${defaultType} | undefined`, `A default value. If omitted, the flag is considered optional.`],
+      !forFlag ? [`default: ${defaultType} | undefined`, `A default value. If omitted, the flag is considered optional.`] : undefined,
+      ['metavar: string | undefined', `A metavariable that will be used in the help text.`]
+    ].filter(x => x)} />
+  </>
+);
+
+export const ArgParams = () => (
+  <>
+    <ParamList items={[
+      ['dest: string', `The destination key into which this argument will be stored.`],
+      ['options: object', `See below.`]
+    ]} />
+    <ParamList title="Options" items={[
+      ['description: string | undefined', `A description of the argument for help text generation.`],
       ['metavar: string | undefined', `A metavariable that will be used in the help text.`]
     ]} />
   </>
@@ -39,7 +52,32 @@ export const CommonFlagParams = ({ defaultType }) => (
 
 # `ProgramBuilder`
 
-Program builder.
+This class provides a fluent interface to specify arguments and flags related
+to a commandline program. Create a ProgramBuilder by calling `ProgramBuilder.newBuilder()`.
+After configuring it as desired, call `.build()` to return a `Program` object,
+which you can then call `.exec()` on to execute your main function.
+
+```typescript
+const program = ProgramBuilder.newBuilder()
+  // call other methods
+  .build();
+
+program.exec(args => {
+  // access arguments as desired
+});
+```
+
+## `arg(dest, options)`
+
+Add a required positional argument to the program.
+
+<ArgParams />
+
+## `optionalArg(dest, options)`
+
+Add an optional positional argument to the program.
+
+<ArgParams />
 
 ## `description(newDescription)`
 
@@ -49,6 +87,12 @@ invokes the program with a help argument (`-h`, `--help`).
 <ParamList items={[
   ['newDescription: string', 'The new description for the program.']
 ]} />
+
+## `flag(name, options)`
+
+Adds a flag to the program.
+
+<CommonFlagParams forFlag={true} />
 
 ## `stringFlag(name, options)`
 
