@@ -1,3 +1,4 @@
+const toc = require('remark-toc');
 module.exports = {
   title: 'Program Builder',
   tagline: 'A TypeScript library for building command-line interfaces',
@@ -73,6 +74,7 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
             'https://github.com/wcauchois/program-builder/edit/master/website/',
+          remarkPlugins: [toc],
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
