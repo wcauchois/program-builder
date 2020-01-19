@@ -1,6 +1,7 @@
 # program-builder
 
 [![npm version](https://badge.fury.io/js/%40wcauchois%2Fprogram-builder.svg)](https://badge.fury.io/js/%40wcauchois%2Fprogram-builder)
+[![CircleCI Build](https://circleci.com/gh/wcauchois/program-builder.svg?style=svg)](https://circleci.com/gh/wcauchois/program-builder)
 
 This is a TypeScript-first library for building type safe command-line interfaces.
 
