@@ -138,6 +138,10 @@ export default class ProgramBuilder<T> extends ProgramBase {
     return this as any;
   }
 
+  /**
+   * 
+   * @param name - test
+   */
   customFlag<K extends string, V>(
     name: string,
     options: IOptionalValuedFlagOptions<K, V>,

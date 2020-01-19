@@ -2793,7 +2793,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#customFlag:member(1)",
-              "docComment": "",
+              "docComment": "/**\n * @param name - test\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
