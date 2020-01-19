@@ -6,7 +6,8 @@
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "run-example": "ts-node examples/simple/main.ts",
-    "docs": "yarn build && node scripts/make-docs.js"
+    "docs": "yarn build && node scripts/make-docs.js",
+    "test": "jest --runInBand"
   },
   "types": "dist/index.d.ts",
   "homepage": "https://program-builder.netlify.com",
@@ -28,9 +29,12 @@
   "devDependencies": {
     "@microsoft/api-documenter": "^7.7.8",
     "@microsoft/api-extractor": "^7.7.5",
+    "@types/jest": "^24.9.0",
     "@types/node": "^13.1.4",
     "fs-extra": "^8.1.0",
+    "jest": "^24.9.0",
     "prettier": "^1.19.1",
+    "ts-jest": "^24.3.0",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.2"
   }

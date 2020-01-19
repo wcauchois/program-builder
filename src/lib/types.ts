@@ -48,7 +48,6 @@ export interface IRequiredKeywordArgumentOptions<K extends string, V>
  */
 export interface IOptionalKeywordArgumentOptions<K extends string, V>
   extends IKeywordArgumentCommonOptions<K> {
-
   /**
    * The default value for the flag.
    */

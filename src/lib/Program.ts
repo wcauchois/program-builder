@@ -1,4 +1,5 @@
 import path = require("path");
+import util = require("util");
 
 import PositionalArgument from "./PositionalArgument";
 import ProgramBase, { IProgramBaseOptions } from "./ProgramBase";
@@ -39,19 +40,19 @@ function renderColumnarData(data: string[][], padding = 2) {
 /**
  * A built program that can parse arguments and execute a main function
  * against those arguments.
- * 
+ *
  * @remarks
  * Construct a Program using a {@link ProgramBuilder}, then call {@link Program.exec}
  * to execute your main function.
- * 
+ *
  * Example:
- * 
+ *
  * ```typescript
  * const program = ProgramBuilder.newBuilder().build();
  * program.exec(args => {
  *   // Do things with args
  * });
- * ``` 
+ * ```
  */
 export default class Program<T> extends ProgramBase {
   private readonly flagsByName: Map<string, KeywordArgument | Flag>;
@@ -117,34 +118,40 @@ export default class Program<T> extends ProgramBase {
     return args.length > 0 && Program.helpArgumentsSet.has(args[0]);
   }
 
-  printHelpAndExit(): never {
+  printHelp() {
     const helpText = this.generateHelpText();
     console.log(helpText);
-    process.exit(0);
   }
 
-  exec(main: ProgramMain<T>, rawArgs?: string[]) {
+  async execOrThrow(main: ProgramMain<T>, rawArgs?: string[]) {
     if (!rawArgs) {
       rawArgs = process.argv.slice(2);
     }
 
     if (this.isHelpRequested(rawArgs)) {
-      this.printHelpAndExit();
+      this.printHelp();
+      return;
     }
 
-    let parsedArgs: T;
-    try {
-      parsedArgs = this.parseArgs(rawArgs);
-    } catch (err) {
-      console.error(err.message || err);
-      process.exit(1);
-    }
+    const parsedArgs = this.parseArgs(rawArgs);
+    await main(parsedArgs);
+  }
 
-    const mainResult = Promise.resolve().then(() => main(parsedArgs));
-    mainResult
+  private formatError(err: any) {
+    if (typeof err.message === "string") {
+      return err.message;
+    } else if (typeof err === "string") {
+      return err;
+    } else {
+      return util.inspect(err);
+    }
+  }
+
+  exec(main: ProgramMain<T>, rawArgs?: string[]) {
+    this.execOrThrow(main, rawArgs)
       .then(() => process.exit(0))
       .catch(err => {
-        console.error(err.message || err);
+        console.error(this.formatError(err));
         process.exit(1);
       });
   }

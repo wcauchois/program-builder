@@ -19,18 +19,22 @@ import Flag from "./Flag";
 import { Complete } from "./utils";
 import ProgramWithAction from "./ProgramWithAction";
 
-export type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<
-  T & { [P in K]?: U }
->;
+export type ExtendProgramBuilderWithOptional<
+  T,
+  K extends string,
+  U
+> = ProgramBuilder<T & { [P in K]?: U }>;
 
-export type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBuilder<
-  T & { [P in K]: U }
->;
+export type ExtendProgramBuilderWithRequired<
+  T,
+  K extends string,
+  U
+> = ProgramBuilder<T & { [P in K]: U }>;
 
 /**
  * Entry point to the library and the way to start constructing a {@link Program} to
  * be executed.
- * 
+ *
  * @remarks
  * Create a new ProgramBuilder with {@link ProgramBuilder.newBuilder}.
  */
