@@ -1,2 +1,3 @@
-dist linguist-generated
-website/docs/api linguist-generated
+dist linguist-generated=true
+website/docs/api linguist-generated=true
+api/program-builder.api.json linguist-generated=true
