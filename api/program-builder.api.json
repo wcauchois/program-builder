@@ -281,7 +281,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export default class Flag implements "
+              "text": "export default class BooleanFlag implements "
             },
             {
               "kind": "Reference",
@@ -299,7 +299,7 @@
             {
               "kind": "Constructor",
               "canonicalReference": "@wcauchois/program-builder!Flag:constructor(1)",
-              "docComment": "/**\n * Constructs a new instance of the `Flag` class\n */\n",
+              "docComment": "/**\n * Constructs a new instance of the `BooleanFlag` class\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -339,8 +339,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "IFlagMetadata",
-                  "canonicalReference": "@wcauchois/program-builder!IFlagMetadata:interface"
+                  "text": "IBooleanFlagMetadata",
+                  "canonicalReference": "@wcauchois/program-builder!IBooleanFlagMetadata:interface"
                 },
                 {
                   "kind": "Content",
@@ -564,8 +564,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "IFlagMetadata",
-                  "canonicalReference": "@wcauchois/program-builder!IFlagMetadata:interface"
+                  "text": "IBooleanFlagMetadata",
+                  "canonicalReference": "@wcauchois/program-builder!IBooleanFlagMetadata:interface"
                 },
                 {
                   "kind": "Content",
@@ -858,7 +858,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export interface IFlagMetadata "
+              "text": "export interface IBooleanFlagMetadata "
             }
           ],
           "releaseTag": "Public",
@@ -924,7 +924,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export interface IFlagOptions<K extends "
+              "text": "export interface IBooleanFlagOptions<K extends "
             },
             {
               "kind": "Content",
@@ -1222,16 +1222,16 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@wcauchois/program-builder!IProgramBaseOptions#flags:member",
+              "canonicalReference": "@wcauchois/program-builder!IProgramBaseOptions#booleanFlags:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "flags: "
+                  "text": "booleanFlags: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "Flag",
+                  "text": "BooleanFlag",
                   "canonicalReference": "@wcauchois/program-builder!default:class"
                 },
                 {
@@ -1244,7 +1244,7 @@
                 }
               ],
               "releaseTag": "Public",
-              "name": "flags",
+              "name": "booleanFlags",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 3
@@ -2434,7 +2434,7 @@
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "constructor({ valuedFlags, positionalArguments, flags, programMetadata }: "
+                  "text": "constructor({ valuedFlags, positionalArguments, booleanFlags, programMetadata }: "
                 },
                 {
                   "kind": "Reference",
@@ -2450,7 +2450,7 @@
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "{ valuedFlags, positionalArguments, flags, programMetadata }",
+                  "parameterName": "{ valuedFlags, positionalArguments, booleanFlags, programMetadata }",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
@@ -2460,16 +2460,16 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@wcauchois/program-builder!ProgramBase#flags:member",
+              "canonicalReference": "@wcauchois/program-builder!ProgramBase#booleanFlags:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "readonly flags: "
+                  "text": "readonly booleanFlags: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "Flag",
+                  "text": "BooleanFlag",
                   "canonicalReference": "@wcauchois/program-builder!default:class"
                 },
                 {
@@ -2482,7 +2482,7 @@
                 }
               ],
               "releaseTag": "Public",
-              "name": "flags",
+              "name": "booleanFlags",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 3
@@ -3149,8 +3149,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "IFlagOptions",
-                  "canonicalReference": "@wcauchois/program-builder!IFlagOptions:interface"
+                  "text": "IBooleanFlagOptions",
+                  "canonicalReference": "@wcauchois/program-builder!IBooleanFlagOptions:interface"
                 },
                 {
                   "kind": "Content",

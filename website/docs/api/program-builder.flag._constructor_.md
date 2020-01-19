@@ -9,12 +9,12 @@ hide_title: true
 
 ## Flag.(constructor)
 
-Constructs a new instance of the `Flag` class
+Constructs a new instance of the `BooleanFlag` class
 
 <b>Signature:</b>
 
 ```typescript
-constructor(dest: string, positiveNames: string[], negativeNames: string[], theDefault: boolean, metadata: IFlagMetadata, order: number);
+constructor(dest: string, positiveNames: string[], negativeNames: string[], theDefault: boolean, metadata: IBooleanFlagMetadata, order: number);
 ```
 
 ## Parameters
@@ -25,5 +25,5 @@ constructor(dest: string, positiveNames: string[], negativeNames: string[], theD
 |  positiveNames | <code>string[]</code> |  |
 |  negativeNames | <code>string[]</code> |  |
 |  theDefault | <code>boolean</code> |  |
-|  metadata | <code>IFlagMetadata</code> |  |
+|  metadata | <code>IBooleanFlagMetadata</code> |  |
 |  order | <code>number</code> |  |

@@ -9,7 +9,7 @@ const ProgramBase_1 = __importDefault(require("./ProgramBase"));
 const ValuedFlag_1 = __importDefault(require("./ValuedFlag"));
 const errors_1 = require("./errors");
 const utils_1 = require("./utils");
-const Flag_1 = __importDefault(require("./Flag"));
+const BooleanFlag_1 = __importDefault(require("./BooleanFlag"));
 const TableWriter_1 = __importDefault(require("./TableWriter"));
 function rightPad(s, n) {
     let r = s;
@@ -54,11 +54,11 @@ class Program extends ProgramBase_1.default {
         super(options);
         this.flagsByName = new Map(options.valuedFlags
             .flatMap(vflag => vflag.names.map(name => [name, vflag]))
-            .concat(options.flags.flatMap(flag => flag.allNames.map(name => [name, flag]))));
+            .concat(options.booleanFlags.flatMap(flag => flag.allNames.map(name => [name, flag]))));
     }
     generateHelpText() {
         let buffer = "";
-        const haveAnyFlags = this.valuedFlags.length > 0 || this.flags.length > 0;
+        const haveAnyFlags = this.valuedFlags.length > 0 || this.booleanFlags.length > 0;
         // Usage
         const usageParts = [
             path.basename(process.argv[1]),
@@ -74,7 +74,7 @@ class Program extends ProgramBase_1.default {
         }
         // Flags
         if (haveAnyFlags) {
-            const allFlagsSorted = this.valuedFlags.concat(this.flags);
+            const allFlagsSorted = this.valuedFlags.concat(this.booleanFlags);
             allFlagsSorted.sort((a, b) => a.order - b.order);
             buffer += `\n\nOptions:\n`;
             const tw = new TableWriter_1.default();
@@ -133,7 +133,7 @@ class Program extends ProgramBase_1.default {
                 if (!flag) {
                     throw new errors_1.ArgumentError(`Unrecognized flag: ${currentArg}`);
                 }
-                if (flag instanceof Flag_1.default) {
+                if (flag instanceof BooleanFlag_1.default) {
                     parsedArgs[flag.dest] = flag.isPositiveName(currentArg); // Else, it is a negative name.
                 }
                 else if (flag instanceof ValuedFlag_1.default) {

@@ -14,11 +14,11 @@ Constructs a new instance of the `ProgramBase` class
 <b>Signature:</b>
 
 ```typescript
-constructor({ valuedFlags, positionalArguments, flags, programMetadata }: IProgramBaseOptions);
+constructor({ valuedFlags, positionalArguments, booleanFlags, programMetadata }: IProgramBaseOptions);
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { valuedFlags, positionalArguments, flags, programMetadata } | <code>IProgramBaseOptions</code> |  |
+|  { valuedFlags, positionalArguments, booleanFlags, programMetadata } | <code>IProgramBaseOptions</code> |  |

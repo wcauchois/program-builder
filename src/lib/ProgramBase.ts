@@ -1,30 +1,30 @@
 import { IProgramMetadata } from "./types";
 import ValuedFlag from "./ValuedFlag";
 import PositionalArguments from "./PositionalArguments";
-import Flag from "./Flag";
+import BooleanFlag from "./BooleanFlag";
 
 export interface IProgramBaseOptions {
   valuedFlags: ValuedFlag[];
   positionalArguments: PositionalArguments;
-  flags: Flag[];
+  booleanFlags: BooleanFlag[];
   programMetadata: IProgramMetadata;
 }
 
 export default abstract class ProgramBase implements IProgramBaseOptions {
   readonly valuedFlags: ValuedFlag[];
   readonly positionalArguments: PositionalArguments;
-  readonly flags: Flag[];
+  readonly booleanFlags: BooleanFlag[];
   readonly programMetadata: IProgramMetadata;
 
   constructor({
     valuedFlags,
     positionalArguments,
-    flags,
+    booleanFlags,
     programMetadata
   }: IProgramBaseOptions) {
     this.valuedFlags = valuedFlags;
     this.positionalArguments = positionalArguments;
-    this.flags = flags;
+    this.booleanFlags = booleanFlags;
     this.programMetadata = programMetadata;
   }
 }

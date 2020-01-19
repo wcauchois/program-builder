@@ -6,7 +6,7 @@ import ProgramBase, { IProgramBaseOptions } from "./ProgramBase";
 import ValuedFlag from "./ValuedFlag";
 import { ArgumentError, TooManyArgumentsError } from "./errors";
 import { isFlag, expectUnreachable } from "./utils";
-import Flag from "./Flag";
+import BooleanFlag from "./BooleanFlag";
 import { ProgramMain } from "./types";
 import TableWriter from "./TableWriter";
 
@@ -56,7 +56,7 @@ function renderColumnarData(data: string[][], padding = 2) {
  * ```
  */
 export default class Program<T> extends ProgramBase {
-  private readonly flagsByName: Map<string, ValuedFlag | Flag>;
+  private readonly flagsByName: Map<string, ValuedFlag | BooleanFlag>;
 
   static readonly helpArgumentsSet = new Set(["-h", "--help"]);
 
@@ -65,12 +65,12 @@ export default class Program<T> extends ProgramBase {
     this.flagsByName = new Map(
       options.valuedFlags
         .flatMap(vflag =>
-          vflag.names.map(name => [name, vflag] as [string, ValuedFlag | Flag])
+          vflag.names.map(name => [name, vflag] as [string, ValuedFlag | BooleanFlag])
         )
         .concat(
-          options.flags.flatMap(flag =>
+          options.booleanFlags.flatMap(flag =>
             flag.allNames.map(
-              name => [name, flag] as [string, ValuedFlag | Flag]
+              name => [name, flag] as [string, ValuedFlag | BooleanFlag]
             )
           )
         )
@@ -79,7 +79,7 @@ export default class Program<T> extends ProgramBase {
 
   generateHelpText() {
     let buffer = "";
-    const haveAnyFlags = this.valuedFlags.length > 0 || this.flags.length > 0;
+    const haveAnyFlags = this.valuedFlags.length > 0 || this.booleanFlags.length > 0;
 
     // Usage
     const usageParts = [
@@ -99,8 +99,8 @@ export default class Program<T> extends ProgramBase {
     // Flags
     if (haveAnyFlags) {
       const allFlagsSorted = (this.valuedFlags as Array<
-        ValuedFlag | Flag
-      >).concat(this.flags);
+        ValuedFlag | BooleanFlag
+      >).concat(this.booleanFlags);
       allFlagsSorted.sort((a, b) => a.order - b.order);
       buffer += `\n\nOptions:\n`;
       const tw = new TableWriter();
@@ -170,7 +170,7 @@ export default class Program<T> extends ProgramBase {
         if (!flag) {
           throw new ArgumentError(`Unrecognized flag: ${currentArg}`);
         }
-        if (flag instanceof Flag) {
+        if (flag instanceof BooleanFlag) {
           parsedArgs[flag.dest] = flag.isPositiveName(currentArg); // Else, it is a negative name.
         } else if (flag instanceof ValuedFlag) {
           const argumentValue = argStack.shift();

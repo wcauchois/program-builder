@@ -19,7 +19,7 @@ export interface IProgramBaseOptions
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [flags](./program-builder.iprogrambaseoptions.flags.md) | <code>Flag[]</code> |  |
+|  [booleanFlags](./program-builder.iprogrambaseoptions.booleanflags.md) | <code>BooleanFlag[]</code> |  |
 |  [positionalArguments](./program-builder.iprogrambaseoptions.positionalarguments.md) | <code>PositionalArguments</code> |  |
 |  [programMetadata](./program-builder.iprogrambaseoptions.programmetadata.md) | <code>IProgramMetadata</code> |  |
 |  [valuedFlags](./program-builder.iprogrambaseoptions.valuedflags.md) | <code>ValuedFlag[]</code> |  |

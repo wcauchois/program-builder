@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class ProgramBase {
-    constructor({ valuedFlags, positionalArguments, flags, programMetadata }) {
+    constructor({ valuedFlags, positionalArguments, booleanFlags, programMetadata }) {
         this.valuedFlags = valuedFlags;
         this.positionalArguments = positionalArguments;
-        this.flags = flags;
+        this.booleanFlags = booleanFlags;
         this.programMetadata = programMetadata;
     }
 }

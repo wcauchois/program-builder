@@ -14,19 +14,19 @@ import {
   IOptionalValuedFlagOptions,
   Converter,
   IRequiredValuedFlagOptions,
-  IFlagOptions,
+  IBooleanFlagOptions,
   ProgramMain,
   IProgramMetadata,
   IValuedFlagCommonOptions,
   IValuedFlagMetadata,
   IAnyFlag,
-  IFlagMetadata
+  IBooleanFlagMetadata
 } from "./lib/types";
 import ProgramWithAction from "./lib/ProgramWithAction";
 import Program from "./lib/Program";
 import ValuedFlag from "./lib/ValuedFlag";
 import PositionalArguments from "./lib/PositionalArguments";
-import Flag from "./lib/Flag";
+import BooleanFlag from "./lib/BooleanFlag";
 import PositionalArgument from "./lib/PositionalArgument";
 import {
   ProgramError,
@@ -48,17 +48,17 @@ export {
   IOptionalValuedFlagOptions,
   Converter,
   IRequiredValuedFlagOptions,
-  IFlagOptions,
+  IBooleanFlagOptions as IFlagOptions,
   ProgramMain,
   ProgramWithAction,
   Program,
   IProgramBaseOptions,
   ValuedFlag,
   PositionalArguments,
-  Flag,
+  BooleanFlag as Flag,
   IProgramMetadata,
   IValuedFlagCommonOptions,
-  IFlagMetadata,
+  IBooleanFlagMetadata as IFlagMetadata,
   IAnyFlag,
   IValuedFlagMetadata,
   PositionalArgument,

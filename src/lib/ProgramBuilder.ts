@@ -8,14 +8,14 @@ import {
   IOptionalValuedFlagOptions,
   IPositionalArgumentMetadata,
   Converter,
-  IFlagOptions,
-  IFlagMetadata,
+  IBooleanFlagOptions,
+  IBooleanFlagMetadata,
   ProgramMain
 } from "./types";
 import ValuedFlag from "./ValuedFlag";
 import PositionalArguments from "./PositionalArguments";
 import { convertString, convertInt, convertFloat } from "./converters";
-import Flag from "./Flag";
+import BooleanFlag from "./BooleanFlag";
 import { Complete } from "./utils";
 import ProgramWithAction from "./ProgramWithAction";
 import ProgramWithSubcommands, { ProgramSubcommandMap } from "./ProgramWithSubcommands";
@@ -261,19 +261,19 @@ export default class ProgramBuilder<T> extends ProgramBase {
    */
   flag<K extends string>(
     name: string,
-    options: IFlagOptions<K>
+    options: IBooleanFlagOptions<K>
   ): ExtendProgramBuilderWithRequired<T, K, boolean> {
     const names = this.splitNames(name);
     const inverted =
       typeof options.inverted === "boolean"
         ? options.inverted
         : names[0].startsWith("--no");
-    const metadata: Complete<IFlagMetadata> = {
+    const metadata: Complete<IBooleanFlagMetadata> = {
       description: options.description,
       metavar: options.metavar
     };
-    this.flags.push(
-      new Flag(
+    this.booleanFlags.push(
+      new BooleanFlag(
         options.dest,
         !inverted ? names : [],
         inverted ? [] : names,
@@ -312,7 +312,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
    */
   static newBuilder(): ProgramBuilder<{}> {
     return new ProgramBuilder({
-      flags: [],
+      booleanFlags: [],
       valuedFlags: [],
       positionalArguments: new PositionalArguments(),
       programMetadata: {}

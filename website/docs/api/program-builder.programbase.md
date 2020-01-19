@@ -19,13 +19,13 @@ export default abstract class ProgramBase implements IProgramBaseOptions
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)({ valuedFlags, positionalArguments, flags, programMetadata })](./program-builder.programbase._constructor_.md) |  | Constructs a new instance of the <code>ProgramBase</code> class |
+|  [(constructor)({ valuedFlags, positionalArguments, booleanFlags, programMetadata })](./program-builder.programbase._constructor_.md) |  | Constructs a new instance of the <code>ProgramBase</code> class |
 
 ## Properties
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [flags](./program-builder.programbase.flags.md) |  | <code>Flag[]</code> |  |
+|  [booleanFlags](./program-builder.programbase.booleanflags.md) |  | <code>BooleanFlag[]</code> |  |
 |  [positionalArguments](./program-builder.programbase.positionalarguments.md) |  | <code>PositionalArguments</code> |  |
 |  [programMetadata](./program-builder.programbase.programmetadata.md) |  | <code>IProgramMetadata</code> |  |
 |  [valuedFlags](./program-builder.programbase.valuedflags.md) |  | <code>ValuedFlag[]</code> |  |

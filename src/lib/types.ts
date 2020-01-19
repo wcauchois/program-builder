@@ -7,7 +7,7 @@ export interface IValuedFlagMetadata {
   required: boolean;
 }
 
-export interface IFlagMetadata {
+export interface IBooleanFlagMetadata {
   description?: string;
   metavar?: string;
 }
@@ -64,7 +64,7 @@ export interface IProgramMetadata {
   description?: string;
 }
 
-export interface IFlagOptions<K extends string> {
+export interface IBooleanFlagOptions<K extends string> {
   dest: K;
   description?: string;
   metavar?: string;

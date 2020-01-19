@@ -12,14 +12,14 @@ hide_title: true
 <b>Signature:</b>
 
 ```typescript
-export default class Flag implements IAnyFlag 
+export default class BooleanFlag implements IAnyFlag 
 ```
 
 ## Constructors
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)(dest, positiveNames, negativeNames, theDefault, metadata, order)](./program-builder.flag._constructor_.md) |  | Constructs a new instance of the <code>Flag</code> class |
+|  [(constructor)(dest, positiveNames, negativeNames, theDefault, metadata, order)](./program-builder.flag._constructor_.md) |  | Constructs a new instance of the <code>BooleanFlag</code> class |
 
 ## Properties
 
@@ -28,7 +28,7 @@ export default class Flag implements IAnyFlag
 |  [allNames](./program-builder.flag.allnames.md) |  | <code>string[]</code> |  |
 |  [default](./program-builder.flag.default.md) |  | <code>boolean</code> |  |
 |  [dest](./program-builder.flag.dest.md) |  | <code>string</code> |  |
-|  [metadata](./program-builder.flag.metadata.md) |  | <code>IFlagMetadata</code> |  |
+|  [metadata](./program-builder.flag.metadata.md) |  | <code>IBooleanFlagMetadata</code> |  |
 |  [negativeNames](./program-builder.flag.negativenames.md) |  | <code>string[]</code> |  |
 |  [order](./program-builder.flag.order.md) |  | <code>number</code> |  |
 |  [positiveNames](./program-builder.flag.positivenames.md) |  | <code>string[]</code> |  |

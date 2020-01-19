@@ -12,7 +12,7 @@ hide_title: true
 <b>Signature:</b>
 
 ```typescript
-export interface IFlagOptions<K extends string> 
+export interface IBooleanFlagOptions<K extends string> 
 ```
 
 ## Properties

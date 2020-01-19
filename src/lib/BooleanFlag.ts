@@ -1,12 +1,12 @@
-import { IFlagMetadata, IAnyFlag } from "./types";
+import { IBooleanFlagMetadata, IAnyFlag } from "./types";
 import FlagDocumentation from "./FlagDocumentation";
 
-export default class Flag implements IAnyFlag {
+export default class BooleanFlag implements IAnyFlag {
   readonly dest: string;
   readonly positiveNames: string[];
   readonly negativeNames: string[];
   readonly default: boolean;
-  readonly metadata: IFlagMetadata;
+  readonly metadata: IBooleanFlagMetadata;
   readonly order: number;
 
   constructor(
@@ -14,7 +14,7 @@ export default class Flag implements IAnyFlag {
     positiveNames: string[],
     negativeNames: string[],
     theDefault: boolean,
-    metadata: IFlagMetadata,
+    metadata: IBooleanFlagMetadata,
     order: number
   ) {
     this.dest = dest;

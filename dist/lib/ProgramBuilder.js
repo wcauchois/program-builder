@@ -9,7 +9,7 @@ const Program_1 = __importDefault(require("./Program"));
 const ValuedFlag_1 = __importDefault(require("./ValuedFlag"));
 const PositionalArguments_1 = __importDefault(require("./PositionalArguments"));
 const converters_1 = require("./converters");
-const Flag_1 = __importDefault(require("./Flag"));
+const BooleanFlag_1 = __importDefault(require("./BooleanFlag"));
 const ProgramWithAction_1 = __importDefault(require("./ProgramWithAction"));
 const ProgramWithSubcommands_1 = __importDefault(require("./ProgramWithSubcommands"));
 /**
@@ -132,7 +132,7 @@ class ProgramBuilder extends ProgramBase_1.default {
             description: options.description,
             metavar: options.metavar
         };
-        this.flags.push(new Flag_1.default(options.dest, !inverted ? names : [], inverted ? [] : names, inverted, metadata, ++this.flagNumber));
+        this.booleanFlags.push(new BooleanFlag_1.default(options.dest, !inverted ? names : [], inverted ? [] : names, inverted, metadata, ++this.flagNumber));
         return this;
     }
     /**
@@ -159,7 +159,7 @@ class ProgramBuilder extends ProgramBase_1.default {
      */
     static newBuilder() {
         return new ProgramBuilder({
-            flags: [],
+            booleanFlags: [],
             valuedFlags: [],
             positionalArguments: new PositionalArguments_1.default(),
             programMetadata: {}

@@ -1,6 +1,6 @@
 import ProgramBase from "./ProgramBase";
 import Program from "./Program";
-import { IRequiredValuedFlagOptions, IOptionalValuedFlagOptions, IPositionalArgumentMetadata, Converter, IFlagOptions, ProgramMain } from "./types";
+import { IRequiredValuedFlagOptions, IOptionalValuedFlagOptions, IPositionalArgumentMetadata, Converter, IBooleanFlagOptions, ProgramMain } from "./types";
 import ProgramWithAction from "./ProgramWithAction";
 import ProgramWithSubcommands, { ProgramSubcommandMap } from "./ProgramWithSubcommands";
 export declare type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<T & {
@@ -122,7 +122,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
      * `"-i,--input"`.
      * @param options - See {@link IFlagOptions}.
      */
-    flag<K extends string>(name: string, options: IFlagOptions<K>): ExtendProgramBuilderWithRequired<T, K, boolean>;
+    flag<K extends string>(name: string, options: IBooleanFlagOptions<K>): ExtendProgramBuilderWithRequired<T, K, boolean>;
     /**
      * Build and return a {@link Program}.
      */
