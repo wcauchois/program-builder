@@ -3,6 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * See {@link @wcauchois/program-builder#ProgramBuilder}.
+ *
+ * @packageDocumentation
+ */
 const ProgramBuilder_1 = __importDefault(require("./lib/ProgramBuilder"));
 exports.ProgramBuilder = ProgramBuilder_1.default;
 const ProgramBase_1 = __importDefault(require("./lib/ProgramBase"));

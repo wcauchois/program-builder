@@ -11,6 +11,13 @@ const PositionalArguments_1 = __importDefault(require("./PositionalArguments"));
 const converters_1 = require("./converters");
 const Flag_1 = __importDefault(require("./Flag"));
 const ProgramWithAction_1 = __importDefault(require("./ProgramWithAction"));
+/**
+ * Entry point to the library and the way to start constructing a {@link Program} to
+ * be executed.
+ *
+ * @remarks
+ * Create a new ProgramBuilder with {@link ProgramBuilder.newBuilder}.
+ */
 class ProgramBuilder extends ProgramBase_1.default {
     constructor(options) {
         super(options);

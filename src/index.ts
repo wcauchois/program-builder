@@ -1,3 +1,8 @@
+/**
+ * See {@link @wcauchois/program-builder#ProgramBuilder}.
+ *
+ * @packageDocumentation
+ */
 import ProgramBuilder, { ExtendProgramBuilderWithRequired, ExtendProgramBuilderWithOptional } from "./lib/ProgramBuilder";
 import { Arguments } from "./lib/arguments";
 import ProgramBase, { IProgramBaseOptions } from "./lib/ProgramBase";

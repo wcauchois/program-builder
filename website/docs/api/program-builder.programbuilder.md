@@ -9,11 +9,17 @@ hide_title: true
 
 ## ProgramBuilder class
 
+Entry point to the library and the way to start constructing a [Program](./program-builder.program.md) to be executed.
+
 <b>Signature:</b>
 
 ```typescript
 export default class ProgramBuilder<T> extends ProgramBase 
 ```
+
+## Remarks
+
+Create a new ProgramBuilder with [ProgramBuilder.newBuilder()](./program-builder.programbuilder.newbuilder.md)<!-- -->.
 
 ## Methods
 

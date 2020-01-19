@@ -27,6 +27,13 @@ export type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBu
   T & { [P in K]: U }
 >;
 
+/**
+ * Entry point to the library and the way to start constructing a {@link Program} to
+ * be executed.
+ * 
+ * @remarks
+ * Create a new ProgramBuilder with {@link ProgramBuilder.newBuilder}.
+ */
 export default class ProgramBuilder<T> extends ProgramBase {
   private flagNumber: number;
 

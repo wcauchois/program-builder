@@ -13,4 +13,4 @@ hide_title: true
 
 |  Package | Description |
 |  --- | --- |
-|  [@wcauchois/program-builder](./program-builder.md) |  |
+|  [@wcauchois/program-builder](./program-builder.md) | See [ProgramBuilder](./program-builder.programbuilder.md)<!-- -->. |

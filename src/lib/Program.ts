@@ -36,6 +36,23 @@ function renderColumnarData(data: string[][], padding = 2) {
   return lines.join("\n");
 }
 
+/**
+ * A built program that can parse arguments and execute a main function
+ * against those arguments.
+ * 
+ * @remarks
+ * Construct a Program using a {@link ProgramBuilder}, then call {@link Program.exec}
+ * to execute your main function.
+ * 
+ * Example:
+ * 
+ * ```typescript
+ * const program = ProgramBuilder.newBuilder().build();
+ * program.exec(args => {
+ *   // Do things with args
+ * });
+ * ``` 
+ */
 export default class Program<T> extends ProgramBase {
   private readonly flagsByName: Map<string, KeywordArgument | Flag>;
 

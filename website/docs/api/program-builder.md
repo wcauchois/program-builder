@@ -8,6 +8,8 @@ hide_title: true
 
 ## program-builder package
 
+See [ProgramBuilder](./program-builder.programbuilder.md)<!-- -->.
+
 ## Classes
 
 |  Class | Description |
@@ -16,9 +18,9 @@ hide_title: true
 |  [KeywordArgument](./program-builder.keywordargument.md) |  |
 |  [PositionalArgument](./program-builder.positionalargument.md) |  |
 |  [PositionalArguments](./program-builder.positionalarguments.md) |  |
-|  [Program](./program-builder.program.md) |  |
+|  [Program](./program-builder.program.md) | A built program that can parse arguments and execute a main function against those arguments. |
 |  [ProgramBase](./program-builder.programbase.md) |  |
-|  [ProgramBuilder](./program-builder.programbuilder.md) |  |
+|  [ProgramBuilder](./program-builder.programbuilder.md) | Entry point to the library and the way to start constructing a [Program](./program-builder.program.md) to be executed. |
 |  [ProgramWithAction](./program-builder.programwithaction.md) |  |
 
 ## Interfaces

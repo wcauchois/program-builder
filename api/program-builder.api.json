@@ -7,7 +7,7 @@
   },
   "kind": "Package",
   "canonicalReference": "@wcauchois/program-builder!",
-  "docComment": "",
+  "docComment": "/**\n * See {@link @wcauchois/program-builder#ProgramBuilder}.\n *\n * @packageDocumentation\n */\n",
   "name": "@wcauchois/program-builder",
   "members": [
     {
@@ -2202,7 +2202,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@wcauchois/program-builder!Program:class",
-          "docComment": "",
+          "docComment": "/**\n * A built program that can parse arguments and execute a main function against those arguments.\n *\n * @remarks\n *\n * Construct a Program using a {@link ProgramBuilder}, then call {@link Program.exec} to execute your main function.\n *\n * Example:\n * ```typescript\n * const program = ProgramBuilder.newBuilder().build();\n * program.exec(args => {\n *   // Do things with args\n * });\n * ```\n *\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2647,7 +2647,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@wcauchois/program-builder!ProgramBuilder:class",
-          "docComment": "",
+          "docComment": "/**\n * Entry point to the library and the way to start constructing a {@link Program} to be executed.\n *\n * @remarks\n *\n * Create a new ProgramBuilder with {@link ProgramBuilder.newBuilder}.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

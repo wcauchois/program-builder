@@ -9,10 +9,26 @@ hide_title: true
 
 ## Program class
 
+A built program that can parse arguments and execute a main function against those arguments.
+
 <b>Signature:</b>
 
 ```typescript
 export default class Program<T> extends ProgramBase 
+```
+
+## Remarks
+
+Construct a Program using a [ProgramBuilder](./program-builder.programbuilder.md)<!-- -->, then call [Program.exec()](./program-builder.program.exec.md) to execute your main function.
+
+Example:
+
+```typescript
+const program = ProgramBuilder.newBuilder().build();
+program.exec(args => {
+  // Do things with args
+});
+
 ```
 
 ## Constructors
