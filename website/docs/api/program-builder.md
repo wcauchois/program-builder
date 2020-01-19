@@ -14,13 +14,18 @@ See [ProgramBuilder](./program-builder.programbuilder.md)<!-- -->.
 
 |  Class | Description |
 |  --- | --- |
+|  [ArgumentError](./program-builder.argumenterror.md) |  |
 |  [Flag](./program-builder.flag.md) |  |
+|  [FlagDocumentation](./program-builder.flagdocumentation.md) |  |
+|  [FlagParseError](./program-builder.flagparseerror.md) |  |
 |  [PositionalArgument](./program-builder.positionalargument.md) |  |
 |  [PositionalArguments](./program-builder.positionalarguments.md) |  |
 |  [Program](./program-builder.program.md) | A built program that can parse arguments and execute a main function against those arguments. |
 |  [ProgramBase](./program-builder.programbase.md) |  |
 |  [ProgramBuilder](./program-builder.programbuilder.md) | Entry point to the library and the way to start constructing a [Program](./program-builder.program.md) to be executed. |
+|  [ProgramError](./program-builder.programerror.md) | Base class for any error having to do with ProgramBuilder. |
 |  [ProgramWithAction](./program-builder.programwithaction.md) |  |
+|  [TooManyArgumentsError](./program-builder.toomanyargumentserror.md) |  |
 |  [ValuedFlag](./program-builder.valuedflag.md) |  |
 
 ## Interfaces
@@ -35,6 +40,7 @@ See [ProgramBuilder](./program-builder.programbuilder.md)<!-- -->.
 |  [IProgramBaseOptions](./program-builder.iprogrambaseoptions.md) |  |
 |  [IProgramMetadata](./program-builder.iprogrammetadata.md) |  |
 |  [IRequiredValuedFlagOptions](./program-builder.irequiredvaluedflagoptions.md) |  |
+|  [ITableWriterOptions](./program-builder.itablewriteroptions.md) |  |
 |  [IValuedFlagCommonOptions](./program-builder.ivaluedflagcommonoptions.md) | Common options for a valued flag. |
 |  [IValuedFlagMetadata](./program-builder.ivaluedflagmetadata.md) |  |
 

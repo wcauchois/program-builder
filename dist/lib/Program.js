@@ -10,6 +10,7 @@ const ValuedFlag_1 = __importDefault(require("./ValuedFlag"));
 const errors_1 = require("./errors");
 const utils_1 = require("./utils");
 const Flag_1 = __importDefault(require("./Flag"));
+const TableWriter_1 = __importDefault(require("./TableWriter"));
 function rightPad(s, n) {
     let r = s;
     while (r.length < n) {
@@ -57,11 +58,11 @@ class Program extends ProgramBase_1.default {
     }
     generateHelpText() {
         let buffer = "";
-        const haveAnyOptions = this.valuedFlags.length > 0 || this.flags.length > 0;
+        const haveAnyFlags = this.valuedFlags.length > 0 || this.flags.length > 0;
         // Usage
         const usageParts = [
             path.basename(process.argv[1]),
-            haveAnyOptions ? "[options]" : undefined,
+            haveAnyFlags ? "[options]" : undefined,
             this.positionalArguments.nonEmpty
                 ? this.positionalArguments.getSpecForUsage()
                 : undefined
@@ -71,12 +72,14 @@ class Program extends ProgramBase_1.default {
         if (this.programMetadata.description) {
             buffer += `\n\n${this.programMetadata.description}`;
         }
-        // Options (flags and keyword arguments)
-        if (haveAnyOptions) {
-            const sortedArgumentsAndFlags = this.valuedFlags.concat(this.flags);
-            sortedArgumentsAndFlags.sort((a, b) => a.order - b.order);
+        // Flags
+        if (haveAnyFlags) {
+            const allFlagsSorted = this.valuedFlags.concat(this.flags);
+            allFlagsSorted.sort((a, b) => a.order - b.order);
             buffer += `\n\nOptions:\n`;
-            buffer += renderColumnarData(sortedArgumentsAndFlags.map(argOrFlag => argOrFlag.generateHelpColumns()));
+            const tw = new TableWriter_1.default();
+            allFlagsSorted.forEach(f => f.getDocumentation().writeTo(tw));
+            buffer += tw.toString();
         }
         return buffer;
     }

@@ -34,6 +34,8 @@ import {
   FlagParseError,
   TooManyArgumentsError
 } from "./lib/errors";
+import FlagDocumentation from "./lib/FlagDocumentation";
+import TableWriter, { ITableWriterOptions } from "./lib/TableWriter";
 
 export {
   ProgramBuilder,
@@ -62,5 +64,8 @@ export {
   ProgramError,
   FlagParseError,
   ArgumentError,
-  TooManyArgumentsError
+  TooManyArgumentsError,
+  FlagDocumentation,
+  TableWriter,
+  ITableWriterOptions
 };

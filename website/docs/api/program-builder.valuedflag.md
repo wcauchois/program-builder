@@ -36,4 +36,4 @@ export default class ValuedFlag implements IAnyFlag
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [generateHelpColumns()](./program-builder.valuedflag.generatehelpcolumns.md) |  |  |
+|  [getDocumentation()](./program-builder.valuedflag.getdocumentation.md) |  |  |

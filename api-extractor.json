@@ -340,6 +340,10 @@
         "logLevel": "none",
       },
 
+      "ae-internal-missing-underscore": {
+        "logLevel": "none",
+      }
+
       // "ae-extra-release-tag": {
       //   "logLevel": "warning",
       //   "addToApiReportFile": true

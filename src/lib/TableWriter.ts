@@ -1,6 +1,9 @@
 import { rightPad } from "./utils";
 import wrap = require("word-wrap");
 
+/**
+ * @internal
+ */
 export interface ITableWriterOptions {
   padding: number;
   maxColumnWidth: 60;
@@ -11,6 +14,9 @@ const defaultOptions: ITableWriterOptions = {
   maxColumnWidth: 60
 };
 
+/**
+ * @internal
+ */
 export default class TableWriter {
   private rows: string[][];
   private options: ITableWriterOptions;

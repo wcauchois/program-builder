@@ -1,5 +1,6 @@
-import { IFlagMetadata } from "./types";
-export default class Flag {
+import { IFlagMetadata, IAnyFlag } from "./types";
+import FlagDocumentation from "./FlagDocumentation";
+export default class Flag implements IAnyFlag {
     readonly dest: string;
     readonly positiveNames: string[];
     readonly negativeNames: string[];
@@ -9,5 +10,5 @@ export default class Flag {
     constructor(dest: string, positiveNames: string[], negativeNames: string[], theDefault: boolean, metadata: IFlagMetadata, order: number);
     isPositiveName(name: string): boolean;
     get allNames(): string[];
-    generateHelpColumns(): string[];
+    getDocumentation(): FlagDocumentation;
 }

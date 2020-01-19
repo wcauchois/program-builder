@@ -1,5 +1,9 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const FlagDocumentation_1 = __importDefault(require("./FlagDocumentation"));
 class Flag {
     constructor(dest, positiveNames, negativeNames, theDefault, metadata, order) {
         this.dest = dest;
@@ -15,8 +19,9 @@ class Flag {
     get allNames() {
         return this.positiveNames.concat(this.negativeNames);
     }
-    generateHelpColumns() {
-        return [this.allNames.join(", "), this.metadata.description].filter(x => x);
+    getDocumentation() {
+        const nameSpec = this.allNames.join(", ");
+        return new FlagDocumentation_1.default(nameSpec, this.metadata.description);
     }
 }
 exports.default = Flag;

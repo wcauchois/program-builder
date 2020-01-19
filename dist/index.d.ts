@@ -13,4 +13,7 @@ import ValuedFlag from "./lib/ValuedFlag";
 import PositionalArguments from "./lib/PositionalArguments";
 import Flag from "./lib/Flag";
 import PositionalArgument from "./lib/PositionalArgument";
-export { ProgramBuilder, Arguments, ProgramBase, IPositionalArgumentMetadata, ExtendProgramBuilderWithRequired, ExtendProgramBuilderWithOptional, IOptionalValuedFlagOptions, Converter, IRequiredValuedFlagOptions, IFlagOptions, ProgramMain, ProgramWithAction, Program, IProgramBaseOptions, ValuedFlag, PositionalArguments, Flag, IProgramMetadata, IValuedFlagCommonOptions, IFlagMetadata, IAnyFlag, IValuedFlagMetadata, PositionalArgument };
+import { ProgramError, ArgumentError, FlagParseError, TooManyArgumentsError } from "./lib/errors";
+import FlagDocumentation from "./lib/FlagDocumentation";
+import TableWriter, { ITableWriterOptions } from "./lib/TableWriter";
+export { ProgramBuilder, Arguments, ProgramBase, IPositionalArgumentMetadata, ExtendProgramBuilderWithRequired, ExtendProgramBuilderWithOptional, IOptionalValuedFlagOptions, Converter, IRequiredValuedFlagOptions, IFlagOptions, ProgramMain, ProgramWithAction, Program, IProgramBaseOptions, ValuedFlag, PositionalArguments, Flag, IProgramMetadata, IValuedFlagCommonOptions, IFlagMetadata, IAnyFlag, IValuedFlagMetadata, PositionalArgument, ProgramError, FlagParseError, ArgumentError, TooManyArgumentsError, FlagDocumentation, TableWriter, ITableWriterOptions };

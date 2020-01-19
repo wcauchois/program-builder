@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("./utils");
+const FlagDocumentation_1 = __importDefault(require("./FlagDocumentation"));
 class ValuedFlag {
     constructor(names, dest, converter, metadata, order) {
         const invalidNames = names.filter(name => !utils_1.isFlag(name));
@@ -18,11 +22,10 @@ class ValuedFlag {
     get firstName() {
         return this.names[0];
     }
-    generateHelpColumns() {
-        return [
-            `${this.names.join(", ")} [${this.metadata.metavar || this.dest}]`,
-            this.metadata.description
-        ].filter(x => x);
+    getDocumentation() {
+        const nameSpec = `${this.names.join(", ")} [${this.metadata.metavar ||
+            this.dest}]`;
+        return new FlagDocumentation_1.default(nameSpec, this.metadata.description);
     }
 }
 exports.default = ValuedFlag;

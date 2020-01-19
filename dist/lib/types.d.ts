@@ -1,3 +1,4 @@
+import FlagDocumentation from "./FlagDocumentation";
 export interface IValuedFlagMetadata {
     default?: any;
     description?: string;
@@ -56,6 +57,6 @@ export interface IFlagOptions<K extends string> {
 }
 export declare type Converter<V> = (input: string, argName: string) => V;
 export interface IAnyFlag {
-    generateHelpColumns(): string[];
+    getDocumentation(): FlagDocumentation;
 }
 export declare type ProgramMain<T> = ((args: T) => Promise<void>) | ((args: T) => void);

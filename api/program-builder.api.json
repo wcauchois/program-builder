@@ -16,6 +16,34 @@
       "name": "",
       "members": [
         {
+          "kind": "Class",
+          "canonicalReference": "@wcauchois/program-builder!ArgumentError:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class ArgumentError extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "ProgramError",
+              "canonicalReference": "@wcauchois/program-builder!ProgramError:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ArgumentError",
+          "members": [],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "implementsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@wcauchois/program-builder!Arguments:type",
           "docComment": "/**\n * Type helper to get the Arguments type of a {@link Program}.\n *\n * @remarks\n *\n * Use TypeScript's `typeof` operator to get the type of your `program` variable, then pass it as a type argument to this type to get the arguments type for your program.\n *\n * Note you can use `typeof` before a variable is declared, in case you want to define your main function before your program-building for readability.\n *\n * Example:\n * ```typescript\n * async function main(args: Arguments<typeof Program>) {\n *   // Do things with args\n * }\n * const program = ProgramBuilder.newBuilder().build();\n * ```\n *\n */\n",
@@ -253,7 +281,16 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export default class Flag "
+              "text": "export default class Flag implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "IAnyFlag",
+              "canonicalReference": "@wcauchois/program-builder!IAnyFlag:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
             }
           ],
           "releaseTag": "Public",
@@ -445,16 +482,17 @@
             },
             {
               "kind": "Method",
-              "canonicalReference": "@wcauchois/program-builder!Flag#generateHelpColumns:member(1)",
+              "canonicalReference": "@wcauchois/program-builder!Flag#getDocumentation:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "generateHelpColumns(): "
+                  "text": "getDocumentation(): "
                 },
                 {
-                  "kind": "Content",
-                  "text": "string[]"
+                  "kind": "Reference",
+                  "text": "FlagDocumentation",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
                 },
                 {
                   "kind": "Content",
@@ -469,7 +507,7 @@
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [],
-              "name": "generateHelpColumns"
+              "name": "getDocumentation"
             },
             {
               "kind": "Method",
@@ -621,6 +659,197 @@
               "isStatic": false
             }
           ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 3
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@wcauchois/program-builder!FlagDocumentation:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class FlagDocumentation "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FlagDocumentation",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@wcauchois/program-builder!FlagDocumentation:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `FlagDocumentation` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(nameSpec: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", description: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | undefined"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "nameSpec",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "description",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!FlagDocumentation#description:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly description: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | undefined"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "description",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!FlagDocumentation#nameSpec:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly nameSpec: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "nameSpec",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!FlagDocumentation#writeTo:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "writeTo(tw: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TableWriter",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "tw",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "writeTo"
+            }
+          ],
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@wcauchois/program-builder!FlagParseError:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class FlagParseError extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "ProgramError",
+              "canonicalReference": "@wcauchois/program-builder!ProgramError:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FlagParseError",
+          "members": [],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
           "implementsTokenRanges": []
         },
         {
@@ -638,16 +867,17 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "@wcauchois/program-builder!IAnyFlag#generateHelpColumns:member(1)",
+              "canonicalReference": "@wcauchois/program-builder!IAnyFlag#getDocumentation:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "generateHelpColumns(): "
+                  "text": "getDocumentation(): "
                 },
                 {
-                  "kind": "Content",
-                  "text": "string[]"
+                  "kind": "Reference",
+                  "text": "FlagDocumentation",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
                 },
                 {
                   "kind": "Content",
@@ -661,7 +891,7 @@
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [],
-              "name": "generateHelpColumns"
+              "name": "getDocumentation"
             }
           ],
           "extendsTokenRanges": []
@@ -1277,6 +1507,72 @@
               "endIndex": 5
             }
           ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@wcauchois/program-builder!ITableWriterOptions:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ITableWriterOptions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ITableWriterOptions",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!ITableWriterOptions#maxColumnWidth:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "maxColumnWidth: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "60"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "maxColumnWidth",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!ITableWriterOptions#padding:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "padding: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "padding",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
         },
         {
           "kind": "Interface",
@@ -3648,6 +3944,34 @@
           "implementsTokenRanges": []
         },
         {
+          "kind": "Class",
+          "canonicalReference": "@wcauchois/program-builder!ProgramError:class",
+          "docComment": "/**\n * Base class for any error having to do with ProgramBuilder.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class ProgramError extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "Error",
+              "canonicalReference": "!Error:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ProgramError",
+          "members": [],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "implementsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@wcauchois/program-builder!ProgramMain:type",
           "docComment": "",
@@ -3810,6 +4134,49 @@
                 "endIndex": 3
               },
               "isStatic": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@wcauchois/program-builder!TooManyArgumentsError:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class TooManyArgumentsError extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "ProgramError",
+              "canonicalReference": "@wcauchois/program-builder!ProgramError:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TooManyArgumentsError",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@wcauchois/program-builder!TooManyArgumentsError:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `TooManyArgumentsError` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor();"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": []
             }
           ],
           "extendsTokenRange": {
@@ -4021,16 +4388,17 @@
             },
             {
               "kind": "Method",
-              "canonicalReference": "@wcauchois/program-builder!ValuedFlag#generateHelpColumns:member(1)",
+              "canonicalReference": "@wcauchois/program-builder!ValuedFlag#getDocumentation:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "generateHelpColumns(): "
+                  "text": "getDocumentation(): "
                 },
                 {
-                  "kind": "Content",
-                  "text": "string[]"
+                  "kind": "Reference",
+                  "text": "FlagDocumentation",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
                 },
                 {
                   "kind": "Content",
@@ -4045,7 +4413,7 @@
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [],
-              "name": "generateHelpColumns"
+              "name": "getDocumentation"
             },
             {
               "kind": "Property",

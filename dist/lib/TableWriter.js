@@ -6,6 +6,9 @@ const defaultOptions = {
     padding: 2,
     maxColumnWidth: 60
 };
+/**
+ * @internal
+ */
 class TableWriter {
     constructor(options = {}) {
         this.rows = [];

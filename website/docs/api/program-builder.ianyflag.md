@@ -19,4 +19,4 @@ export interface IAnyFlag
 
 |  Method | Description |
 |  --- | --- |
-|  [generateHelpColumns()](./program-builder.ianyflag.generatehelpcolumns.md) |  |
+|  [getDocumentation()](./program-builder.ianyflag.getdocumentation.md) |  |

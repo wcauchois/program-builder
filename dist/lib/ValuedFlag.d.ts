@@ -1,4 +1,5 @@
 import { IValuedFlagMetadata, Converter, IAnyFlag } from "./types";
+import FlagDocumentation from "./FlagDocumentation";
 export default class ValuedFlag implements IAnyFlag {
     readonly names: string[];
     readonly dest: string;
@@ -7,5 +8,5 @@ export default class ValuedFlag implements IAnyFlag {
     readonly order: number;
     constructor(names: string[], dest: string, converter: Converter<any>, metadata: IValuedFlagMetadata, order: number);
     get firstName(): string;
-    generateHelpColumns(): string[];
+    getDocumentation(): FlagDocumentation;
 }

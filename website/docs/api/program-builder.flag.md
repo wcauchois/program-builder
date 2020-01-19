@@ -12,7 +12,7 @@ hide_title: true
 <b>Signature:</b>
 
 ```typescript
-export default class Flag 
+export default class Flag implements IAnyFlag 
 ```
 
 ## Constructors
@@ -37,5 +37,5 @@ export default class Flag
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [generateHelpColumns()](./program-builder.flag.generatehelpcolumns.md) |  |  |
+|  [getDocumentation()](./program-builder.flag.getdocumentation.md) |  |  |
 |  [isPositiveName(name)](./program-builder.flag.ispositivename.md) |  |  |

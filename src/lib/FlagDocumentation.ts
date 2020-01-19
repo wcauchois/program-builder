@@ -1,5 +1,8 @@
 import TableWriter from "./TableWriter";
 
+/**
+ * Encapsulates documentation about a {@link Flag} or {@link ValuedFlag}.
+ */
 export default class FlagDocumentation {
   readonly nameSpec: string;
   readonly description: string | undefined;
@@ -9,6 +12,9 @@ export default class FlagDocumentation {
     this.description = description;
   }
 
+  /**
+   * @internal
+   */
   writeTo(tw: TableWriter) {
     tw.writeRow([this.nameSpec, this.description || ""]);
   }
