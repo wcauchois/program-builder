@@ -138,6 +138,9 @@ export default class ProgramBuilder<T> extends ProgramBase {
     return this as any;
   }
 
+  /**
+   * Testing diff
+   */
   customFlag<K extends string, V>(
     name: string,
     options: IOptionalValuedFlagOptions<K, V>,
