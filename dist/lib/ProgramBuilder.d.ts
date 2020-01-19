@@ -1,6 +1,7 @@
 import ProgramBase from "./ProgramBase";
 import Program from "./Program";
-import { IRequiredKeywordArgumentOptions, IOptionalKeywordArgumentOptions, IPositionalArgumentMetadata, Converter, IFlagOptions } from "./types";
+import { IRequiredKeywordArgumentOptions, IOptionalKeywordArgumentOptions, IPositionalArgumentMetadata, Converter, IFlagOptions, ProgramMain } from "./types";
+import ProgramWithAction from "./ProgramWithAction";
 declare type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<T & {
     [P in K]?: U;
 }>;
@@ -30,6 +31,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
     floatFlag<K extends string>(name: string, options: IRequiredKeywordArgumentOptions<K, number>): ExtendProgramBuilderWithRequired<T, K, number>;
     flag<K extends string>(name: string, options: IFlagOptions<K>): ExtendProgramBuilderWithRequired<T, K, boolean>;
     build(): Program<T>;
+    bind(action: ProgramMain<T>): ProgramWithAction<T>;
     static newBuilder(): ProgramBuilder<{}>;
 }
 export {};

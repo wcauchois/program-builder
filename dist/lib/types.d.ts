@@ -37,3 +37,4 @@ export declare type Converter<V> = (input: string, argName: string) => V;
 export interface IKeywordArgumentOrFlag {
     generateHelpColumns(): string[];
 }
+export declare type ProgramMain<T> = ((args: T) => Promise<void>) | ((args: T) => void);

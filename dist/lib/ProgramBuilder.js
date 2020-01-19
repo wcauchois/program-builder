@@ -10,6 +10,7 @@ const KeywordArgument_1 = __importDefault(require("./KeywordArgument"));
 const PositionalArguments_1 = __importDefault(require("./PositionalArguments"));
 const converters_1 = require("./converters");
 const Flag_1 = __importDefault(require("./Flag"));
+const ProgramWithAction_1 = __importDefault(require("./ProgramWithAction"));
 class ProgramBuilder extends ProgramBase_1.default {
     constructor(options) {
         super(options);
@@ -71,6 +72,9 @@ class ProgramBuilder extends ProgramBase_1.default {
     }
     build() {
         return new Program_1.default(this);
+    }
+    bind(action) {
+        return new ProgramWithAction_1.default(this, action);
     }
     static newBuilder() {
         return new ProgramBuilder({
