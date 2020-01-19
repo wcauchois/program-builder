@@ -7,7 +7,7 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "run-example": "ts-node examples/simple/main.ts",
     "docs": "yarn build && node scripts/make-docs.js",
-    "test": "jest --runInBand"
+    "test": "jest"
   },
   "types": "dist/index.d.ts",
   "homepage": "https://program-builder.netlify.com",
