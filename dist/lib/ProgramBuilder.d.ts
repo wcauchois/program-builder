@@ -77,10 +77,6 @@ export default class ProgramBuilder<T> extends ProgramBase {
      * @param options - See {@link IPositionalArgumentMetadata}.
      */
     optionalArg<K extends string>(dest: K, options?: IPositionalArgumentMetadata): ExtendProgramBuilderWithOptional<T, K, string>;
-    /**
-     *
-     * @param name - test
-     */
     customFlag<K extends string, V>(name: string, options: IOptionalValuedFlagOptions<K, V>, converter: Converter<V>): ExtendProgramBuilderWithOptional<T, K, V>;
     customFlag<K extends string, V>(name: string, options: IRequiredValuedFlagOptions<K, V>, converter: Converter<V>): ExtendProgramBuilderWithRequired<T, K, V>;
     /**

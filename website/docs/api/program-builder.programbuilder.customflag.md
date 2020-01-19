@@ -19,7 +19,7 @@ customFlag<K extends string, V>(name: string, options: IOptionalValuedFlagOption
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  name | <code>string</code> | test |
+|  name | <code>string</code> |  |
 |  options | <code>IOptionalValuedFlagOptions&lt;K, V&gt;</code> |  |
 |  converter | <code>Converter&lt;V&gt;</code> |  |
 
