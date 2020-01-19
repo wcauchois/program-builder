@@ -2,17 +2,17 @@ import ProgramBase, { IProgramBaseOptions } from "./ProgramBase";
 import PositionalArgument from "./PositionalArgument";
 import Program from "./Program";
 import {
-  KeywordArgumentOptions,
-  IKeywordArgumentMetadata,
-  IRequiredKeywordArgumentOptions,
-  IOptionalKeywordArgumentOptions,
+  ValuedFlagOptions,
+  IValuedFlagMetadata,
+  IRequiredValuedFlagOptions,
+  IOptionalValuedFlagOptions,
   IPositionalArgumentMetadata,
   Converter,
   IFlagOptions,
   IFlagMetadata,
   ProgramMain
 } from "./types";
-import KeywordArgument from "./KeywordArgument";
+import ValuedFlag from "./ValuedFlag";
 import PositionalArguments from "./PositionalArguments";
 import { convertString, convertInt, convertFloat } from "./converters";
 import Flag from "./Flag";
@@ -47,8 +47,8 @@ export default class ProgramBuilder<T> extends ProgramBase {
   }
 
   private keywordOptionsToMetadata(
-    options: KeywordArgumentOptions<any, any>
-  ): Complete<IKeywordArgumentMetadata> {
+    options: ValuedFlagOptions<any, any>
+  ): Complete<IValuedFlagMetadata> {
     return {
       description: options.description,
       default: options.default,
@@ -91,23 +91,23 @@ export default class ProgramBuilder<T> extends ProgramBase {
 
   customFlag<K extends string, V>(
     name: string,
-    options: IOptionalKeywordArgumentOptions<K, V>,
+    options: IOptionalValuedFlagOptions<K, V>,
     converter: Converter<V>
   ): ExtendProgramBuilderWithOptional<T, K, V>;
 
   customFlag<K extends string, V>(
     name: string,
-    options: IRequiredKeywordArgumentOptions<K, V>,
+    options: IRequiredValuedFlagOptions<K, V>,
     converter: Converter<V>
   ): ExtendProgramBuilderWithRequired<T, K, V>;
 
   customFlag<K extends string, V>(
     name: string,
-    options: KeywordArgumentOptions<K, V>,
+    options: ValuedFlagOptions<K, V>,
     converter: Converter<V>
   ): any {
-    this.keywordArguments.push(
-      new KeywordArgument(
+    this.valuedFlags.push(
+      new ValuedFlag(
         this.splitNames(name),
         options.dest,
         converter,
@@ -122,34 +122,34 @@ export default class ProgramBuilder<T> extends ProgramBase {
 
   stringFlag<K extends string>(
     name: string,
-    options: IOptionalKeywordArgumentOptions<K, string>
+    options: IOptionalValuedFlagOptions<K, string>
   ): ExtendProgramBuilderWithOptional<T, K, string>;
 
   stringFlag<K extends string>(
     name: string,
-    options: IRequiredKeywordArgumentOptions<K, string>
+    options: IRequiredValuedFlagOptions<K, string>
   ): ExtendProgramBuilderWithRequired<T, K, string>;
 
   stringFlag<K extends string>(
     name: string,
-    options: KeywordArgumentOptions<K, string>
+    options: ValuedFlagOptions<K, string>
   ): any {
     return this.customFlag<K, string>(name, options as any, convertString);
   }
 
   intFlag<K extends string>(
     name: string,
-    options: IOptionalKeywordArgumentOptions<K, number>
+    options: IOptionalValuedFlagOptions<K, number>
   ): ExtendProgramBuilderWithOptional<T, K, number>;
 
   intFlag<K extends string>(
     name: string,
-    options: IRequiredKeywordArgumentOptions<K, number>
+    options: IRequiredValuedFlagOptions<K, number>
   ): ExtendProgramBuilderWithRequired<T, K, number>;
 
   intFlag<K extends string>(
     name: string,
-    options: KeywordArgumentOptions<K, number>
+    options: ValuedFlagOptions<K, number>
   ): any {
     return this.customFlag<K, number>(name, options as any, convertInt);
   }
@@ -160,21 +160,21 @@ export default class ProgramBuilder<T> extends ProgramBase {
    * @param name - The name for the flag, including leading dashes. Multiple alternative
    * names may be specified by separating them within the string by commas. For example,
    * "-i,--input".
-   * @param options - See {@link IOptionalKeywordArgumentOptions}
+   * @param options - See {@link IOptionalValuedFlagOptions}
    */
   floatFlag<K extends string>(
     name: string,
-    options: IOptionalKeywordArgumentOptions<K, number>
+    options: IOptionalValuedFlagOptions<K, number>
   ): ExtendProgramBuilderWithOptional<T, K, number>;
 
   floatFlag<K extends string>(
     name: string,
-    options: IRequiredKeywordArgumentOptions<K, number>
+    options: IRequiredValuedFlagOptions<K, number>
   ): ExtendProgramBuilderWithRequired<T, K, number>;
 
   floatFlag<K extends string>(
     name: string,
-    options: KeywordArgumentOptions<K, number>
+    options: ValuedFlagOptions<K, number>
   ): any {
     return this.customFlag<K, number>(name, options as any, convertFloat);
   }
@@ -218,7 +218,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
   static newBuilder(): ProgramBuilder<{}> {
     return new ProgramBuilder({
       flags: [],
-      keywordArguments: [],
+      valuedFlags: [],
       positionalArguments: new PositionalArguments(),
       programMetadata: {}
     });

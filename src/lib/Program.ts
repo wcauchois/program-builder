@@ -3,9 +3,9 @@ import util = require("util");
 
 import PositionalArgument from "./PositionalArgument";
 import ProgramBase, { IProgramBaseOptions } from "./ProgramBase";
-import KeywordArgument from "./KeywordArgument";
+import ValuedFlag from "./ValuedFlag";
 import { ArgumentError, TooManyArgumentsError } from "./errors";
-import { isFlag } from "./utils";
+import { isFlag, expectUnreachable } from "./utils";
 import Flag from "./Flag";
 import { ProgramMain } from "./types";
 
@@ -55,23 +55,23 @@ function renderColumnarData(data: string[][], padding = 2) {
  * ```
  */
 export default class Program<T> extends ProgramBase {
-  private readonly flagsByName: Map<string, KeywordArgument | Flag>;
+  private readonly flagsByName: Map<string, ValuedFlag | Flag>;
 
   static readonly helpArgumentsSet = new Set(["-h", "--help"]);
 
   constructor(options: IProgramBaseOptions) {
     super(options);
     this.flagsByName = new Map(
-      options.keywordArguments
-        .flatMap(argument =>
-          argument.names.map(
-            name => [name, argument] as [string, KeywordArgument | Flag]
+      options.valuedFlags
+        .flatMap(vflag =>
+          vflag.names.map(
+            name => [name, vflag] as [string, ValuedFlag | Flag]
           )
         )
         .concat(
           options.flags.flatMap(flag =>
             flag.allNames.map(
-              name => [name, flag] as [string, KeywordArgument | Flag]
+              name => [name, flag] as [string, ValuedFlag | Flag]
             )
           )
         )
@@ -81,7 +81,7 @@ export default class Program<T> extends ProgramBase {
   generateHelpText() {
     let buffer = "";
     const haveAnyOptions =
-      this.keywordArguments.length > 0 || this.flags.length > 0;
+      this.valuedFlags.length > 0 || this.flags.length > 0;
 
     // Usage
     const usageParts = [
@@ -100,8 +100,8 @@ export default class Program<T> extends ProgramBase {
 
     // Options (flags and keyword arguments)
     if (haveAnyOptions) {
-      const sortedArgumentsAndFlags = (this.keywordArguments as Array<
-        KeywordArgument | Flag
+      const sortedArgumentsAndFlags = (this.valuedFlags as Array<
+        ValuedFlag | Flag
       >).concat(this.flags);
       sortedArgumentsAndFlags.sort((a, b) => a.order - b.order);
       buffer += `\n\nOptions:\n`;
@@ -164,8 +164,8 @@ export default class Program<T> extends ProgramBase {
     const optionalArgumentStack = this.positionalArguments.optional.slice();
 
     let currentArg: string | undefined;
-    let unspecifiedRequiredArguments = this.keywordArguments.filter(
-      argument => argument.metadata.required
+    let unspecifiedRequiredVFlags = this.valuedFlags.filter(
+      vflag => vflag.metadata.required
     );
 
     while ((currentArg = argStack.shift())) {
@@ -176,16 +176,17 @@ export default class Program<T> extends ProgramBase {
         }
         if (flag instanceof Flag) {
           parsedArgs[flag.dest] = flag.isPositiveName(currentArg); // Else, it is a negative name.
-        } else {
-          // Flag is a KeywordArgument
+        } else if (flag instanceof ValuedFlag) {
           const argumentValue = argStack.shift();
           if (!argumentValue) {
             throw new ArgumentError(`Missing value for flag '${currentArg}'`);
           }
           parsedArgs[flag.dest] = flag.converter(argumentValue, currentArg);
-          unspecifiedRequiredArguments = unspecifiedRequiredArguments.filter(
+          unspecifiedRequiredVFlags = unspecifiedRequiredVFlags.filter(
             x => x !== flag
           );
+        } else {
+          expectUnreachable(flag);
         }
       } else {
         let arg: PositionalArgument | undefined;
@@ -207,9 +208,9 @@ export default class Program<T> extends ProgramBase {
         `Not enough positional arguments were specified. Expected: at least ${this.positionalArguments.required.length}`
       );
     }
-    if (unspecifiedRequiredArguments.length > 0) {
+    if (unspecifiedRequiredVFlags.length > 0) {
       throw new ArgumentError(
-        `The following required keyword flags were not specified: ${unspecifiedRequiredArguments
+        `The following required flags were not specified: ${unspecifiedRequiredVFlags
           .map(x => x.firstName)
           .join(", ")}`
       );

@@ -11,20 +11,20 @@ import { Arguments } from "./lib/arguments";
 import ProgramBase, { IProgramBaseOptions } from "./lib/ProgramBase";
 import {
   IPositionalArgumentMetadata,
-  IOptionalKeywordArgumentOptions,
+  IOptionalValuedFlagOptions,
   Converter,
-  IRequiredKeywordArgumentOptions,
+  IRequiredValuedFlagOptions,
   IFlagOptions,
   ProgramMain,
   IProgramMetadata,
-  IKeywordArgumentCommonOptions,
-  IKeywordArgumentMetadata,
-  IKeywordArgumentOrFlag,
+  IValuedFlagCommonOptions,
+  IValuedFlagMetadata,
+  IAnyFlag,
   IFlagMetadata
 } from "./lib/types";
 import ProgramWithAction from "./lib/ProgramWithAction";
 import Program from "./lib/Program";
-import KeywordArgument from "./lib/KeywordArgument";
+import ValuedFlag from "./lib/ValuedFlag";
 import PositionalArguments from "./lib/PositionalArguments";
 import Flag from "./lib/Flag";
 import PositionalArgument from "./lib/PositionalArgument";
@@ -36,21 +36,21 @@ export {
   IPositionalArgumentMetadata,
   ExtendProgramBuilderWithRequired,
   ExtendProgramBuilderWithOptional,
-  IOptionalKeywordArgumentOptions,
+  IOptionalValuedFlagOptions,
   Converter,
-  IRequiredKeywordArgumentOptions,
+  IRequiredValuedFlagOptions,
   IFlagOptions,
   ProgramMain,
   ProgramWithAction,
   Program,
   IProgramBaseOptions,
-  KeywordArgument,
+  ValuedFlag,
   PositionalArguments,
   Flag,
   IProgramMetadata,
-  IKeywordArgumentCommonOptions,
+  IValuedFlagCommonOptions,
   IFlagMetadata,
-  IKeywordArgumentOrFlag,
-  IKeywordArgumentMetadata,
+  IAnyFlag,
+  IValuedFlagMetadata,
   PositionalArgument
 };

@@ -26,3 +26,5 @@ export type Complete<T> = {
 export function isFlag(arg: string) {
   return arg.startsWith("-");
 }
+
+export function expectUnreachable(x: never) {}
