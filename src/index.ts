@@ -28,6 +28,12 @@ import ValuedFlag from "./lib/ValuedFlag";
 import PositionalArguments from "./lib/PositionalArguments";
 import Flag from "./lib/Flag";
 import PositionalArgument from "./lib/PositionalArgument";
+import {
+  ProgramError,
+  ArgumentError,
+  FlagParseError,
+  TooManyArgumentsError
+} from "./lib/errors";
 
 export {
   ProgramBuilder,
@@ -52,5 +58,9 @@ export {
   IFlagMetadata,
   IAnyFlag,
   IValuedFlagMetadata,
-  PositionalArgument
+  PositionalArgument,
+  ProgramError,
+  FlagParseError,
+  ArgumentError,
+  TooManyArgumentsError
 };
