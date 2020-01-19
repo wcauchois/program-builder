@@ -19,24 +19,53 @@ export default class ProgramBuilder<T> extends ProgramBase
 
 ## Remarks
 
-Create a new ProgramBuilder with [ProgramBuilder.newBuilder()](./program-builder.programbuilder.newbuilder.md)<!-- -->.
+Create a new ProgramBuilder with [ProgramBuilder.newBuilder()](./program-builder.programbuilder.newbuilder.md)<!-- -->, then define flags using the instance methods. Finally, call [ProgramBuilder.build()](./program-builder.programbuilder.build.md) to get an executable Program.
+
+There are a few categories to configure:
+
+### Positional arguments
+
+Use `arg` or `optionalArg` to define positional arguments.
+
+Example:
+
+```typescript
+const program = ProgramBuilder.newBuilder()
+  .arg('filename', { description: 'The filename to use' })
+  .optionalArg('extraFilename')
+  .build();
+
+```
+Invoked as:
+
+```
+$ my-program foo.txt bar.txt
+
+```
+### Boolean flags
+
+Use `flag` to define a boolean flag that is set by its presence.
+
+### Valued flags
+
+Use methods like `stringFlag` and `intFlag` to define "valued" flags, known as options in other CLI libraries. For these, the user must specify a value immediately following the flag, like "--count 42". The value is converted to a type indicated by the name of the method.
 
 ## Methods
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [arg(dest, options)](./program-builder.programbuilder.arg.md) |  |  |
-|  [bind(action)](./program-builder.programbuilder.bind.md) |  |  |
-|  [build()](./program-builder.programbuilder.build.md) |  |  |
+|  [arg(dest, options)](./program-builder.programbuilder.arg.md) |  | Add a positional argument to the program. |
+|  [bind(action)](./program-builder.programbuilder.bind.md) |  | Bind the ProgramBuilder to an action and return a [ProgramWithAction](./program-builder.programwithaction.md) suitable for use constructing subcommands. |
+|  [build()](./program-builder.programbuilder.build.md) |  | Build and return a [Program](./program-builder.program.md)<!-- -->. |
 |  [customFlag(name, options, converter)](./program-builder.programbuilder.customflag.md) |  |  |
 |  [customFlag(name, options, converter)](./program-builder.programbuilder.customflag_1.md) |  |  |
 |  [description(newDescription)](./program-builder.programbuilder.description.md) |  | Set the program description. |
-|  [flag(name, options)](./program-builder.programbuilder.flag.md) |  |  |
-|  [floatFlag(name, options)](./program-builder.programbuilder.floatflag.md) |  | Add an optional float-valued flag to the program. |
-|  [floatFlag(name, options)](./program-builder.programbuilder.floatflag_1.md) |  |  |
-|  [intFlag(name, options)](./program-builder.programbuilder.intflag.md) |  |  |
-|  [intFlag(name, options)](./program-builder.programbuilder.intflag_1.md) |  |  |
-|  [newBuilder()](./program-builder.programbuilder.newbuilder.md) | <code>static</code> |  |
-|  [optionalArg(dest, options)](./program-builder.programbuilder.optionalarg.md) |  |  |
-|  [stringFlag(name, options)](./program-builder.programbuilder.stringflag.md) |  |  |
-|  [stringFlag(name, options)](./program-builder.programbuilder.stringflag_1.md) |  |  |
+|  [flag(name, options)](./program-builder.programbuilder.flag.md) |  | Add a boolean-valued flag to the program (sometimes known as a "switch"). |
+|  [floatFlag(name, options)](./program-builder.programbuilder.floatflag.md) |  | Add an optional valued flag to the program. |
+|  [floatFlag(name, options)](./program-builder.programbuilder.floatflag_1.md) |  | Add a required valued flag to the program. |
+|  [intFlag(name, options)](./program-builder.programbuilder.intflag.md) |  | Add an optional valued flag to the program. |
+|  [intFlag(name, options)](./program-builder.programbuilder.intflag_1.md) |  | Add a required valued flag to the program. |
+|  [newBuilder()](./program-builder.programbuilder.newbuilder.md) | <code>static</code> | Create a new ProgramBuilder instance. |
+|  [optionalArg(dest, options)](./program-builder.programbuilder.optionalarg.md) |  | Add an optional positional argument to the program. |
+|  [stringFlag(name, options)](./program-builder.programbuilder.stringflag.md) |  | Add an optional valued flag to the program. |
+|  [stringFlag(name, options)](./program-builder.programbuilder.stringflag_1.md) |  | Add a required valued flag to the program. |

@@ -669,7 +669,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@wcauchois/program-builder!FlagDocumentation:class",
-          "docComment": "",
+          "docComment": "/**\n * Encapsulates documentation about a {@link Flag} or {@link ValuedFlag}.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -775,51 +775,6 @@
                 "endIndex": 2
               },
               "isStatic": false
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "@wcauchois/program-builder!FlagDocumentation#writeTo:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "writeTo(tw: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "TableWriter",
-                  "canonicalReference": "@wcauchois/program-builder!default:class"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 3,
-                "endIndex": 4
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "tw",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                }
-              ],
-              "name": "writeTo"
             }
           ],
           "implementsTokenRanges": []
@@ -1507,72 +1462,6 @@
               "endIndex": 5
             }
           ]
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "@wcauchois/program-builder!ITableWriterOptions:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface ITableWriterOptions "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "ITableWriterOptions",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@wcauchois/program-builder!ITableWriterOptions#maxColumnWidth:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "maxColumnWidth: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "60"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "maxColumnWidth",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@wcauchois/program-builder!ITableWriterOptions#padding:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "padding: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "number"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "padding",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            }
-          ],
-          "extendsTokenRanges": []
         },
         {
           "kind": "Interface",
@@ -2696,7 +2585,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@wcauchois/program-builder!ProgramBuilder:class",
-          "docComment": "/**\n * Entry point to the library and the way to start constructing a {@link Program} to be executed.\n *\n * @remarks\n *\n * Create a new ProgramBuilder with {@link ProgramBuilder.newBuilder}.\n */\n",
+          "docComment": "/**\n * Entry point to the library and the way to start constructing a {@link Program} to be executed.\n *\n * @remarks\n *\n * Create a new ProgramBuilder with {@link ProgramBuilder.newBuilder}, then define flags using the instance methods. Finally, call {@link ProgramBuilder.build} to get an executable Program.\n *\n * There are a few categories to configure:\n *\n * ### Positional arguments\n *\n * Use `arg` or `optionalArg` to define positional arguments.\n *\n * Example:\n * ```typescript\n * const program = ProgramBuilder.newBuilder()\n *   .arg('filename', { description: 'The filename to use' })\n *   .optionalArg('extraFilename')\n *   .build();\n * ```\n *\n * Invoked as:\n * ```\n * $ my-program foo.txt bar.txt\n * ```\n *\n * ### Boolean flags\n *\n * Use `flag` to define a boolean flag that is set by its presence.\n *\n * ### Valued flags\n *\n * Use methods like `stringFlag` and `intFlag` to define \"valued\" flags, known as options in other CLI libraries. For these, the user must specify a value immediately following the flag, like \"--count 42\". The value is converted to a type indicated by the name of the method.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2731,7 +2620,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#arg:member(1)",
-              "docComment": "",
+              "docComment": "/**\n * Add a positional argument to the program.\n *\n * @remarks\n *\n * The order in which you call `arg` on a ProgramBuilder matters.\n *\n * @param dest - The destination key into which the argument value will be stored.\n *\n * @param options - See {@link IPositionalArgumentMetadata}.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2817,7 +2706,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#bind:member(1)",
-              "docComment": "",
+              "docComment": "/**\n * Bind the ProgramBuilder to an action and return a {@link ProgramWithAction} suitable for use constructing subcommands.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2871,7 +2760,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#build:member(1)",
-              "docComment": "",
+              "docComment": "/**\n * Build and return a {@link Program}.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3190,7 +3079,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#flag:member(1)",
-              "docComment": "",
+              "docComment": "/**\n * Add a boolean-valued flag to the program (sometimes known as a \"switch\").\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, `\"-i,--input\"`.\n *\n * @param options - See {@link IFlagOptions}.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3280,7 +3169,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#floatFlag:member(1)",
-              "docComment": "/**\n * Add an optional float-valued flag to the program.\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, \"-i,--input\".\n *\n * @param options - See {@link IOptionalValuedFlagOptions}\n */\n",
+              "docComment": "/**\n * Add an optional valued flag to the program.\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, `\"-i,--input\"`.\n *\n * @param options - See {@link IOptionalValuedFlagOptions}.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3370,7 +3259,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#floatFlag:member(2)",
-              "docComment": "",
+              "docComment": "/**\n * Add a required valued flag to the program.\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, `\"-i,--input\"`.\n *\n * @param options - See {@link IRequiredValuedFlagOptions}.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3460,7 +3349,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#intFlag:member(1)",
-              "docComment": "",
+              "docComment": "/**\n * Add an optional valued flag to the program.\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, `\"-i,--input\"`.\n *\n * @param options - See {@link IOptionalValuedFlagOptions}.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3550,7 +3439,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#intFlag:member(2)",
-              "docComment": "",
+              "docComment": "/**\n * Add a required valued flag to the program.\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, `\"-i,--input\"`.\n *\n * @param options - See {@link IRequiredValuedFlagOptions}.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3640,7 +3529,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder.newBuilder:member(1)",
-              "docComment": "",
+              "docComment": "/**\n * Create a new ProgramBuilder instance.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3673,7 +3562,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#optionalArg:member(1)",
-              "docComment": "",
+              "docComment": "/**\n * Add an optional positional argument to the program.\n *\n * @param dest - The destination key into which the argument value will be stored.\n *\n * @param options - See {@link IPositionalArgumentMetadata}.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3759,7 +3648,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#stringFlag:member(1)",
-              "docComment": "",
+              "docComment": "/**\n * Add an optional valued flag to the program.\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, `\"-i,--input\"`.\n *\n * @param options - See {@link IOptionalValuedFlagOptions}.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3849,7 +3738,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#stringFlag:member(2)",
-              "docComment": "",
+              "docComment": "/**\n * Add a required valued flag to the program.\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, `\"-i,--input\"`.\n *\n * @param options - See {@link IRequiredValuedFlagOptions}.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

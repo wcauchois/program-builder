@@ -9,6 +9,8 @@ hide_title: true
 
 ## ProgramBuilder.optionalArg() method
 
+Add an optional positional argument to the program.
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,8 +21,8 @@ optionalArg<K extends string>(dest: K, options?: IPositionalArgumentMetadata): E
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  dest | <code>K</code> |  |
-|  options | <code>IPositionalArgumentMetadata</code> |  |
+|  dest | <code>K</code> | The destination key into which the argument value will be stored. |
+|  options | <code>IPositionalArgumentMetadata</code> | See [IPositionalArgumentMetadata](./program-builder.ipositionalargumentmetadata.md)<!-- -->. |
 
 <b>Returns:</b>
 

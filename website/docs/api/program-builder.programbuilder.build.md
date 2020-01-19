@@ -9,6 +9,8 @@ hide_title: true
 
 ## ProgramBuilder.build() method
 
+Build and return a [Program](./program-builder.program.md)<!-- -->.
+
 <b>Signature:</b>
 
 ```typescript

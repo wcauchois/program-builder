@@ -9,7 +9,7 @@ hide_title: true
 
 ## ProgramBuilder.floatFlag() method
 
-Add an optional float-valued flag to the program.
+Add an optional valued flag to the program.
 
 <b>Signature:</b>
 
@@ -21,8 +21,8 @@ floatFlag<K extends string>(name: string, options: IOptionalValuedFlagOptions<K,
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  name | <code>string</code> | The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, "-i,--input". |
-|  options | <code>IOptionalValuedFlagOptions&lt;K, number&gt;</code> | See [IOptionalValuedFlagOptions](./program-builder.ioptionalvaluedflagoptions.md) |
+|  name | <code>string</code> | The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, <code>&quot;-i,--input&quot;</code>. |
+|  options | <code>IOptionalValuedFlagOptions&lt;K, number&gt;</code> | See [IOptionalValuedFlagOptions](./program-builder.ioptionalvaluedflagoptions.md)<!-- -->. |
 
 <b>Returns:</b>
 

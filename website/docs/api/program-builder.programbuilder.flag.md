@@ -9,6 +9,8 @@ hide_title: true
 
 ## ProgramBuilder.flag() method
 
+Add a boolean-valued flag to the program (sometimes known as a "switch").
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,8 +21,8 @@ flag<K extends string>(name: string, options: IFlagOptions<K>): ExtendProgramBui
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  name | <code>string</code> |  |
-|  options | <code>IFlagOptions&lt;K&gt;</code> |  |
+|  name | <code>string</code> | The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, <code>&quot;-i,--input&quot;</code>. |
+|  options | <code>IFlagOptions&lt;K&gt;</code> | See [IFlagOptions](./program-builder.iflagoptions.md)<!-- -->. |
 
 <b>Returns:</b>
 

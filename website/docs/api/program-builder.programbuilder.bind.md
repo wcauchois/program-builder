@@ -9,6 +9,8 @@ hide_title: true
 
 ## ProgramBuilder.bind() method
 
+Bind the ProgramBuilder to an action and return a [ProgramWithAction](./program-builder.programwithaction.md) suitable for use constructing subcommands.
+
 <b>Signature:</b>
 
 ```typescript

@@ -9,6 +9,8 @@ hide_title: true
 
 ## ProgramBuilder.newBuilder() method
 
+Create a new ProgramBuilder instance.
+
 <b>Signature:</b>
 
 ```typescript

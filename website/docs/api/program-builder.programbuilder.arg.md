@@ -9,6 +9,8 @@ hide_title: true
 
 ## ProgramBuilder.arg() method
 
+Add a positional argument to the program.
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,9 +21,13 @@ arg<K extends string>(dest: K, options?: IPositionalArgumentMetadata): ExtendPro
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  dest | <code>K</code> |  |
-|  options | <code>IPositionalArgumentMetadata</code> |  |
+|  dest | <code>K</code> | The destination key into which the argument value will be stored. |
+|  options | <code>IPositionalArgumentMetadata</code> | See [IPositionalArgumentMetadata](./program-builder.ipositionalargumentmetadata.md)<!-- -->. |
 
 <b>Returns:</b>
 
 `ExtendProgramBuilderWithRequired<T, K, string>`
+
+## Remarks
+
+The order in which you call `arg` on a ProgramBuilder matters.

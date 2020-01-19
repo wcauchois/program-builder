@@ -9,6 +9,8 @@ hide_title: true
 
 ## FlagDocumentation class
 
+Encapsulates documentation about a [Flag](./program-builder.flag.md) or [ValuedFlag](./program-builder.valuedflag.md)<!-- -->.
+
 <b>Signature:</b>
 
 ```typescript
@@ -27,9 +29,3 @@ export default class FlagDocumentation
 |  --- | --- | --- | --- |
 |  [description](./program-builder.flagdocumentation.description.md) |  | <code>string &#124; undefined</code> |  |
 |  [nameSpec](./program-builder.flagdocumentation.namespec.md) |  | <code>string</code> |  |
-
-## Methods
-
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [writeTo(tw)](./program-builder.flagdocumentation.writeto.md) |  |  |

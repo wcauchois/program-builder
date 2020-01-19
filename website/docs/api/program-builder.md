@@ -16,7 +16,7 @@ See [ProgramBuilder](./program-builder.programbuilder.md)<!-- -->.
 |  --- | --- |
 |  [ArgumentError](./program-builder.argumenterror.md) |  |
 |  [Flag](./program-builder.flag.md) |  |
-|  [FlagDocumentation](./program-builder.flagdocumentation.md) |  |
+|  [FlagDocumentation](./program-builder.flagdocumentation.md) | Encapsulates documentation about a [Flag](./program-builder.flag.md) or [ValuedFlag](./program-builder.valuedflag.md)<!-- -->. |
 |  [FlagParseError](./program-builder.flagparseerror.md) |  |
 |  [PositionalArgument](./program-builder.positionalargument.md) |  |
 |  [PositionalArguments](./program-builder.positionalarguments.md) |  |
@@ -40,7 +40,6 @@ See [ProgramBuilder](./program-builder.programbuilder.md)<!-- -->.
 |  [IProgramBaseOptions](./program-builder.iprogrambaseoptions.md) |  |
 |  [IProgramMetadata](./program-builder.iprogrammetadata.md) |  |
 |  [IRequiredValuedFlagOptions](./program-builder.irequiredvaluedflagoptions.md) |  |
-|  [ITableWriterOptions](./program-builder.itablewriteroptions.md) |  |
 |  [IValuedFlagCommonOptions](./program-builder.ivaluedflagcommonoptions.md) | Common options for a valued flag. |
 |  [IValuedFlagMetadata](./program-builder.ivaluedflagmetadata.md) |  |
 

@@ -1,3 +1,6 @@
+/**
+ * @internal
+ */
 export interface ITableWriterOptions {
     padding: number;
     maxColumnWidth: 60;

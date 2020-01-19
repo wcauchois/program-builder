@@ -9,6 +9,8 @@ hide_title: true
 
 ## ProgramBuilder.stringFlag() method
 
+Add a required valued flag to the program.
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,8 +21,8 @@ stringFlag<K extends string>(name: string, options: IRequiredValuedFlagOptions<K
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  name | <code>string</code> |  |
-|  options | <code>IRequiredValuedFlagOptions&lt;K, string&gt;</code> |  |
+|  name | <code>string</code> | The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, <code>&quot;-i,--input&quot;</code>. |
+|  options | <code>IRequiredValuedFlagOptions&lt;K, string&gt;</code> | See [IRequiredValuedFlagOptions](./program-builder.irequiredvaluedflagoptions.md)<!-- -->. |
 
 <b>Returns:</b>
 

@@ -60,6 +60,12 @@ async function main() {
                     }
                     skip = true;
                 }
+                const escapedHeader = line.match(/^((\\\#)+)(\s.*)/);
+                if (escapedHeader) {
+                    const [, bangs,, headerText] = escapedHeader;
+                    output.push(bangs.replace(/\\#/g, '#') + headerText);
+                    skip = true;
+                }
                 if (!skip) {
                     output.push(line);
                 }
