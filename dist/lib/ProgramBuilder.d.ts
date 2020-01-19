@@ -2,10 +2,10 @@ import ProgramBase from "./ProgramBase";
 import Program from "./Program";
 import { IRequiredKeywordArgumentOptions, IOptionalKeywordArgumentOptions, IPositionalArgumentMetadata, Converter, IFlagOptions, ProgramMain } from "./types";
 import ProgramWithAction from "./ProgramWithAction";
-declare type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<T & {
+export declare type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<T & {
     [P in K]?: U;
 }>;
-declare type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBuilder<T & {
+export declare type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBuilder<T & {
     [P in K]: U;
 }>;
 export default class ProgramBuilder<T> extends ProgramBase {
@@ -16,7 +16,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
     /**
      * Set the program description.
      *
-     * @param newDescription The new description for the program.
+     * @param newDescription - The new description for the program.
      */
     description(newDescription: string): this;
     arg<K extends string>(dest: K, options?: IPositionalArgumentMetadata): ExtendProgramBuilderWithRequired<T, K, string>;
@@ -27,6 +27,14 @@ export default class ProgramBuilder<T> extends ProgramBase {
     stringFlag<K extends string>(name: string, options: IRequiredKeywordArgumentOptions<K, string>): ExtendProgramBuilderWithRequired<T, K, string>;
     intFlag<K extends string>(name: string, options: IOptionalKeywordArgumentOptions<K, number>): ExtendProgramBuilderWithOptional<T, K, number>;
     intFlag<K extends string>(name: string, options: IRequiredKeywordArgumentOptions<K, number>): ExtendProgramBuilderWithRequired<T, K, number>;
+    /**
+     * Add an optional float-valued flag to the program.
+     *
+     * @param name - The name for the flag, including leading dashes. Multiple alternative
+     * names may be specified by separating them within the string by commas. For example,
+     * "-i,--input".
+     * @param options - See {@link IOptionalKeywordArgumentOptions}
+     */
     floatFlag<K extends string>(name: string, options: IOptionalKeywordArgumentOptions<K, number>): ExtendProgramBuilderWithOptional<T, K, number>;
     floatFlag<K extends string>(name: string, options: IRequiredKeywordArgumentOptions<K, number>): ExtendProgramBuilderWithRequired<T, K, number>;
     flag<K extends string>(name: string, options: IFlagOptions<K>): ExtendProgramBuilderWithRequired<T, K, boolean>;
@@ -34,4 +42,3 @@ export default class ProgramBuilder<T> extends ProgramBase {
     bind(action: ProgramMain<T>): ProgramWithAction<T>;
     static newBuilder(): ProgramBuilder<{}>;
 }
-export {};

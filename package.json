@@ -6,7 +6,7 @@
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "run-example": "ts-node examples/simple/main.ts",
-    "docs": "node scripts/make-docs.js"
+    "docs": "yarn build && node scripts/make-docs.js"
   },
   "types": "dist/index.d.ts",
   "homepage": "https://program-builder.netlify.com",

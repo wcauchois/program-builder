@@ -336,6 +336,10 @@
         // "addToApiReportFile": false
       },
 
+      "ae-missing-release-tag": {
+        "logLevel": "none",
+      },
+
       // "ae-extra-release-tag": {
       //   "logLevel": "warning",
       //   "addToApiReportFile": true

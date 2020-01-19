@@ -21,7 +21,7 @@ description(newDescription: string): this;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  newDescription | <code>string</code> |  |
+|  newDescription | <code>string</code> | The new description for the program. |
 
 <b>Returns:</b>
 

@@ -30,7 +30,7 @@ class ProgramBuilder extends ProgramBase_1.default {
     /**
      * Set the program description.
      *
-     * @param newDescription The new description for the program.
+     * @param newDescription - The new description for the program.
      */
     description(newDescription) {
         this.programMetadata.description = newDescription;

@@ -26,7 +26,7 @@ export default class ProgramBuilder<T> extends ProgramBase
 |  [customFlag(name, options, converter)](./program-builder.programbuilder.customflag_1.md) |  |  |
 |  [description(newDescription)](./program-builder.programbuilder.description.md) |  | Set the program description. |
 |  [flag(name, options)](./program-builder.programbuilder.flag.md) |  |  |
-|  [floatFlag(name, options)](./program-builder.programbuilder.floatflag.md) |  |  |
+|  [floatFlag(name, options)](./program-builder.programbuilder.floatflag.md) |  | Add an optional float-valued flag to the program. |
 |  [floatFlag(name, options)](./program-builder.programbuilder.floatflag_1.md) |  |  |
 |  [intFlag(name, options)](./program-builder.programbuilder.intflag.md) |  |  |
 |  [intFlag(name, options)](./program-builder.programbuilder.intflag_1.md) |  |  |

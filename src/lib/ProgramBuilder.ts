@@ -19,10 +19,11 @@ import Flag from "./Flag";
 import { Complete } from "./utils";
 import ProgramWithAction from "./ProgramWithAction";
 
-type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<
+export type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<
   T & { [P in K]?: U }
 >;
-type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBuilder<
+
+export type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBuilder<
   T & { [P in K]: U }
 >;
 
@@ -52,7 +53,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
   /**
    * Set the program description.
    *
-   * @param newDescription The new description for the program.
+   * @param newDescription - The new description for the program.
    */
   description(newDescription: string) {
     this.programMetadata.description = newDescription;
@@ -142,6 +143,14 @@ export default class ProgramBuilder<T> extends ProgramBase {
     return this.customFlag<K, number>(name, options as any, convertInt);
   }
 
+  /**
+   * Add an optional float-valued flag to the program.
+   *
+   * @param name - The name for the flag, including leading dashes. Multiple alternative
+   * names may be specified by separating them within the string by commas. For example,
+   * "-i,--input".
+   * @param options - See {@link IOptionalKeywordArgumentOptions}
+   */
   floatFlag<K extends string>(
     name: string,
     options: IOptionalKeywordArgumentOptions<K, number>

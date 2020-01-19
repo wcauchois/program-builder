@@ -63,6 +63,2588 @@
           }
         },
         {
+          "kind": "TypeAlias",
+          "canonicalReference": "@wcauchois/program-builder!Converter:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type Converter<V> = "
+            },
+            {
+              "kind": "Content",
+              "text": "(input: string, argName: string) => V"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "Converter",
+          "typeParameters": [
+            {
+              "typeParameterName": "V",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@wcauchois/program-builder!ExtendProgramBuilderWithOptional:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ExtendProgramBuilderWithOptional<T, K extends "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ", U> = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ProgramBuilder",
+              "canonicalReference": "@wcauchois/program-builder!default:class"
+            },
+            {
+              "kind": "Content",
+              "text": "<T & {\n    [P in K]?: U;\n}>"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ExtendProgramBuilderWithOptional",
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            },
+            {
+              "typeParameterName": "K",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            },
+            {
+              "typeParameterName": "U",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "typeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 5
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@wcauchois/program-builder!ExtendProgramBuilderWithRequired:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ExtendProgramBuilderWithRequired<T, K extends "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ", U> = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ProgramBuilder",
+              "canonicalReference": "@wcauchois/program-builder!default:class"
+            },
+            {
+              "kind": "Content",
+              "text": "<T & {\n    [P in K]: U;\n}>"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ExtendProgramBuilderWithRequired",
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            },
+            {
+              "typeParameterName": "K",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            },
+            {
+              "typeParameterName": "U",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "typeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 5
+          }
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@wcauchois/program-builder!Flag:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class Flag "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "Flag",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@wcauchois/program-builder!Flag:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `Flag` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(dest: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", positiveNames: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", negativeNames: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", theDefault: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", metadata: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IFlagMetadata",
+                  "canonicalReference": "@wcauchois/program-builder!IFlagMetadata:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", order: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "dest",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "positiveNames",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "negativeNames",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "theDefault",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                },
+                {
+                  "parameterName": "metadata",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 9,
+                    "endIndex": 10
+                  }
+                },
+                {
+                  "parameterName": "order",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 11,
+                    "endIndex": 12
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!Flag#allNames:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get allNames(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "allNames",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!Flag#default:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly default: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "default",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!Flag#dest:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly dest: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "dest",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!Flag#generateHelpColumns:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "generateHelpColumns(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "generateHelpColumns"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!Flag#isPositiveName:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "isPositiveName(name: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "name",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "isPositiveName"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!Flag#metadata:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly metadata: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IFlagMetadata",
+                  "canonicalReference": "@wcauchois/program-builder!IFlagMetadata:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "metadata",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!Flag#negativeNames:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly negativeNames: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "negativeNames",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!Flag#order:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly order: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "order",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!Flag#positiveNames:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly positiveNames: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "positiveNames",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@wcauchois/program-builder!IFlagMetadata:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IFlagMetadata "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IFlagMetadata",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IFlagMetadata#description:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "description?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "description",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IFlagMetadata#metavar:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "metavar?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "metavar",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@wcauchois/program-builder!IFlagOptions:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IFlagOptions<K extends "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": "> "
+            }
+          ],
+          "releaseTag": "Public",
+          "typeParameters": [
+            {
+              "typeParameterName": "K",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "IFlagOptions",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IFlagOptions#description:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "description?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "description",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IFlagOptions#dest:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "dest: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "K"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "dest",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IFlagOptions#inverted:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "inverted?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "inverted",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IFlagOptions#metavar:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "metavar?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "metavar",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentCommonOptions:interface",
+          "docComment": "/**\n * Common options for a flag with a value.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IKeywordArgumentCommonOptions<K extends "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": "> "
+            }
+          ],
+          "releaseTag": "Public",
+          "typeParameters": [
+            {
+              "typeParameterName": "K",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "IKeywordArgumentCommonOptions",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentCommonOptions#description:member",
+              "docComment": "/**\n * A description for the flag used in help text generation.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "description?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "description",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentCommonOptions#dest:member",
+              "docComment": "/**\n * The destination key in the final arguments object into which this argument's value will be stored.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "dest: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "K"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "dest",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentCommonOptions#metavar:member",
+              "docComment": "/**\n * A metavariable for the flag used in help text generation. Defaults to {@link IKeywordArgumentCommonOptions.dest}.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "metavar?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "metavar",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentMetadata:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IKeywordArgumentMetadata "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IKeywordArgumentMetadata",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentMetadata#default:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "default?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "any"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "default",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentMetadata#description:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "description?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "description",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentMetadata#metavar:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "metavar?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "metavar",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentMetadata#required:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "required: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "required",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentOrFlag:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IKeywordArgumentOrFlag "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IKeywordArgumentOrFlag",
+          "members": [
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentOrFlag#generateHelpColumns:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "generateHelpColumns(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "generateHelpColumns"
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@wcauchois/program-builder!IOptionalKeywordArgumentOptions:interface",
+          "docComment": "/**\n * Extend {@link IKeywordArgumentCommonOptions} with the default value for a flag.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IOptionalKeywordArgumentOptions<K extends "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ", V> extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "IKeywordArgumentCommonOptions",
+              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentCommonOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<K> "
+            }
+          ],
+          "releaseTag": "Public",
+          "typeParameters": [
+            {
+              "typeParameterName": "K",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            },
+            {
+              "typeParameterName": "V",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "IOptionalKeywordArgumentOptions",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IOptionalKeywordArgumentOptions#default:member",
+              "docComment": "/**\n * The default value for the flag.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "default: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "V"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "default",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 3,
+              "endIndex": 5
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@wcauchois/program-builder!IPositionalArgumentMetadata:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IPositionalArgumentMetadata "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IPositionalArgumentMetadata",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IPositionalArgumentMetadata#description:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "description?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "description",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IPositionalArgumentMetadata#metavar:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "metavar?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "metavar",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@wcauchois/program-builder!IProgramBaseOptions:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IProgramBaseOptions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IProgramBaseOptions",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IProgramBaseOptions#flags:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "flags: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Flag",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "flags",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IProgramBaseOptions#keywordArguments:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "keywordArguments: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "KeywordArgument",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "keywordArguments",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IProgramBaseOptions#positionalArguments:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "positionalArguments: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PositionalArguments",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "positionalArguments",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IProgramBaseOptions#programMetadata:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "programMetadata: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IProgramMetadata",
+                  "canonicalReference": "@wcauchois/program-builder!IProgramMetadata:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "programMetadata",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@wcauchois/program-builder!IProgramMetadata:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IProgramMetadata "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IProgramMetadata",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IProgramMetadata#description:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "description?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "description",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@wcauchois/program-builder!IRequiredKeywordArgumentOptions:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IRequiredKeywordArgumentOptions<K extends "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ", V> extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "IKeywordArgumentCommonOptions",
+              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentCommonOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<K> "
+            }
+          ],
+          "releaseTag": "Public",
+          "typeParameters": [
+            {
+              "typeParameterName": "K",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            },
+            {
+              "typeParameterName": "V",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "IRequiredKeywordArgumentOptions",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IRequiredKeywordArgumentOptions#default:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "default?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "undefined"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "default",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 3,
+              "endIndex": 5
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@wcauchois/program-builder!KeywordArgument:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class KeywordArgument implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "IKeywordArgumentOrFlag",
+              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentOrFlag:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KeywordArgument",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@wcauchois/program-builder!KeywordArgument:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `KeywordArgument` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(names: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", dest: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", converter: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Converter",
+                  "canonicalReference": "@wcauchois/program-builder!Converter:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<any>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", metadata: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IKeywordArgumentMetadata",
+                  "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentMetadata:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", order: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "names",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "dest",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "converter",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 7
+                  }
+                },
+                {
+                  "parameterName": "metadata",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 8,
+                    "endIndex": 9
+                  }
+                },
+                {
+                  "parameterName": "order",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 10,
+                    "endIndex": 11
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!KeywordArgument#converter:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly converter: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Converter",
+                  "canonicalReference": "@wcauchois/program-builder!Converter:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<any>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "converter",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!KeywordArgument#dest:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly dest: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "dest",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!KeywordArgument#firstName:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get firstName(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "firstName",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!KeywordArgument#generateHelpColumns:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "generateHelpColumns(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "generateHelpColumns"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!KeywordArgument#metadata:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly metadata: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IKeywordArgumentMetadata",
+                  "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentMetadata:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "metadata",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!KeywordArgument#names:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly names: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "names",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!KeywordArgument#order:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly order: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "order",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 3
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@wcauchois/program-builder!PositionalArgument:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class PositionalArgument "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PositionalArgument",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@wcauchois/program-builder!PositionalArgument:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `PositionalArgument` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(dest: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", metadata: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IPositionalArgumentMetadata",
+                  "canonicalReference": "@wcauchois/program-builder!IPositionalArgumentMetadata:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "dest",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "metadata",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!PositionalArgument#dest:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly dest: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "dest",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!PositionalArgument#destOrMetavar:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get destOrMetavar(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "destOrMetavar",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!PositionalArgument#metadata:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly metadata: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IPositionalArgumentMetadata",
+                  "canonicalReference": "@wcauchois/program-builder!IPositionalArgumentMetadata:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "metadata",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@wcauchois/program-builder!PositionalArguments:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class PositionalArguments "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PositionalArguments",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@wcauchois/program-builder!PositionalArguments:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `PositionalArguments` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor();"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": []
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!PositionalArguments#getSpecForUsage:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getSpecForUsage(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "getSpecForUsage"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!PositionalArguments#nonEmpty:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get nonEmpty(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "nonEmpty",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!PositionalArguments#optional:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly optional: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PositionalArgument",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "optional",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!PositionalArguments#push:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "push(arg: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PositionalArgument",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "arg",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "push"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!PositionalArguments#pushOptional:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "pushOptional(arg: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PositionalArgument",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "arg",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "pushOptional"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!PositionalArguments#required:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly required: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PositionalArgument",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "required",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isStatic": false
+            }
+          ],
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@wcauchois/program-builder!Program:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class Program<T> extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "ProgramBase",
+              "canonicalReference": "@wcauchois/program-builder!default:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "Program",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@wcauchois/program-builder!Program:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `Program` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(options: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IProgramBaseOptions",
+                  "canonicalReference": "@wcauchois/program-builder!IProgramBaseOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!Program#exec:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "exec(main: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ProgramMain",
+                  "canonicalReference": "@wcauchois/program-builder!ProgramMain:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<T>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", rawArgs?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 6,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "main",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 3
+                  }
+                },
+                {
+                  "parameterName": "rawArgs",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 4,
+                    "endIndex": 5
+                  }
+                }
+              ],
+              "name": "exec"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!Program#generateHelpText:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "generateHelpText(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "generateHelpText"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!Program.helpArgumentsSet:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static readonly helpArgumentsSet: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Set",
+                  "canonicalReference": "!Set:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "helpArgumentsSet",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isStatic": true
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!Program#parseArgs:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "parseArgs(rawArgs: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "T"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "rawArgs",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "parseArgs"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!Program#printHelpAndExit:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "printHelpAndExit(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "never"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "printHelpAndExit"
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@wcauchois/program-builder!ProgramBase:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default abstract class ProgramBase implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "IProgramBaseOptions",
+              "canonicalReference": "@wcauchois/program-builder!IProgramBaseOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ProgramBase",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@wcauchois/program-builder!ProgramBase:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `ProgramBase` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor({ keywordArguments, positionalArguments, flags, programMetadata }: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IProgramBaseOptions",
+                  "canonicalReference": "@wcauchois/program-builder!IProgramBaseOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "{ keywordArguments, positionalArguments, flags, programMetadata }",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!ProgramBase#flags:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly flags: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Flag",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "flags",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!ProgramBase#keywordArguments:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly keywordArguments: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "KeywordArgument",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "keywordArguments",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!ProgramBase#positionalArguments:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly positionalArguments: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PositionalArguments",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "positionalArguments",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!ProgramBase#programMetadata:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly programMetadata: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IProgramMetadata",
+                  "canonicalReference": "@wcauchois/program-builder!IProgramMetadata:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "programMetadata",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 3
+            }
+          ]
+        },
+        {
           "kind": "Class",
           "canonicalReference": "@wcauchois/program-builder!ProgramBuilder:class",
           "docComment": "",
@@ -134,7 +2716,7 @@
                 {
                   "kind": "Reference",
                   "text": "ExtendProgramBuilderWithRequired",
-                  "canonicalReference": "@wcauchois/program-builder!~ExtendProgramBuilderWithRequired:type"
+                  "canonicalReference": "@wcauchois/program-builder!ExtendProgramBuilderWithRequired:type"
                 },
                 {
                   "kind": "Content",
@@ -324,7 +2906,7 @@
                 {
                   "kind": "Reference",
                   "text": "ExtendProgramBuilderWithOptional",
-                  "canonicalReference": "@wcauchois/program-builder!~ExtendProgramBuilderWithOptional:type"
+                  "canonicalReference": "@wcauchois/program-builder!ExtendProgramBuilderWithOptional:type"
                 },
                 {
                   "kind": "Content",
@@ -445,7 +3027,7 @@
                 {
                   "kind": "Reference",
                   "text": "ExtendProgramBuilderWithRequired",
-                  "canonicalReference": "@wcauchois/program-builder!~ExtendProgramBuilderWithRequired:type"
+                  "canonicalReference": "@wcauchois/program-builder!ExtendProgramBuilderWithRequired:type"
                 },
                 {
                   "kind": "Content",
@@ -515,7 +3097,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#description:member(1)",
-              "docComment": "/**\n * Set the program description.\n *\n * @param  - newDescription The new description for the program.\n */\n",
+              "docComment": "/**\n * Set the program description.\n *\n * @param newDescription - The new description for the program.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -597,7 +3179,7 @@
                 {
                   "kind": "Reference",
                   "text": "ExtendProgramBuilderWithRequired",
-                  "canonicalReference": "@wcauchois/program-builder!~ExtendProgramBuilderWithRequired:type"
+                  "canonicalReference": "@wcauchois/program-builder!ExtendProgramBuilderWithRequired:type"
                 },
                 {
                   "kind": "Content",
@@ -649,7 +3231,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#floatFlag:member(1)",
-              "docComment": "",
+              "docComment": "/**\n * Add an optional float-valued flag to the program.\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, \"-i,--input\".\n *\n * @param options - See {@link IOptionalKeywordArgumentOptions}\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -687,7 +3269,7 @@
                 {
                   "kind": "Reference",
                   "text": "ExtendProgramBuilderWithOptional",
-                  "canonicalReference": "@wcauchois/program-builder!~ExtendProgramBuilderWithOptional:type"
+                  "canonicalReference": "@wcauchois/program-builder!ExtendProgramBuilderWithOptional:type"
                 },
                 {
                   "kind": "Content",
@@ -777,7 +3359,7 @@
                 {
                   "kind": "Reference",
                   "text": "ExtendProgramBuilderWithRequired",
-                  "canonicalReference": "@wcauchois/program-builder!~ExtendProgramBuilderWithRequired:type"
+                  "canonicalReference": "@wcauchois/program-builder!ExtendProgramBuilderWithRequired:type"
                 },
                 {
                   "kind": "Content",
@@ -867,7 +3449,7 @@
                 {
                   "kind": "Reference",
                   "text": "ExtendProgramBuilderWithOptional",
-                  "canonicalReference": "@wcauchois/program-builder!~ExtendProgramBuilderWithOptional:type"
+                  "canonicalReference": "@wcauchois/program-builder!ExtendProgramBuilderWithOptional:type"
                 },
                 {
                   "kind": "Content",
@@ -957,7 +3539,7 @@
                 {
                   "kind": "Reference",
                   "text": "ExtendProgramBuilderWithRequired",
-                  "canonicalReference": "@wcauchois/program-builder!~ExtendProgramBuilderWithRequired:type"
+                  "canonicalReference": "@wcauchois/program-builder!ExtendProgramBuilderWithRequired:type"
                 },
                 {
                   "kind": "Content",
@@ -1076,7 +3658,7 @@
                 {
                   "kind": "Reference",
                   "text": "ExtendProgramBuilderWithOptional",
-                  "canonicalReference": "@wcauchois/program-builder!~ExtendProgramBuilderWithOptional:type"
+                  "canonicalReference": "@wcauchois/program-builder!ExtendProgramBuilderWithOptional:type"
                 },
                 {
                   "kind": "Content",
@@ -1166,7 +3748,7 @@
                 {
                   "kind": "Reference",
                   "text": "ExtendProgramBuilderWithOptional",
-                  "canonicalReference": "@wcauchois/program-builder!~ExtendProgramBuilderWithOptional:type"
+                  "canonicalReference": "@wcauchois/program-builder!ExtendProgramBuilderWithOptional:type"
                 },
                 {
                   "kind": "Content",
@@ -1256,7 +3838,7 @@
                 {
                   "kind": "Reference",
                   "text": "ExtendProgramBuilderWithRequired",
-                  "canonicalReference": "@wcauchois/program-builder!~ExtendProgramBuilderWithRequired:type"
+                  "canonicalReference": "@wcauchois/program-builder!ExtendProgramBuilderWithRequired:type"
                 },
                 {
                   "kind": "Content",
@@ -1304,6 +3886,177 @@
                 }
               ],
               "name": "stringFlag"
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@wcauchois/program-builder!ProgramMain:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ProgramMain<T> = "
+            },
+            {
+              "kind": "Content",
+              "text": "((args: T) => "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<void>) | ((args: T) => void)"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ProgramMain",
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          }
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@wcauchois/program-builder!ProgramWithAction:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class ProgramWithAction<T> extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "Program",
+              "canonicalReference": "@wcauchois/program-builder!default:class"
+            },
+            {
+              "kind": "Content",
+              "text": "<T> "
+            }
+          ],
+          "releaseTag": "Public",
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "ProgramWithAction",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@wcauchois/program-builder!ProgramWithAction:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `ProgramWithAction` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(options: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IProgramBaseOptions",
+                  "canonicalReference": "@wcauchois/program-builder!IProgramBaseOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", action: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ProgramMain",
+                  "canonicalReference": "@wcauchois/program-builder!ProgramMain:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<T> | undefined"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "action",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 5
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!ProgramWithAction#action:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly action: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ProgramMain",
+                  "canonicalReference": "@wcauchois/program-builder!ProgramMain:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<T> | undefined"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "action",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isStatic": false
             }
           ],
           "extendsTokenRange": {
