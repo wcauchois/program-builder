@@ -6,8 +6,7 @@
  */
 
 module.exports = {
-  someSidebar: {
-    Introduction: ['getting-started'],
-    ['API Reference']: ['api'],
+  mainSidebar: {
+    Documentation: ['getting-started']
   },
 };

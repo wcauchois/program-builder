@@ -12,7 +12,7 @@ module.exports = {
       title: 'Program Builder',
       links: [
         {to: 'docs/getting-started', label: 'Docs', position: 'left'},
-        {to: 'docs/api', label: 'API', position: 'left'},
+        {to: 'docs/api/program-builder', label: 'API', position: 'left'},
         {
           href: 'https://github.com/wcauchois/program-builder',
           label: 'GitHub',
