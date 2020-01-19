@@ -9,13 +9,15 @@ import {
   IPositionalArgumentMetadata,
   Converter,
   IFlagOptions,
-  IFlagMetadata
+  IFlagMetadata,
+  ProgramMain
 } from "./types";
 import KeywordArgument from "./KeywordArgument";
 import PositionalArguments from "./PositionalArguments";
 import { convertString, convertInt, convertFloat } from "./converters";
 import Flag from "./Flag";
 import { Complete } from "./utils";
+import ProgramWithAction from "./ProgramWithAction";
 
 type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<
   T & { [P in K]?: U }
@@ -187,6 +189,10 @@ export default class ProgramBuilder<T> extends ProgramBase {
 
   build() {
     return new Program<T>(this);
+  }
+
+  bind(action: ProgramMain<T>) {
+    return new ProgramWithAction<T>(this, action);
   }
 
   static newBuilder(): ProgramBuilder<{}> {

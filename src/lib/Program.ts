@@ -6,8 +6,7 @@ import KeywordArgument from "./KeywordArgument";
 import { ArgumentError, TooManyArgumentsError } from "./errors";
 import { isFlag } from "./utils";
 import Flag from "./Flag";
-
-type ProgramMain<T> = ((args: T) => Promise<void>) | ((args: T) => void);
+import { ProgramMain } from "./types";
 
 function rightPad(s: string, n: number) {
   let r = s;

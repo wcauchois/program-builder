@@ -51,3 +51,5 @@ export type Converter<V> = (input: string, argName: string) => V;
 export interface IKeywordArgumentOrFlag {
   generateHelpColumns(): string[];
 }
+
+export type ProgramMain<T> = ((args: T) => Promise<void>) | ((args: T) => void);
