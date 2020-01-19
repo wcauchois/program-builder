@@ -14,7 +14,7 @@ Add an optional float-valued flag to the program.
 <b>Signature:</b>
 
 ```typescript
-floatFlag<K extends string>(name: string, options: IOptionalKeywordArgumentOptions<K, number>): ExtendProgramBuilderWithOptional<T, K, number>;
+floatFlag<K extends string>(name: string, options: IOptionalValuedFlagOptions<K, number>): ExtendProgramBuilderWithOptional<T, K, number>;
 ```
 
 ## Parameters
@@ -22,7 +22,7 @@ floatFlag<K extends string>(name: string, options: IOptionalKeywordArgumentOptio
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  name | <code>string</code> | The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, "-i,--input". |
-|  options | <code>IOptionalKeywordArgumentOptions&lt;K, number&gt;</code> | See [IOptionalKeywordArgumentOptions](./program-builder.ioptionalkeywordargumentoptions.md) |
+|  options | <code>IOptionalValuedFlagOptions&lt;K, number&gt;</code> | See [IOptionalValuedFlagOptions](./program-builder.ioptionalvaluedflagoptions.md) |
 
 <b>Returns:</b>
 

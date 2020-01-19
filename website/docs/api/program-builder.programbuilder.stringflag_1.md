@@ -12,7 +12,7 @@ hide_title: true
 <b>Signature:</b>
 
 ```typescript
-stringFlag<K extends string>(name: string, options: IRequiredKeywordArgumentOptions<K, string>): ExtendProgramBuilderWithRequired<T, K, string>;
+stringFlag<K extends string>(name: string, options: IRequiredValuedFlagOptions<K, string>): ExtendProgramBuilderWithRequired<T, K, string>;
 ```
 
 ## Parameters
@@ -20,7 +20,7 @@ stringFlag<K extends string>(name: string, options: IRequiredKeywordArgumentOpti
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  name | <code>string</code> |  |
-|  options | <code>IRequiredKeywordArgumentOptions&lt;K, string&gt;</code> |  |
+|  options | <code>IRequiredValuedFlagOptions&lt;K, string&gt;</code> |  |
 
 <b>Returns:</b>
 

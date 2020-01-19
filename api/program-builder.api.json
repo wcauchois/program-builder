@@ -18,7 +18,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@wcauchois/program-builder!Arguments:type",
-          "docComment": "",
+          "docComment": "/**\n * Type helper to get the Arguments type of a {@link Program}.\n *\n * @remarks\n *\n * Use TypeScript's `typeof` operator to get the type of your `program` variable, then pass it as a type argument to this type to get the arguments type for your program.\n *\n * Note you can use `typeof` before a variable is declared, in case you want to define your main function before your program-building for readability.\n *\n * Example:\n * ```typescript\n * async function main(args: Arguments<typeof Program>) {\n *   // Do things with args\n * }\n * const program = ProgramBuilder.newBuilder().build();\n * ```\n *\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -625,6 +625,49 @@
         },
         {
           "kind": "Interface",
+          "canonicalReference": "@wcauchois/program-builder!IAnyFlag:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IAnyFlag "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IAnyFlag",
+          "members": [
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@wcauchois/program-builder!IAnyFlag#generateHelpColumns:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "generateHelpColumns(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "generateHelpColumns"
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
           "canonicalReference": "@wcauchois/program-builder!IFlagMetadata:interface",
           "docComment": "",
           "excerptTokens": [
@@ -828,283 +871,12 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentCommonOptions:interface",
-          "docComment": "/**\n * Common options for a flag with a value.\n */\n",
+          "canonicalReference": "@wcauchois/program-builder!IOptionalValuedFlagOptions:interface",
+          "docComment": "/**\n * Extend {@link IValuedFlagCommonOptions} with the default value for a flag.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export interface IKeywordArgumentCommonOptions<K extends "
-            },
-            {
-              "kind": "Content",
-              "text": "string"
-            },
-            {
-              "kind": "Content",
-              "text": "> "
-            }
-          ],
-          "releaseTag": "Public",
-          "typeParameters": [
-            {
-              "typeParameterName": "K",
-              "constraintTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "defaultTypeTokenRange": {
-                "startIndex": 0,
-                "endIndex": 0
-              }
-            }
-          ],
-          "name": "IKeywordArgumentCommonOptions",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentCommonOptions#description:member",
-              "docComment": "/**\n * A description for the flag used in help text generation.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "description?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "description",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentCommonOptions#dest:member",
-              "docComment": "/**\n * The destination key in the final arguments object into which this argument's value will be stored.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "dest: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "K"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "dest",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentCommonOptions#metavar:member",
-              "docComment": "/**\n * A metavariable for the flag used in help text generation. Defaults to {@link IKeywordArgumentCommonOptions.dest}.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "metavar?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "metavar",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentMetadata:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface IKeywordArgumentMetadata "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "IKeywordArgumentMetadata",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentMetadata#default:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "default?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "any"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "default",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentMetadata#description:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "description?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "description",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentMetadata#metavar:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "metavar?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "metavar",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentMetadata#required:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "required: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "boolean"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "required",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentOrFlag:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface IKeywordArgumentOrFlag "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "IKeywordArgumentOrFlag",
-          "members": [
-            {
-              "kind": "MethodSignature",
-              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentOrFlag#generateHelpColumns:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "generateHelpColumns(): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string[]"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "returnTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [],
-              "name": "generateHelpColumns"
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "@wcauchois/program-builder!IOptionalKeywordArgumentOptions:interface",
-          "docComment": "/**\n * Extend {@link IKeywordArgumentCommonOptions} with the default value for a flag.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface IOptionalKeywordArgumentOptions<K extends "
+              "text": "export interface IOptionalValuedFlagOptions<K extends "
             },
             {
               "kind": "Content",
@@ -1116,8 +888,8 @@
             },
             {
               "kind": "Reference",
-              "text": "IKeywordArgumentCommonOptions",
-              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentCommonOptions:interface"
+              "text": "IValuedFlagCommonOptions",
+              "canonicalReference": "@wcauchois/program-builder!IValuedFlagCommonOptions:interface"
             },
             {
               "kind": "Content",
@@ -1149,11 +921,11 @@
               }
             }
           ],
-          "name": "IOptionalKeywordArgumentOptions",
+          "name": "IOptionalValuedFlagOptions",
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@wcauchois/program-builder!IOptionalKeywordArgumentOptions#default:member",
+              "canonicalReference": "@wcauchois/program-builder!IOptionalValuedFlagOptions#default:member",
               "docComment": "/**\n * The default value for the flag.\n */\n",
               "excerptTokens": [
                 {
@@ -1295,36 +1067,6 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@wcauchois/program-builder!IProgramBaseOptions#keywordArguments:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "keywordArguments: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "KeywordArgument",
-                  "canonicalReference": "@wcauchois/program-builder!default:class"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "keywordArguments",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              }
-            },
-            {
-              "kind": "PropertySignature",
               "canonicalReference": "@wcauchois/program-builder!IProgramBaseOptions#positionalArguments:member",
               "docComment": "",
               "excerptTokens": [
@@ -1374,6 +1116,36 @@
                 "startIndex": 1,
                 "endIndex": 2
               }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IProgramBaseOptions#valuedFlags:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "valuedFlags: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValuedFlag",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "valuedFlags",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
             }
           ],
           "extendsTokenRanges": []
@@ -1421,12 +1193,12 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "@wcauchois/program-builder!IRequiredKeywordArgumentOptions:interface",
+          "canonicalReference": "@wcauchois/program-builder!IRequiredValuedFlagOptions:interface",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export interface IRequiredKeywordArgumentOptions<K extends "
+              "text": "export interface IRequiredValuedFlagOptions<K extends "
             },
             {
               "kind": "Content",
@@ -1438,8 +1210,8 @@
             },
             {
               "kind": "Reference",
-              "text": "IKeywordArgumentCommonOptions",
-              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentCommonOptions:interface"
+              "text": "IValuedFlagCommonOptions",
+              "canonicalReference": "@wcauchois/program-builder!IValuedFlagCommonOptions:interface"
             },
             {
               "kind": "Content",
@@ -1471,11 +1243,11 @@
               }
             }
           ],
-          "name": "IRequiredKeywordArgumentOptions",
+          "name": "IRequiredValuedFlagOptions",
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@wcauchois/program-builder!IRequiredKeywordArgumentOptions#default:member",
+              "canonicalReference": "@wcauchois/program-builder!IRequiredValuedFlagOptions#default:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1507,140 +1279,51 @@
           ]
         },
         {
-          "kind": "Class",
-          "canonicalReference": "@wcauchois/program-builder!KeywordArgument:class",
-          "docComment": "",
+          "kind": "Interface",
+          "canonicalReference": "@wcauchois/program-builder!IValuedFlagCommonOptions:interface",
+          "docComment": "/**\n * Common options for a valued flag.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export default class KeywordArgument implements "
-            },
-            {
-              "kind": "Reference",
-              "text": "IKeywordArgumentOrFlag",
-              "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentOrFlag:interface"
+              "text": "export interface IValuedFlagCommonOptions<K extends "
             },
             {
               "kind": "Content",
-              "text": " "
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": "> "
             }
           ],
           "releaseTag": "Public",
-          "name": "KeywordArgument",
+          "typeParameters": [
+            {
+              "typeParameterName": "K",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "IValuedFlagCommonOptions",
           "members": [
             {
-              "kind": "Constructor",
-              "canonicalReference": "@wcauchois/program-builder!KeywordArgument:constructor(1)",
-              "docComment": "/**\n * Constructs a new instance of the `KeywordArgument` class\n */\n",
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IValuedFlagCommonOptions#description:member",
+              "docComment": "/**\n * A description for the flag used in help text generation.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "constructor(names: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string[]"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", dest: "
+                  "text": "description?: "
                 },
                 {
                   "kind": "Content",
                   "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", converter: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Converter",
-                  "canonicalReference": "@wcauchois/program-builder!Converter:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<any>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", metadata: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "IKeywordArgumentMetadata",
-                  "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentMetadata:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", order: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "number"
-                },
-                {
-                  "kind": "Content",
-                  "text": ");"
-                }
-              ],
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "names",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "dest",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "converter",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 7
-                  }
-                },
-                {
-                  "parameterName": "metadata",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 8,
-                    "endIndex": 9
-                  }
-                },
-                {
-                  "parameterName": "order",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 10,
-                    "endIndex": 11
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@wcauchois/program-builder!KeywordArgument#converter:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly converter: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Converter",
-                  "canonicalReference": "@wcauchois/program-builder!Converter:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<any>"
                 },
                 {
                   "kind": "Content",
@@ -1648,25 +1331,24 @@
                 }
               ],
               "releaseTag": "Public",
-              "name": "converter",
+              "name": "description",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 3
-              },
-              "isStatic": false
+                "endIndex": 2
+              }
             },
             {
-              "kind": "Property",
-              "canonicalReference": "@wcauchois/program-builder!KeywordArgument#dest:member",
-              "docComment": "",
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IValuedFlagCommonOptions#dest:member",
+              "docComment": "/**\n * The destination key in the final arguments object into which this argument's value will be stored.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "readonly dest: "
+                  "text": "dest: "
                 },
                 {
                   "kind": "Content",
-                  "text": "string"
+                  "text": "K"
                 },
                 {
                   "kind": "Content",
@@ -1678,17 +1360,16 @@
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
-              },
-              "isStatic": false
+              }
             },
             {
-              "kind": "Property",
-              "canonicalReference": "@wcauchois/program-builder!KeywordArgument#firstName:member",
-              "docComment": "",
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IValuedFlagCommonOptions#metavar:member",
+              "docComment": "/**\n * A metavariable for the flag used in help text generation. Defaults to {@link IValuedFlagCommonOptions.dest}.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "get firstName(): "
+                  "text": "metavar?: "
                 },
                 {
                   "kind": "Content",
@@ -1700,127 +1381,130 @@
                 }
               ],
               "releaseTag": "Public",
-              "name": "firstName",
+              "name": "metavar",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
-              },
-              "isStatic": false
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "@wcauchois/program-builder!KeywordArgument#generateHelpColumns:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "generateHelpColumns(): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string[]"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [],
-              "name": "generateHelpColumns"
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@wcauchois/program-builder!KeywordArgument#metadata:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly metadata: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "IKeywordArgumentMetadata",
-                  "canonicalReference": "@wcauchois/program-builder!IKeywordArgumentMetadata:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "metadata",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isStatic": false
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@wcauchois/program-builder!KeywordArgument#names:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly names: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string[]"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "names",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isStatic": false
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@wcauchois/program-builder!KeywordArgument#order:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly order: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "number"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "order",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isStatic": false
+              }
             }
           ],
-          "implementsTokenRanges": [
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@wcauchois/program-builder!IValuedFlagMetadata:interface",
+          "docComment": "",
+          "excerptTokens": [
             {
-              "startIndex": 1,
-              "endIndex": 3
+              "kind": "Content",
+              "text": "export interface IValuedFlagMetadata "
             }
-          ]
+          ],
+          "releaseTag": "Public",
+          "name": "IValuedFlagMetadata",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IValuedFlagMetadata#default:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "default?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "any"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "default",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IValuedFlagMetadata#description:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "description?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "description",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IValuedFlagMetadata#metavar:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "metavar?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "metavar",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@wcauchois/program-builder!IValuedFlagMetadata#required:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "required: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "required",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
         },
         {
           "kind": "Class",
@@ -2331,6 +2015,75 @@
             },
             {
               "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!Program#execOrThrow:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "execOrThrow(main: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ProgramMain",
+                  "canonicalReference": "@wcauchois/program-builder!ProgramMain:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<T>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", rawArgs?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 6,
+                "endIndex": 8
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "main",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 3
+                  }
+                },
+                {
+                  "parameterName": "rawArgs",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 4,
+                    "endIndex": 5
+                  }
+                }
+              ],
+              "name": "execOrThrow"
+            },
+            {
+              "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!Program#generateHelpText:member(1)",
               "docComment": "",
               "excerptTokens": [
@@ -2434,16 +2187,16 @@
             },
             {
               "kind": "Method",
-              "canonicalReference": "@wcauchois/program-builder!Program#printHelpAndExit:member(1)",
+              "canonicalReference": "@wcauchois/program-builder!Program#printHelp:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "printHelpAndExit(): "
+                  "text": "printHelp(): "
                 },
                 {
                   "kind": "Content",
-                  "text": "never"
+                  "text": "void"
                 },
                 {
                   "kind": "Content",
@@ -2458,7 +2211,7 @@
               "releaseTag": "Public",
               "overloadIndex": 1,
               "parameters": [],
-              "name": "printHelpAndExit"
+              "name": "printHelp"
             }
           ],
           "extendsTokenRange": {
@@ -2496,7 +2249,7 @@
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "constructor({ keywordArguments, positionalArguments, flags, programMetadata }: "
+                  "text": "constructor({ valuedFlags, positionalArguments, flags, programMetadata }: "
                 },
                 {
                   "kind": "Reference",
@@ -2512,7 +2265,7 @@
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "{ keywordArguments, positionalArguments, flags, programMetadata }",
+                  "parameterName": "{ valuedFlags, positionalArguments, flags, programMetadata }",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
@@ -2545,37 +2298,6 @@
               ],
               "releaseTag": "Public",
               "name": "flags",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              },
-              "isStatic": false
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@wcauchois/program-builder!ProgramBase#keywordArguments:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly keywordArguments: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "KeywordArgument",
-                  "canonicalReference": "@wcauchois/program-builder!default:class"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "keywordArguments",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 3
@@ -2633,6 +2355,37 @@
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!ProgramBase#valuedFlags:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly valuedFlags: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValuedFlag",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "valuedFlags",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
               },
               "isStatic": false
             }
@@ -2879,8 +2632,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "IOptionalKeywordArgumentOptions",
-                  "canonicalReference": "@wcauchois/program-builder!IOptionalKeywordArgumentOptions:interface"
+                  "text": "IOptionalValuedFlagOptions",
+                  "canonicalReference": "@wcauchois/program-builder!IOptionalValuedFlagOptions:interface"
                 },
                 {
                   "kind": "Content",
@@ -3000,8 +2753,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "IRequiredKeywordArgumentOptions",
-                  "canonicalReference": "@wcauchois/program-builder!IRequiredKeywordArgumentOptions:interface"
+                  "text": "IRequiredValuedFlagOptions",
+                  "canonicalReference": "@wcauchois/program-builder!IRequiredValuedFlagOptions:interface"
                 },
                 {
                   "kind": "Content",
@@ -3231,7 +2984,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#floatFlag:member(1)",
-              "docComment": "/**\n * Add an optional float-valued flag to the program.\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, \"-i,--input\".\n *\n * @param options - See {@link IOptionalKeywordArgumentOptions}\n */\n",
+              "docComment": "/**\n * Add an optional float-valued flag to the program.\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, \"-i,--input\".\n *\n * @param options - See {@link IOptionalValuedFlagOptions}\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3255,8 +3008,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "IOptionalKeywordArgumentOptions",
-                  "canonicalReference": "@wcauchois/program-builder!IOptionalKeywordArgumentOptions:interface"
+                  "text": "IOptionalValuedFlagOptions",
+                  "canonicalReference": "@wcauchois/program-builder!IOptionalValuedFlagOptions:interface"
                 },
                 {
                   "kind": "Content",
@@ -3345,8 +3098,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "IRequiredKeywordArgumentOptions",
-                  "canonicalReference": "@wcauchois/program-builder!IRequiredKeywordArgumentOptions:interface"
+                  "text": "IRequiredValuedFlagOptions",
+                  "canonicalReference": "@wcauchois/program-builder!IRequiredValuedFlagOptions:interface"
                 },
                 {
                   "kind": "Content",
@@ -3435,8 +3188,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "IOptionalKeywordArgumentOptions",
-                  "canonicalReference": "@wcauchois/program-builder!IOptionalKeywordArgumentOptions:interface"
+                  "text": "IOptionalValuedFlagOptions",
+                  "canonicalReference": "@wcauchois/program-builder!IOptionalValuedFlagOptions:interface"
                 },
                 {
                   "kind": "Content",
@@ -3525,8 +3278,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "IRequiredKeywordArgumentOptions",
-                  "canonicalReference": "@wcauchois/program-builder!IRequiredKeywordArgumentOptions:interface"
+                  "text": "IRequiredValuedFlagOptions",
+                  "canonicalReference": "@wcauchois/program-builder!IRequiredValuedFlagOptions:interface"
                 },
                 {
                   "kind": "Content",
@@ -3734,8 +3487,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "IOptionalKeywordArgumentOptions",
-                  "canonicalReference": "@wcauchois/program-builder!IOptionalKeywordArgumentOptions:interface"
+                  "text": "IOptionalValuedFlagOptions",
+                  "canonicalReference": "@wcauchois/program-builder!IOptionalValuedFlagOptions:interface"
                 },
                 {
                   "kind": "Content",
@@ -3824,8 +3577,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "IRequiredKeywordArgumentOptions",
-                  "canonicalReference": "@wcauchois/program-builder!IRequiredKeywordArgumentOptions:interface"
+                  "text": "IRequiredValuedFlagOptions",
+                  "canonicalReference": "@wcauchois/program-builder!IRequiredValuedFlagOptions:interface"
                 },
                 {
                   "kind": "Content",
@@ -4064,6 +3817,322 @@
             "endIndex": 3
           },
           "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@wcauchois/program-builder!ValuedFlag:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class ValuedFlag implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "IAnyFlag",
+              "canonicalReference": "@wcauchois/program-builder!IAnyFlag:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ValuedFlag",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@wcauchois/program-builder!ValuedFlag:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `ValuedFlag` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(names: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", dest: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", converter: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Converter",
+                  "canonicalReference": "@wcauchois/program-builder!Converter:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<any>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", metadata: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IValuedFlagMetadata",
+                  "canonicalReference": "@wcauchois/program-builder!IValuedFlagMetadata:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", order: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "names",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "dest",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "converter",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 7
+                  }
+                },
+                {
+                  "parameterName": "metadata",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 8,
+                    "endIndex": 9
+                  }
+                },
+                {
+                  "parameterName": "order",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 10,
+                    "endIndex": 11
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!ValuedFlag#converter:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly converter: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Converter",
+                  "canonicalReference": "@wcauchois/program-builder!Converter:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<any>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "converter",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!ValuedFlag#dest:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly dest: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "dest",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!ValuedFlag#firstName:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get firstName(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "firstName",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!ValuedFlag#generateHelpColumns:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "generateHelpColumns(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "generateHelpColumns"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!ValuedFlag#metadata:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly metadata: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IValuedFlagMetadata",
+                  "canonicalReference": "@wcauchois/program-builder!IValuedFlagMetadata:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "metadata",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!ValuedFlag#names:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly names: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "names",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!ValuedFlag#order:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly order: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "order",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 3
+            }
+          ]
         }
       ]
     }

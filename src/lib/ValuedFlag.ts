@@ -1,8 +1,4 @@
-import {
-  IValuedFlagMetadata,
-  Converter,
-  IAnyFlag
-} from "./types";
+import { IValuedFlagMetadata, Converter, IAnyFlag } from "./types";
 import { isFlag } from "./utils";
 
 export default class ValuedFlag implements IAnyFlag {

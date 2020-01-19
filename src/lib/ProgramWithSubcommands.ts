@@ -1,7 +1,7 @@
 import Program from "./Program";
 
 export type ProgramSubcommandMap = {
-  [subcommandName: string]: Program<any> | ProgramSubcommandMap
+  [subcommandName: string]: Program<any> | ProgramSubcommandMap;
 };
 
 export default class ProgramWithSubcommands {
@@ -11,9 +11,7 @@ export default class ProgramWithSubcommands {
     this.subcommandMap = subcommandMap;
   }
 
-  async execOrThrow(rawArgs?: string[]) {
-  }
+  async execOrThrow(rawArgs?: string[]) {}
 
-  exec(rawArgs?: string[]) {
-  }
+  exec(rawArgs?: string[]) {}
 }

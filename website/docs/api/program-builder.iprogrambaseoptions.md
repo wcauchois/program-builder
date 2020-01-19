@@ -20,6 +20,6 @@ export interface IProgramBaseOptions
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [flags](./program-builder.iprogrambaseoptions.flags.md) | <code>Flag[]</code> |  |
-|  [keywordArguments](./program-builder.iprogrambaseoptions.keywordarguments.md) | <code>KeywordArgument[]</code> |  |
 |  [positionalArguments](./program-builder.iprogrambaseoptions.positionalarguments.md) | <code>PositionalArguments</code> |  |
 |  [programMetadata](./program-builder.iprogrambaseoptions.programmetadata.md) | <code>IProgramMetadata</code> |  |
+|  [valuedFlags](./program-builder.iprogrambaseoptions.valuedflags.md) | <code>ValuedFlag[]</code> |  |

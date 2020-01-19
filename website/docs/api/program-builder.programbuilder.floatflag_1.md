@@ -12,7 +12,7 @@ hide_title: true
 <b>Signature:</b>
 
 ```typescript
-floatFlag<K extends string>(name: string, options: IRequiredKeywordArgumentOptions<K, number>): ExtendProgramBuilderWithRequired<T, K, number>;
+floatFlag<K extends string>(name: string, options: IRequiredValuedFlagOptions<K, number>): ExtendProgramBuilderWithRequired<T, K, number>;
 ```
 
 ## Parameters
@@ -20,7 +20,7 @@ floatFlag<K extends string>(name: string, options: IRequiredKeywordArgumentOptio
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  name | <code>string</code> |  |
-|  options | <code>IRequiredKeywordArgumentOptions&lt;K, number&gt;</code> |  |
+|  options | <code>IRequiredValuedFlagOptions&lt;K, number&gt;</code> |  |
 
 <b>Returns:</b>
 

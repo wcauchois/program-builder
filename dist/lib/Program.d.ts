@@ -23,7 +23,9 @@ export default class Program<T> extends ProgramBase {
     constructor(options: IProgramBaseOptions);
     generateHelpText(): string;
     private isHelpRequested;
-    printHelpAndExit(): never;
+    printHelp(): void;
+    execOrThrow(main: ProgramMain<T>, rawArgs?: string[]): Promise<void>;
+    private formatError;
     exec(main: ProgramMain<T>, rawArgs?: string[]): void;
     parseArgs(rawArgs: string[]): T;
 }

@@ -12,7 +12,7 @@ hide_title: true
 <b>Signature:</b>
 
 ```typescript
-customFlag<K extends string, V>(name: string, options: IOptionalKeywordArgumentOptions<K, V>, converter: Converter<V>): ExtendProgramBuilderWithOptional<T, K, V>;
+customFlag<K extends string, V>(name: string, options: IOptionalValuedFlagOptions<K, V>, converter: Converter<V>): ExtendProgramBuilderWithOptional<T, K, V>;
 ```
 
 ## Parameters
@@ -20,7 +20,7 @@ customFlag<K extends string, V>(name: string, options: IOptionalKeywordArgumentO
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  name | <code>string</code> |  |
-|  options | <code>IOptionalKeywordArgumentOptions&lt;K, V&gt;</code> |  |
+|  options | <code>IOptionalValuedFlagOptions&lt;K, V&gt;</code> |  |
 |  converter | <code>Converter&lt;V&gt;</code> |  |
 
 <b>Returns:</b>

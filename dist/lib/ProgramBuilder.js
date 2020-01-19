@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ProgramBase_1 = __importDefault(require("./ProgramBase"));
 const PositionalArgument_1 = __importDefault(require("./PositionalArgument"));
 const Program_1 = __importDefault(require("./Program"));
-const KeywordArgument_1 = __importDefault(require("./KeywordArgument"));
+const ValuedFlag_1 = __importDefault(require("./ValuedFlag"));
 const PositionalArguments_1 = __importDefault(require("./PositionalArguments"));
 const converters_1 = require("./converters");
 const Flag_1 = __importDefault(require("./Flag"));
@@ -52,7 +52,7 @@ class ProgramBuilder extends ProgramBase_1.default {
         return this;
     }
     customFlag(name, options, converter) {
-        this.keywordArguments.push(new KeywordArgument_1.default(this.splitNames(name), options.dest, converter, this.keywordOptionsToMetadata(options), ++this.flagNumber));
+        this.valuedFlags.push(new ValuedFlag_1.default(this.splitNames(name), options.dest, converter, this.keywordOptionsToMetadata(options), ++this.flagNumber));
         return this;
     }
     stringFlag(name, options) {
@@ -86,7 +86,7 @@ class ProgramBuilder extends ProgramBase_1.default {
     static newBuilder() {
         return new ProgramBuilder({
             flags: [],
-            keywordArguments: [],
+            valuedFlags: [],
             positionalArguments: new PositionalArguments_1.default(),
             programMetadata: {}
         });

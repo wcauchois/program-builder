@@ -15,34 +15,34 @@ See [ProgramBuilder](./program-builder.programbuilder.md)<!-- -->.
 |  Class | Description |
 |  --- | --- |
 |  [Flag](./program-builder.flag.md) |  |
-|  [KeywordArgument](./program-builder.keywordargument.md) |  |
 |  [PositionalArgument](./program-builder.positionalargument.md) |  |
 |  [PositionalArguments](./program-builder.positionalarguments.md) |  |
 |  [Program](./program-builder.program.md) | A built program that can parse arguments and execute a main function against those arguments. |
 |  [ProgramBase](./program-builder.programbase.md) |  |
 |  [ProgramBuilder](./program-builder.programbuilder.md) | Entry point to the library and the way to start constructing a [Program](./program-builder.program.md) to be executed. |
 |  [ProgramWithAction](./program-builder.programwithaction.md) |  |
+|  [ValuedFlag](./program-builder.valuedflag.md) |  |
 
 ## Interfaces
 
 |  Interface | Description |
 |  --- | --- |
+|  [IAnyFlag](./program-builder.ianyflag.md) |  |
 |  [IFlagMetadata](./program-builder.iflagmetadata.md) |  |
 |  [IFlagOptions](./program-builder.iflagoptions.md) |  |
-|  [IKeywordArgumentCommonOptions](./program-builder.ikeywordargumentcommonoptions.md) | Common options for a flag with a value. |
-|  [IKeywordArgumentMetadata](./program-builder.ikeywordargumentmetadata.md) |  |
-|  [IKeywordArgumentOrFlag](./program-builder.ikeywordargumentorflag.md) |  |
-|  [IOptionalKeywordArgumentOptions](./program-builder.ioptionalkeywordargumentoptions.md) | Extend [IKeywordArgumentCommonOptions](./program-builder.ikeywordargumentcommonoptions.md) with the default value for a flag. |
+|  [IOptionalValuedFlagOptions](./program-builder.ioptionalvaluedflagoptions.md) | Extend [IValuedFlagCommonOptions](./program-builder.ivaluedflagcommonoptions.md) with the default value for a flag. |
 |  [IPositionalArgumentMetadata](./program-builder.ipositionalargumentmetadata.md) |  |
 |  [IProgramBaseOptions](./program-builder.iprogrambaseoptions.md) |  |
 |  [IProgramMetadata](./program-builder.iprogrammetadata.md) |  |
-|  [IRequiredKeywordArgumentOptions](./program-builder.irequiredkeywordargumentoptions.md) |  |
+|  [IRequiredValuedFlagOptions](./program-builder.irequiredvaluedflagoptions.md) |  |
+|  [IValuedFlagCommonOptions](./program-builder.ivaluedflagcommonoptions.md) | Common options for a valued flag. |
+|  [IValuedFlagMetadata](./program-builder.ivaluedflagmetadata.md) |  |
 
 ## Type Aliases
 
 |  Type Alias | Description |
 |  --- | --- |
-|  [Arguments](./program-builder.arguments.md) |  |
+|  [Arguments](./program-builder.arguments.md) | Type helper to get the Arguments type of a [Program](./program-builder.program.md)<!-- -->. |
 |  [Converter](./program-builder.converter.md) |  |
 |  [ExtendProgramBuilderWithOptional](./program-builder.extendprogrambuilderwithoptional.md) |  |
 |  [ExtendProgramBuilderWithRequired](./program-builder.extendprogrambuilderwithrequired.md) |  |

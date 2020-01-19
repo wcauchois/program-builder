@@ -13,3 +13,13 @@ function isFlag(arg) {
     return arg.startsWith("-");
 }
 exports.isFlag = isFlag;
+function expectUnreachable(x) { }
+exports.expectUnreachable = expectUnreachable;
+function rightPad(s, n) {
+    let r = s;
+    while (r.length < n) {
+        r = r + " ";
+    }
+    return r;
+}
+exports.rightPad = rightPad;

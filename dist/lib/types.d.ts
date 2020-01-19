@@ -1,4 +1,4 @@
-export interface IKeywordArgumentMetadata {
+export interface IValuedFlagMetadata {
     default?: any;
     description?: string;
     metavar?: string;
@@ -13,9 +13,9 @@ export interface IPositionalArgumentMetadata {
     metavar?: string;
 }
 /**
- * Common options for a flag with a value.
+ * Common options for a valued flag.
  */
-export interface IKeywordArgumentCommonOptions<K extends string> {
+export interface IValuedFlagCommonOptions<K extends string> {
     /**
      * The destination key in the final arguments object into which this
      * argument's value will be stored.
@@ -27,24 +27,24 @@ export interface IKeywordArgumentCommonOptions<K extends string> {
     description?: string;
     /**
      * A metavariable for the flag used in help text generation. Defaults
-     * to {@link IKeywordArgumentCommonOptions.dest}.
+     * to {@link IValuedFlagCommonOptions.dest}.
      */
     metavar?: string;
 }
-export interface IRequiredKeywordArgumentOptions<K extends string, V> extends IKeywordArgumentCommonOptions<K> {
+export interface IRequiredValuedFlagOptions<K extends string, V> extends IValuedFlagCommonOptions<K> {
     default?: undefined;
 }
 /**
- * Extend {@link IKeywordArgumentCommonOptions} with the default value
+ * Extend {@link IValuedFlagCommonOptions} with the default value
  * for a flag.
  */
-export interface IOptionalKeywordArgumentOptions<K extends string, V> extends IKeywordArgumentCommonOptions<K> {
+export interface IOptionalValuedFlagOptions<K extends string, V> extends IValuedFlagCommonOptions<K> {
     /**
      * The default value for the flag.
      */
     default: V;
 }
-export declare type KeywordArgumentOptions<K extends string, V> = IRequiredKeywordArgumentOptions<K, V> | IOptionalKeywordArgumentOptions<K, V>;
+export declare type ValuedFlagOptions<K extends string, V> = IRequiredValuedFlagOptions<K, V> | IOptionalValuedFlagOptions<K, V>;
 export interface IProgramMetadata {
     description?: string;
 }
@@ -55,7 +55,7 @@ export interface IFlagOptions<K extends string> {
     inverted?: boolean;
 }
 export declare type Converter<V> = (input: string, argName: string) => V;
-export interface IKeywordArgumentOrFlag {
+export interface IAnyFlag {
     generateHelpColumns(): string[];
 }
 export declare type ProgramMain<T> = ((args: T) => Promise<void>) | ((args: T) => void);

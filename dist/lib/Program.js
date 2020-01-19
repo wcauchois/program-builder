@@ -4,7 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const path = require("path");
+const util = require("util");
 const ProgramBase_1 = __importDefault(require("./ProgramBase"));
+const ValuedFlag_1 = __importDefault(require("./ValuedFlag"));
 const errors_1 = require("./errors");
 const utils_1 = require("./utils");
 const Flag_1 = __importDefault(require("./Flag"));
@@ -49,13 +51,13 @@ function renderColumnarData(data, padding = 2) {
 class Program extends ProgramBase_1.default {
     constructor(options) {
         super(options);
-        this.flagsByName = new Map(options.keywordArguments
-            .flatMap(argument => argument.names.map(name => [name, argument]))
+        this.flagsByName = new Map(options.valuedFlags
+            .flatMap(vflag => vflag.names.map(name => [name, vflag]))
             .concat(options.flags.flatMap(flag => flag.allNames.map(name => [name, flag]))));
     }
     generateHelpText() {
         let buffer = "";
-        const haveAnyOptions = this.keywordArguments.length > 0 || this.flags.length > 0;
+        const haveAnyOptions = this.valuedFlags.length > 0 || this.flags.length > 0;
         // Usage
         const usageParts = [
             path.basename(process.argv[1]),
@@ -71,7 +73,7 @@ class Program extends ProgramBase_1.default {
         }
         // Options (flags and keyword arguments)
         if (haveAnyOptions) {
-            const sortedArgumentsAndFlags = this.keywordArguments.concat(this.flags);
+            const sortedArgumentsAndFlags = this.valuedFlags.concat(this.flags);
             sortedArgumentsAndFlags.sort((a, b) => a.order - b.order);
             buffer += `\n\nOptions:\n`;
             buffer += renderColumnarData(sortedArgumentsAndFlags.map(argOrFlag => argOrFlag.generateHelpColumns()));
@@ -81,31 +83,37 @@ class Program extends ProgramBase_1.default {
     isHelpRequested(args) {
         return args.length > 0 && Program.helpArgumentsSet.has(args[0]);
     }
-    printHelpAndExit() {
+    printHelp() {
         const helpText = this.generateHelpText();
         console.log(helpText);
-        process.exit(0);
     }
-    exec(main, rawArgs) {
+    async execOrThrow(main, rawArgs) {
         if (!rawArgs) {
             rawArgs = process.argv.slice(2);
         }
         if (this.isHelpRequested(rawArgs)) {
-            this.printHelpAndExit();
+            this.printHelp();
+            return;
         }
-        let parsedArgs;
-        try {
-            parsedArgs = this.parseArgs(rawArgs);
+        const parsedArgs = this.parseArgs(rawArgs);
+        await main(parsedArgs);
+    }
+    formatError(err) {
+        if (typeof err.message === "string") {
+            return err.message;
         }
-        catch (err) {
-            console.error(err.message || err);
-            process.exit(1);
+        else if (typeof err === "string") {
+            return err;
         }
-        const mainResult = Promise.resolve().then(() => main(parsedArgs));
-        mainResult
+        else {
+            return util.inspect(err);
+        }
+    }
+    exec(main, rawArgs) {
+        this.execOrThrow(main, rawArgs)
             .then(() => process.exit(0))
             .catch(err => {
-            console.error(err.message || err);
+            console.error(this.formatError(err));
             process.exit(1);
         });
     }
@@ -115,7 +123,7 @@ class Program extends ProgramBase_1.default {
         const requiredArgumentStack = this.positionalArguments.required.slice();
         const optionalArgumentStack = this.positionalArguments.optional.slice();
         let currentArg;
-        let unspecifiedRequiredArguments = this.keywordArguments.filter(argument => argument.metadata.required);
+        let unspecifiedRequiredVFlags = this.valuedFlags.filter(vflag => vflag.metadata.required);
         while ((currentArg = argStack.shift())) {
             if (utils_1.isFlag(currentArg)) {
                 const flag = this.flagsByName.get(currentArg);
@@ -125,14 +133,16 @@ class Program extends ProgramBase_1.default {
                 if (flag instanceof Flag_1.default) {
                     parsedArgs[flag.dest] = flag.isPositiveName(currentArg); // Else, it is a negative name.
                 }
-                else {
-                    // Flag is a KeywordArgument
+                else if (flag instanceof ValuedFlag_1.default) {
                     const argumentValue = argStack.shift();
                     if (!argumentValue) {
                         throw new errors_1.ArgumentError(`Missing value for flag '${currentArg}'`);
                     }
                     parsedArgs[flag.dest] = flag.converter(argumentValue, currentArg);
-                    unspecifiedRequiredArguments = unspecifiedRequiredArguments.filter(x => x !== flag);
+                    unspecifiedRequiredVFlags = unspecifiedRequiredVFlags.filter(x => x !== flag);
+                }
+                else {
+                    utils_1.expectUnreachable(flag);
                 }
             }
             else {
@@ -153,8 +163,8 @@ class Program extends ProgramBase_1.default {
         if (requiredArgumentStack.length > 0) {
             throw new errors_1.ArgumentError(`Not enough positional arguments were specified. Expected: at least ${this.positionalArguments.required.length}`);
         }
-        if (unspecifiedRequiredArguments.length > 0) {
-            throw new errors_1.ArgumentError(`The following required keyword flags were not specified: ${unspecifiedRequiredArguments
+        if (unspecifiedRequiredVFlags.length > 0) {
+            throw new errors_1.ArgumentError(`The following required flags were not specified: ${unspecifiedRequiredVFlags
                 .map(x => x.firstName)
                 .join(", ")}`);
         }

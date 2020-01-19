@@ -13,3 +13,5 @@ export declare type Complete<T> = {
     [P in keyof Required<T>]: Pick<T, P> extends Required<Pick<T, P>> ? T[P] : T[P] | undefined;
 };
 export declare function isFlag(arg: string): boolean;
+export declare function expectUnreachable(x: never): void;
+export declare function rightPad(s: string, n: number): string;

@@ -5,6 +5,7 @@ const program = ProgramBuilder.newBuilder()
   .optionalArg('extraFilename', { description: `An additional optional file name`})
   .intFlag('--count,-c', { dest: 'count', default: 0, description: `A count` })
   .intFlag('--requiredCount', { dest: 'requiredCount', description: `A count that is required` })
+  .stringFlag('-x', { dest: 'test', description: `This is a really long description. It should get word wrapped. This is a really long description. It should get word wrapped. This is a really long description. It should get word wrapped.` })
   .build();
 
 function main(args: Arguments<typeof program>) {

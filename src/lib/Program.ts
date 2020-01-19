@@ -64,9 +64,7 @@ export default class Program<T> extends ProgramBase {
     this.flagsByName = new Map(
       options.valuedFlags
         .flatMap(vflag =>
-          vflag.names.map(
-            name => [name, vflag] as [string, ValuedFlag | Flag]
-          )
+          vflag.names.map(name => [name, vflag] as [string, ValuedFlag | Flag])
         )
         .concat(
           options.flags.flatMap(flag =>
@@ -80,8 +78,7 @@ export default class Program<T> extends ProgramBase {
 
   generateHelpText() {
     let buffer = "";
-    const haveAnyOptions =
-      this.valuedFlags.length > 0 || this.flags.length > 0;
+    const haveAnyOptions = this.valuedFlags.length > 0 || this.flags.length > 0;
 
     // Usage
     const usageParts = [

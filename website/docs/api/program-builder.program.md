@@ -48,6 +48,7 @@ program.exec(args => {
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
 |  [exec(main, rawArgs)](./program-builder.program.exec.md) |  |  |
+|  [execOrThrow(main, rawArgs)](./program-builder.program.execorthrow.md) |  |  |
 |  [generateHelpText()](./program-builder.program.generatehelptext.md) |  |  |
 |  [parseArgs(rawArgs)](./program-builder.program.parseargs.md) |  |  |
-|  [printHelpAndExit()](./program-builder.program.printhelpandexit.md) |  |  |
+|  [printHelp()](./program-builder.program.printhelp.md) |  |  |

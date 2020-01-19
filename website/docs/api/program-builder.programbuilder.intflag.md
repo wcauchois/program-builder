@@ -12,7 +12,7 @@ hide_title: true
 <b>Signature:</b>
 
 ```typescript
-intFlag<K extends string>(name: string, options: IOptionalKeywordArgumentOptions<K, number>): ExtendProgramBuilderWithOptional<T, K, number>;
+intFlag<K extends string>(name: string, options: IOptionalValuedFlagOptions<K, number>): ExtendProgramBuilderWithOptional<T, K, number>;
 ```
 
 ## Parameters
@@ -20,7 +20,7 @@ intFlag<K extends string>(name: string, options: IOptionalKeywordArgumentOptions
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  name | <code>string</code> |  |
-|  options | <code>IOptionalKeywordArgumentOptions&lt;K, number&gt;</code> |  |
+|  options | <code>IOptionalValuedFlagOptions&lt;K, number&gt;</code> |  |
 
 <b>Returns:</b>
 

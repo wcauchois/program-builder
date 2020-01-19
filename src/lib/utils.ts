@@ -28,3 +28,11 @@ export function isFlag(arg: string) {
 }
 
 export function expectUnreachable(x: never) {}
+
+export function rightPad(s: string, n: number) {
+  let r = s;
+  while (r.length < n) {
+    r = r + " ";
+  }
+  return r;
+}
