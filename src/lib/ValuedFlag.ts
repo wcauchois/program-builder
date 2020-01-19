@@ -1,5 +1,6 @@
 import { IValuedFlagMetadata, Converter, IAnyFlag } from "./types";
 import { isFlag } from "./utils";
+import FlagDocumentation from "./FlagDocumentation";
 
 export default class ValuedFlag implements IAnyFlag {
   readonly names: string[];
@@ -37,10 +38,9 @@ export default class ValuedFlag implements IAnyFlag {
     return this.names[0];
   }
 
-  generateHelpColumns() {
-    return [
-      `${this.names.join(", ")} [${this.metadata.metavar || this.dest}]`,
-      this.metadata.description
-    ].filter(x => x) as string[];
+  getDocumentation() {
+    const nameSpec = `${this.names.join(", ")} [${this.metadata.metavar ||
+      this.dest}]`;
+    return new FlagDocumentation(nameSpec, this.metadata.description);
   }
 }

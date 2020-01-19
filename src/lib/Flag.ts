@@ -1,6 +1,7 @@
-import { IFlagMetadata } from "./types";
+import { IFlagMetadata, IAnyFlag } from "./types";
+import FlagDocumentation from "./FlagDocumentation";
 
-export default class Flag {
+export default class Flag implements IAnyFlag {
   readonly dest: string;
   readonly positiveNames: string[];
   readonly negativeNames: string[];
@@ -32,9 +33,8 @@ export default class Flag {
     return this.positiveNames.concat(this.negativeNames);
   }
 
-  generateHelpColumns() {
-    return [this.allNames.join(", "), this.metadata.description].filter(
-      x => x
-    ) as string[];
+  getDocumentation() {
+    const nameSpec = this.allNames.join(", ");
+    return new FlagDocumentation(nameSpec, this.metadata.description);
   }
 }

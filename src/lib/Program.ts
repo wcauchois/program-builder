@@ -8,6 +8,7 @@ import { ArgumentError, TooManyArgumentsError } from "./errors";
 import { isFlag, expectUnreachable } from "./utils";
 import Flag from "./Flag";
 import { ProgramMain } from "./types";
+import TableWriter from "./TableWriter";
 
 function rightPad(s: string, n: number) {
   let r = s;
@@ -78,12 +79,12 @@ export default class Program<T> extends ProgramBase {
 
   generateHelpText() {
     let buffer = "";
-    const haveAnyOptions = this.valuedFlags.length > 0 || this.flags.length > 0;
+    const haveAnyFlags = this.valuedFlags.length > 0 || this.flags.length > 0;
 
     // Usage
     const usageParts = [
       path.basename(process.argv[1]),
-      haveAnyOptions ? "[options]" : undefined,
+      haveAnyFlags ? "[options]" : undefined,
       this.positionalArguments.nonEmpty
         ? this.positionalArguments.getSpecForUsage()
         : undefined
@@ -95,18 +96,16 @@ export default class Program<T> extends ProgramBase {
       buffer += `\n\n${this.programMetadata.description}`;
     }
 
-    // Options (flags and keyword arguments)
-    if (haveAnyOptions) {
-      const sortedArgumentsAndFlags = (this.valuedFlags as Array<
+    // Flags
+    if (haveAnyFlags) {
+      const allFlagsSorted = (this.valuedFlags as Array<
         ValuedFlag | Flag
       >).concat(this.flags);
-      sortedArgumentsAndFlags.sort((a, b) => a.order - b.order);
+      allFlagsSorted.sort((a, b) => a.order - b.order);
       buffer += `\n\nOptions:\n`;
-      buffer += renderColumnarData(
-        sortedArgumentsAndFlags.map(argOrFlag =>
-          argOrFlag.generateHelpColumns()
-        )
-      );
+      const tw = new TableWriter();
+      allFlagsSorted.forEach(f => f.getDocumentation().writeTo(tw));
+      buffer += tw.toString();
     }
     return buffer;
   }
