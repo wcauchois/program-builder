@@ -1,12 +1,15 @@
-import Program from "./Program";
+import ProgramWithAction from "./ProgramWithAction";
 
 export type ProgramSubcommandMap = {
-  [subcommandName: string]: Program<any> | ProgramSubcommandMap;
+  [subcommandName: string]: ProgramWithAction<any> | ProgramSubcommandMap;
 };
 
 export default class ProgramWithSubcommands {
   readonly subcommandMap: ProgramSubcommandMap;
 
+  /**
+   * @internal
+   */
   constructor(subcommandMap: ProgramSubcommandMap) {
     this.subcommandMap = subcommandMap;
   }

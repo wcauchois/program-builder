@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "run-example": "ts-node examples/simple/main.ts",
+    "run-example": "./scripts/run_example.sh",
     "docsonly": "node scripts/make-docs.js",
     "docs": "yarn build && yarn docsonly",
     "watch": "tsc-watch --onSuccess \"yarn docsonly\"",

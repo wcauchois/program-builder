@@ -57,6 +57,7 @@ Use methods like `stringFlag` and `intFlag` to define "valued" flags, known as o
 |  [arg(dest, options)](./program-builder.programbuilder.arg.md) |  | Add a positional argument to the program. |
 |  [bind(action)](./program-builder.programbuilder.bind.md) |  | Bind the ProgramBuilder to an action and return a [ProgramWithAction](./program-builder.programwithaction.md) suitable for use constructing subcommands. |
 |  [build()](./program-builder.programbuilder.build.md) |  | Build and return a [Program](./program-builder.program.md)<!-- -->. |
+|  [buildWithSubcommands(subcommandMap)](./program-builder.programbuilder.buildwithsubcommands.md) | <code>static</code> | Build a [ProgramWithSubcommands](./program-builder.programwithsubcommands.md) using a map of [ProgramWithAction](./program-builder.programwithaction.md)<!-- -->s. |
 |  [customFlag(name, options, converter)](./program-builder.programbuilder.customflag.md) |  |  |
 |  [customFlag(name, options, converter)](./program-builder.programbuilder.customflag_1.md) |  |  |
 |  [description(newDescription)](./program-builder.programbuilder.description.md) |  | Set the program description. |

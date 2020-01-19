@@ -36,6 +36,7 @@ import {
 } from "./lib/errors";
 import FlagDocumentation from "./lib/FlagDocumentation";
 import TableWriter, { ITableWriterOptions } from "./lib/TableWriter";
+import ProgramWithSubcommands from "./lib/ProgramWithSubcommands";
 
 export {
   ProgramBuilder,
@@ -67,5 +68,6 @@ export {
   TooManyArgumentsError,
   FlagDocumentation,
   TableWriter,
-  ITableWriterOptions
+  ITableWriterOptions,
+  ProgramWithSubcommands
 };

@@ -2,6 +2,7 @@ import ProgramBase from "./ProgramBase";
 import Program from "./Program";
 import { IRequiredValuedFlagOptions, IOptionalValuedFlagOptions, IPositionalArgumentMetadata, Converter, IFlagOptions, ProgramMain } from "./types";
 import ProgramWithAction from "./ProgramWithAction";
+import ProgramWithSubcommands, { ProgramSubcommandMap } from "./ProgramWithSubcommands";
 export declare type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<T & {
     [P in K]?: U;
 }>;
@@ -131,6 +132,10 @@ export default class ProgramBuilder<T> extends ProgramBase {
      * suitable for use constructing subcommands.
      */
     bind(action: ProgramMain<T>): ProgramWithAction<T>;
+    /**
+     * Build a {@link ProgramWithSubcommands} using a map of {@link ProgramWithAction}s.
+     */
+    static buildWithSubcommands(subcommandMap: ProgramSubcommandMap): ProgramWithSubcommands;
     /**
      * Create a new ProgramBuilder instance.
      */

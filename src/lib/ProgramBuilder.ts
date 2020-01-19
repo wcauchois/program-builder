@@ -18,6 +18,7 @@ import { convertString, convertInt, convertFloat } from "./converters";
 import Flag from "./Flag";
 import { Complete } from "./utils";
 import ProgramWithAction from "./ProgramWithAction";
+import ProgramWithSubcommands, { ProgramSubcommandMap } from "./ProgramWithSubcommands";
 
 export type ExtendProgramBuilderWithOptional<
   T,
@@ -297,6 +298,13 @@ export default class ProgramBuilder<T> extends ProgramBase {
    */
   bind(action: ProgramMain<T>) {
     return new ProgramWithAction<T>(this, action);
+  }
+
+  /**
+   * Build a {@link ProgramWithSubcommands} using a map of {@link ProgramWithAction}s.
+   */
+  static buildWithSubcommands(subcommandMap: ProgramSubcommandMap) {
+    return new ProgramWithSubcommands(subcommandMap);
   }
 
   /**

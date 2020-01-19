@@ -25,6 +25,7 @@ See [ProgramBuilder](./program-builder.programbuilder.md)<!-- -->.
 |  [ProgramBuilder](./program-builder.programbuilder.md) | Entry point to the library and the way to start constructing a [Program](./program-builder.program.md) to be executed. |
 |  [ProgramError](./program-builder.programerror.md) | Base class for any error having to do with ProgramBuilder. |
 |  [ProgramWithAction](./program-builder.programwithaction.md) |  |
+|  [ProgramWithSubcommands](./program-builder.programwithsubcommands.md) |  |
 |  [TooManyArgumentsError](./program-builder.toomanyargumentserror.md) |  |
 |  [ValuedFlag](./program-builder.valuedflag.md) |  |
 

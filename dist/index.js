@@ -33,3 +33,5 @@ const FlagDocumentation_1 = __importDefault(require("./lib/FlagDocumentation"));
 exports.FlagDocumentation = FlagDocumentation_1.default;
 const TableWriter_1 = __importDefault(require("./lib/TableWriter"));
 exports.TableWriter = TableWriter_1.default;
+const ProgramWithSubcommands_1 = __importDefault(require("./lib/ProgramWithSubcommands"));
+exports.ProgramWithSubcommands = ProgramWithSubcommands_1.default;

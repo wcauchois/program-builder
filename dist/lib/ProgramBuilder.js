@@ -11,6 +11,7 @@ const PositionalArguments_1 = __importDefault(require("./PositionalArguments"));
 const converters_1 = require("./converters");
 const Flag_1 = __importDefault(require("./Flag"));
 const ProgramWithAction_1 = __importDefault(require("./ProgramWithAction"));
+const ProgramWithSubcommands_1 = __importDefault(require("./ProgramWithSubcommands"));
 /**
  * Entry point to the library and the way to start constructing a {@link Program} to
  * be executed.
@@ -146,6 +147,12 @@ class ProgramBuilder extends ProgramBase_1.default {
      */
     bind(action) {
         return new ProgramWithAction_1.default(this, action);
+    }
+    /**
+     * Build a {@link ProgramWithSubcommands} using a map of {@link ProgramWithAction}s.
+     */
+    static buildWithSubcommands(subcommandMap) {
+        return new ProgramWithSubcommands_1.default(subcommandMap);
     }
     /**
      * Create a new ProgramBuilder instance.

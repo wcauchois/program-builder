@@ -2792,6 +2792,52 @@
             },
             {
               "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!ProgramBuilder.buildWithSubcommands:member(1)",
+              "docComment": "/**\n * Build a {@link ProgramWithSubcommands} using a map of {@link ProgramWithAction}s.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static buildWithSubcommands(subcommandMap: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ProgramSubcommandMap",
+                  "canonicalReference": "@wcauchois/program-builder!ProgramSubcommandMap:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ProgramWithSubcommands",
+                  "canonicalReference": "@wcauchois/program-builder!default:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": true,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "subcommandMap",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "buildWithSubcommands"
+            },
+            {
+              "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#customFlag:member(1)",
               "docComment": "",
               "excerptTokens": [
@@ -4029,6 +4075,142 @@
             "startIndex": 1,
             "endIndex": 3
           },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@wcauchois/program-builder!ProgramWithSubcommands:class",
+          "docComment": "/**\n * @remarks\n *\n * The constructor for this class is marked as internal. Third-party code should not call the constructor directly or create subclasses that extend the `ProgramWithSubcommands` class.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class ProgramWithSubcommands "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ProgramWithSubcommands",
+          "members": [
+            {
+              "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!ProgramWithSubcommands#exec:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "exec(rawArgs?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "rawArgs",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "exec"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@wcauchois/program-builder!ProgramWithSubcommands#execOrThrow:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "execOrThrow(rawArgs?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 5
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "rawArgs",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "execOrThrow"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@wcauchois/program-builder!ProgramWithSubcommands#subcommandMap:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly subcommandMap: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ProgramSubcommandMap",
+                  "canonicalReference": "@wcauchois/program-builder!ProgramSubcommandMap:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "subcommandMap",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
           "implementsTokenRanges": []
         },
         {
