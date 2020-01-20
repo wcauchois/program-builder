@@ -21,7 +21,7 @@ yarn add @wcauchois/program-builder
 const program = ProgramBuilder.newBuilder()
   .arg("filename")
   .intFlag("--count", { dest: "count" })
-  .build()
+  .build();
 
 program.exec(args => {
   console.log(`Filename is ${args.filename}, count is ${args.count}`);

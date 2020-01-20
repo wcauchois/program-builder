@@ -7,6 +7,6 @@
 
 module.exports = {
   mainSidebar: {
-    Documentation: ['getting-started']
+    Documentation: ['getting-started', 'examples']
   },
 };

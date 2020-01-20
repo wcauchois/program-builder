@@ -18,9 +18,6 @@ You define your arguments and keyword arguments using a fluent [builder](https:/
 - Validations like ensuring that all required arguments are specified (aka: types should not lie).
 - Automatic generation of help text and handling of a help argument (`-h`, `--help`).
 - Executes Promise-returning `main` functions and correctly exits the process.
-
-## Planned Features
-
 - Subcommands.
 
 ## Example
