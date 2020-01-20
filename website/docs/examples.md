@@ -6,6 +6,87 @@ sidebar_label: Examples
 
 # Table of Contents
 
+# Basic Usage
+
+`ProgramBuilder` uses the builder pattern to construct a `Program` object that can
+then be executed against a main function.
+
+You can create a `ProgramBuilder` instance by calling `ProgramBuilder.newBuilder`,
+then call methods on that builder to specify positional arguments and flags,
+then call `.build()` to build a `Program` object.
+
+Finally, call `.exec(main)` on your Program to execute your program.
+
+The `main` function gets a strongly typed object containing the values of your flags.
+
+```typescript
+const program = ProgramBuilder.newBuilder()
+  .arg('filename')
+  .intFlag('--count', { dest: count })
+  .build();
+
+program.exec(args => {
+  // args: { filename: string, count: number }`
+  console.log(`Filename is ${args.filename} and count is ${args.count}`);
+});
+```
+
+Future examples in this document may omit the `program.exec` part.
+
+# Specifying your main function ahead of your builder
+
+If you call `program.exec` with a lambda, its `args` argument will automatically assume
+the correct type of the program's arguments.
+
+However, if you want to specify your main function separately, you must use the
+`Arguments<T>` type helper and pass `typeof program`.
+
+`typeof` returns the TypeScript type of a variable, and the `Arguments` helper
+(part of ProgramBuilder) unwraps the arguments type from a `Program` object.
+
+```typescript
+function main(args: Arguments<typeof program>) {
+  // Do stuff
+}
+
+const program = ProgramBuilder.newBuilder().build();
+```
+
+# Positional arguments
+
+Positional arguments are specified using the `.arg` or `.optionalArg` methods.
+
+The first argument is the destination key into which the argument value will be stored.
+
+`.arg` is used to specify required arguments. If not enough required arguments are provided
+to the program, it will exit with a non-zero code.
+
+```typescript
+const program = ProgramBuilder.newBuilder()
+  .arg("foo")
+  .optionalArg("bar")
+  .build();
+
+program.exec(args => {
+  // args: { foo: string, bar: string | undefined }
+});
+```
+
+# Promise-returning main functions
+
+The function that you pass to `exec` can be an `async` or Promise-returning function.
+
+If your function returns a Promise, it will be properly awaited on and if it throws an
+error that error will be output and the process will return a non-zero exit code.
+
+```typescript
+const program = ProgramBuilder.newBuilder().build();
+
+program.exec(async args => {
+  await someHTTPCall();
+});
+```
+
 # Boolean flags
 
 Use `.flag()` to specify a boolean flag. The first argument is the name of the flag,
@@ -41,6 +122,12 @@ const program = ProgramBuilder.newBuilder()
   .build();
 
 // args is typed as: { count: number, name: string }
+```
+
+Example invocation:
+
+```
+$ ts-node program.ts --count 2 --name hi
 ```
 
 The current types of valued flags are:
