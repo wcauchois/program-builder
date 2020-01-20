@@ -6,6 +6,7 @@ declare type ParseState = {
 } | {
     kind: "ConsumingValuedFlag";
     flag: ValuedFlag;
+    flagNameUsed: string;
 };
 export interface IArgumentParserOptions {
     valuedFlags: ValuedFlag[];
@@ -18,8 +19,12 @@ export default class ArgumentParser {
     readonly parsedArgs: {
         [key: string]: any;
     };
+    private readonly flagsByName;
+    private readonly requiredArgumentStack;
+    private readonly optionalArgumentStack;
+    private unspecifiedRequiredValuedFlags;
     constructor(options: IArgumentParserOptions);
-    consume(arg: string): void;
+    consume(currentArg: string): void;
     consumeAll(args: string[]): void;
     validate(): void;
 }

@@ -1,42 +1,12 @@
 import path = require("path");
 import util = require("util");
 
-import PositionalArgument from "./PositionalArgument";
 import ProgramBase, { IProgramBaseOptions } from "./ProgramBase";
 import ValuedFlag from "./ValuedFlag";
-import { ArgumentError, TooManyArgumentsError } from "./errors";
-import { isFlag, expectUnreachable } from "./utils";
 import BooleanFlag from "./BooleanFlag";
 import { ProgramMain } from "./types";
 import TableWriter from "./TableWriter";
-
-function rightPad(s: string, n: number) {
-  let r = s;
-  while (r.length < n) {
-    r = r + " ";
-  }
-  return r;
-}
-
-function renderColumnarData(data: string[][], padding = 2) {
-  const maxColumnLengths = new Map<number, number>();
-  for (const row of data) {
-    for (let colNum = 0; colNum < row.length; colNum++) {
-      maxColumnLengths.set(
-        colNum,
-        Math.max(maxColumnLengths.get(colNum) || 0, row[colNum].length)
-      );
-    }
-  }
-  const lines = [];
-  for (const row of data) {
-    const paddedCols = row.map((col, i) =>
-      rightPad(col, (maxColumnLengths.get(i) || 0) + padding)
-    );
-    lines.push(rightPad("", padding) + paddedCols.join(""));
-  }
-  return lines.join("\n");
-}
+import ArgumentParser from "./ArgumentParser";
 
 /**
  * A built program that can parse arguments and execute a main function
@@ -56,25 +26,11 @@ function renderColumnarData(data: string[][], padding = 2) {
  * ```
  */
 export default class Program<T> extends ProgramBase {
-  private readonly flagsByName: Map<string, ValuedFlag | BooleanFlag>;
 
   static readonly helpArgumentsSet = new Set(["-h", "--help"]);
 
   constructor(options: IProgramBaseOptions) {
     super(options);
-    this.flagsByName = new Map(
-      options.valuedFlags
-        .flatMap(vflag =>
-          vflag.names.map(name => [name, vflag] as [string, ValuedFlag | BooleanFlag])
-        )
-        .concat(
-          options.booleanFlags.flatMap(flag =>
-            flag.allNames.map(
-              name => [name, flag] as [string, ValuedFlag | BooleanFlag]
-            )
-          )
-        )
-    );
   }
 
   generateHelpText() {
@@ -153,65 +109,15 @@ export default class Program<T> extends ProgramBase {
   }
 
   parseArgs(rawArgs: string[]): T {
-    const argStack = rawArgs.slice();
-    const parsedArgs: { [key: string]: any } = {};
+    const parser = new ArgumentParser({
+      booleanFlags: this.booleanFlags,
+      positionalArguments: this.positionalArguments,
+      valuedFlags: this.valuedFlags
+    });
 
-    const requiredArgumentStack = this.positionalArguments.required.slice();
-    const optionalArgumentStack = this.positionalArguments.optional.slice();
-
-    let currentArg: string | undefined;
-    let unspecifiedRequiredVFlags = this.valuedFlags.filter(
-      vflag => vflag.metadata.required
-    );
-
-    while ((currentArg = argStack.shift())) {
-      if (isFlag(currentArg)) {
-        const flag = this.flagsByName.get(currentArg);
-        if (!flag) {
-          throw new ArgumentError(`Unrecognized flag: ${currentArg}`);
-        }
-        if (flag instanceof BooleanFlag) {
-          parsedArgs[flag.dest] = flag.isPositiveName(currentArg); // Else, it is a negative name.
-        } else if (flag instanceof ValuedFlag) {
-          const argumentValue = argStack.shift();
-          if (!argumentValue) {
-            throw new ArgumentError(`Missing value for flag '${currentArg}'`);
-          }
-          parsedArgs[flag.dest] = flag.converter(argumentValue, currentArg);
-          unspecifiedRequiredVFlags = unspecifiedRequiredVFlags.filter(
-            x => x !== flag
-          );
-        } else {
-          expectUnreachable(flag);
-        }
-      } else {
-        let arg: PositionalArgument | undefined;
-        if (requiredArgumentStack.length > 0) {
-          arg = requiredArgumentStack.shift();
-        } else if (optionalArgumentStack.length > 0) {
-          arg = optionalArgumentStack.shift();
-        }
-        if (!arg) {
-          throw new TooManyArgumentsError();
-        }
-        parsedArgs[arg.dest] = currentArg;
-      }
-    }
-
-    // Validate that all required arguments were specified
-    if (requiredArgumentStack.length > 0) {
-      throw new ArgumentError(
-        `Not enough positional arguments were specified. Expected: at least ${this.positionalArguments.required.length}`
-      );
-    }
-    if (unspecifiedRequiredVFlags.length > 0) {
-      throw new ArgumentError(
-        `The following required flags were not specified: ${unspecifiedRequiredVFlags
-          .map(x => x.firstName)
-          .join(", ")}`
-      );
-    }
-
-    return parsedArgs as T;
+    parser.consumeAll(rawArgs);
+    parser.validate();
+    
+    return parser.parsedArgs as T;
   }
 }

@@ -18,7 +18,6 @@ import { ProgramMain } from "./types";
  * ```
  */
 export default class Program<T> extends ProgramBase {
-    private readonly flagsByName;
     static readonly helpArgumentsSet: Set<string>;
     constructor(options: IProgramBaseOptions);
     generateHelpText(): string;
