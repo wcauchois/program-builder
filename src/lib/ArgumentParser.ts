@@ -72,6 +72,7 @@ export default class ArgumentParser {
       this.unspecifiedRequiredValuedFlags = this.unspecifiedRequiredValuedFlags.filter(
         x => x !== flag
       );
+      this.state = { kind: "Default" };
     } else if (this.state.kind === "Default") {
       if (isFlag(currentArg)) {
         const flag = this.flagsByName.get(currentArg);

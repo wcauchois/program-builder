@@ -25,6 +25,7 @@ class ArgumentParser {
             const { flag } = this.state;
             this.parsedArgs[flag.dest] = flag.converter(currentArg, this.state.flagNameUsed);
             this.unspecifiedRequiredValuedFlags = this.unspecifiedRequiredValuedFlags.filter(x => x !== flag);
+            this.state = { kind: "Default" };
         }
         else if (this.state.kind === "Default") {
             if (utils_1.isFlag(currentArg)) {
