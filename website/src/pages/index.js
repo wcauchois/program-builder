@@ -70,6 +70,9 @@ Options:
           <li>
             Help-text generation.
           </li>
+          <li>
+            Subcommands.
+          </li>
         </ul>
       </>
     ),
