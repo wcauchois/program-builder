@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * Encapsulates documentation about a {@link Flag} or {@link ValuedFlag}.
+ * Encapsulates documentation about a {@link BooleanFlag} or {@link ValuedFlag}.
  */
 class FlagDocumentation {
     constructor(nameSpec, description) {

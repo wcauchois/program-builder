@@ -669,7 +669,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@wcauchois/program-builder!FlagDocumentation:class",
-          "docComment": "/**\n * Encapsulates documentation about a {@link Flag} or {@link ValuedFlag}.\n */\n",
+          "docComment": "/**\n * Encapsulates documentation about a {@link BooleanFlag} or {@link ValuedFlag}.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3185,7 +3185,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#flag:member(1)",
-              "docComment": "/**\n * Add a boolean-valued flag to the program (sometimes known as a \"switch\").\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, `\"-i,--input\"`.\n *\n * @param options - See {@link IFlagOptions}.\n */\n",
+              "docComment": "/**\n * Add a boolean-valued flag to the program (sometimes known as a \"switch\").\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, `\"-i,--input\"`.\n *\n * @param options - See {@link IBooleanFlagOptions}.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

@@ -1,7 +1,7 @@
 import TableWriter from "./TableWriter";
 
 /**
- * Encapsulates documentation about a {@link Flag} or {@link ValuedFlag}.
+ * Encapsulates documentation about a {@link BooleanFlag} or {@link ValuedFlag}.
  */
 export default class FlagDocumentation {
   readonly nameSpec: string;

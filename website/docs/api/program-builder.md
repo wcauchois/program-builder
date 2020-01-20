@@ -16,7 +16,7 @@ See [ProgramBuilder](./program-builder.programbuilder.md)<!-- -->.
 |  --- | --- |
 |  [ArgumentError](./program-builder.argumenterror.md) |  |
 |  [BooleanFlag](./program-builder.booleanflag.md) |  |
-|  [FlagDocumentation](./program-builder.flagdocumentation.md) | Encapsulates documentation about a  or [ValuedFlag](./program-builder.valuedflag.md)<!-- -->. |
+|  [FlagDocumentation](./program-builder.flagdocumentation.md) | Encapsulates documentation about a [BooleanFlag](./program-builder.booleanflag.md) or [ValuedFlag](./program-builder.valuedflag.md)<!-- -->. |
 |  [FlagParseError](./program-builder.flagparseerror.md) |  |
 |  [PositionalArgument](./program-builder.positionalargument.md) |  |
 |  [PositionalArguments](./program-builder.positionalarguments.md) |  |

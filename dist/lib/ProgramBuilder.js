@@ -121,7 +121,7 @@ class ProgramBuilder extends ProgramBase_1.default {
      * @param name - The name for the flag, including leading dashes. Multiple alternative
      * names may be specified by separating them within the string by commas. For example,
      * `"-i,--input"`.
-     * @param options - See {@link IFlagOptions}.
+     * @param options - See {@link IBooleanFlagOptions}.
      */
     flag(name, options) {
         const names = this.splitNames(name);
