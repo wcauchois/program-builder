@@ -3,11 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = require("path");
-const util = require("util");
 const ProgramBase_1 = __importDefault(require("./ProgramBase"));
 const TableWriter_1 = __importDefault(require("./TableWriter"));
 const ArgumentParser_1 = __importDefault(require("./ArgumentParser"));
+const ProgramHelpers_1 = __importDefault(require("./ProgramHelpers"));
 /**
  * A built program that can parse arguments and execute a main function
  * against those arguments.
@@ -28,13 +27,15 @@ const ArgumentParser_1 = __importDefault(require("./ArgumentParser"));
 class Program extends ProgramBase_1.default {
     constructor(options) {
         super(options);
+        this.helpers = new ProgramHelpers_1.default();
     }
-    generateHelpText() {
+    generateHelpText(extraUsage) {
         let buffer = "";
         const haveAnyFlags = this.valuedFlags.length > 0 || this.booleanFlags.length > 0;
         // Usage
         const usageParts = [
-            path.basename(process.argv[1]),
+            this.helpers.getProgramName(),
+            extraUsage,
             haveAnyFlags ? "[options]" : undefined,
             this.positionalArguments.nonEmpty
                 ? this.positionalArguments.getSpecForUsage()
@@ -56,42 +57,19 @@ class Program extends ProgramBase_1.default {
         }
         return buffer;
     }
-    isHelpRequested(args) {
-        return args.length > 0 && Program.helpArgumentsSet.has(args[0]);
-    }
-    printHelp() {
-        const helpText = this.generateHelpText();
-        console.log(helpText);
-    }
-    async execOrThrow(main, rawArgs) {
+    async execOrThrow(main, rawArgs, extraUsage) {
         if (!rawArgs) {
             rawArgs = process.argv.slice(2);
         }
-        if (this.isHelpRequested(rawArgs)) {
-            this.printHelp();
+        if (this.helpers.isHelpRequested(rawArgs)) {
+            console.log(this.generateHelpText(extraUsage));
             return;
         }
         const parsedArgs = this.parseArgs(rawArgs);
         await main(parsedArgs);
     }
-    formatError(err) {
-        if (typeof err.message === "string") {
-            return err.message;
-        }
-        else if (typeof err === "string") {
-            return err;
-        }
-        else {
-            return util.inspect(err);
-        }
-    }
     exec(main, rawArgs) {
-        this.execOrThrow(main, rawArgs)
-            .then(() => process.exit(0))
-            .catch(err => {
-            console.error(this.formatError(err));
-            process.exit(1);
-        });
+        this.helpers.execAndExit(() => this.execOrThrow(main, rawArgs));
     }
     parseArgs(rawArgs) {
         const parser = new ArgumentParser_1.default({
@@ -105,4 +83,3 @@ class Program extends ProgramBase_1.default {
     }
 }
 exports.default = Program;
-Program.helpArgumentsSet = new Set(["-h", "--help"]);

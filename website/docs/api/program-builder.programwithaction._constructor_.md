@@ -14,7 +14,7 @@ Constructs a new instance of the `ProgramWithAction` class
 <b>Signature:</b>
 
 ```typescript
-constructor(options: IProgramBaseOptions, action: ProgramMain<T> | undefined);
+constructor(options: IProgramBaseOptions, action: ProgramMain<T>);
 ```
 
 ## Parameters
@@ -22,4 +22,4 @@ constructor(options: IProgramBaseOptions, action: ProgramMain<T> | undefined);
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  options | <code>IProgramBaseOptions</code> |  |
-|  action | <code>ProgramMain&lt;T&gt; &#124; undefined</code> |  |
+|  action | <code>ProgramMain&lt;T&gt;</code> |  |

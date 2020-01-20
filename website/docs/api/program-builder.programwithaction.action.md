@@ -12,5 +12,5 @@ hide_title: true
 <b>Signature:</b>
 
 ```typescript
-readonly action: ProgramMain<T> | undefined;
+readonly action: ProgramMain<T>;
 ```

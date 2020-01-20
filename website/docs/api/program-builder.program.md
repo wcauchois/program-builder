@@ -37,18 +37,11 @@ program.exec(args => {
 |  --- | --- | --- |
 |  [(constructor)(options)](./program-builder.program._constructor_.md) |  | Constructs a new instance of the <code>Program</code> class |
 
-## Properties
-
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [helpArgumentsSet](./program-builder.program.helpargumentsset.md) | <code>static</code> | <code>Set&lt;string&gt;</code> |  |
-
 ## Methods
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
 |  [exec(main, rawArgs)](./program-builder.program.exec.md) |  |  |
-|  [execOrThrow(main, rawArgs)](./program-builder.program.execorthrow.md) |  |  |
-|  [generateHelpText()](./program-builder.program.generatehelptext.md) |  |  |
+|  [execOrThrow(main, rawArgs, extraUsage)](./program-builder.program.execorthrow.md) |  |  |
+|  [generateHelpText(extraUsage)](./program-builder.program.generatehelptext.md) |  |  |
 |  [parseArgs(rawArgs)](./program-builder.program.parseargs.md) |  |  |
-|  [printHelp()](./program-builder.program.printhelp.md) |  |  |

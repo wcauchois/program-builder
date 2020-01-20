@@ -123,6 +123,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
      * @param options - See {@link IFlagOptions}.
      */
     flag<K extends string>(name: string, options: IBooleanFlagOptions<K>): ExtendProgramBuilderWithRequired<T, K, boolean>;
+    apply<U extends T>(fn: (builder: ProgramBuilder<T>) => ProgramBuilder<U>): ProgramBuilder<U>;
     /**
      * Build and return a {@link Program}.
      */

@@ -22,7 +22,7 @@ flag<K extends string>(name: string, options: IBooleanFlagOptions<K>): ExtendPro
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  name | <code>string</code> | The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, <code>&quot;-i,--input&quot;</code>. |
-|  options | <code>IBooleanFlagOptions&lt;K&gt;</code> | See [IFlagOptions](./program-builder.iflagoptions.md)<!-- -->. |
+|  options | <code>IBooleanFlagOptions&lt;K&gt;</code> | See . |
 
 <b>Returns:</b>
 

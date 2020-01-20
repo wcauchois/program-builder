@@ -25,4 +25,4 @@ export default class ProgramWithAction<T> extends Program<T>
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [action](./program-builder.programwithaction.action.md) |  | <code>ProgramMain&lt;T&gt; &#124; undefined</code> |  |
+|  [action](./program-builder.programwithaction.action.md) |  | <code>ProgramMain&lt;T&gt;</code> |  |

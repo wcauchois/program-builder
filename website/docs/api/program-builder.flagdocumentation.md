@@ -9,7 +9,7 @@ hide_title: true
 
 ## FlagDocumentation class
 
-Encapsulates documentation about a [Flag](./program-builder.flag.md) or [ValuedFlag](./program-builder.valuedflag.md)<!-- -->.
+Encapsulates documentation about a  or [ValuedFlag](./program-builder.valuedflag.md)<!-- -->.
 
 <b>Signature:</b>
 

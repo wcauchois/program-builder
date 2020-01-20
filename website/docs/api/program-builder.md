@@ -15,8 +15,8 @@ See [ProgramBuilder](./program-builder.programbuilder.md)<!-- -->.
 |  Class | Description |
 |  --- | --- |
 |  [ArgumentError](./program-builder.argumenterror.md) |  |
-|  [Flag](./program-builder.flag.md) |  |
-|  [FlagDocumentation](./program-builder.flagdocumentation.md) | Encapsulates documentation about a [Flag](./program-builder.flag.md) or [ValuedFlag](./program-builder.valuedflag.md)<!-- -->. |
+|  [BooleanFlag](./program-builder.booleanflag.md) |  |
+|  [FlagDocumentation](./program-builder.flagdocumentation.md) | Encapsulates documentation about a  or [ValuedFlag](./program-builder.valuedflag.md)<!-- -->. |
 |  [FlagParseError](./program-builder.flagparseerror.md) |  |
 |  [PositionalArgument](./program-builder.positionalargument.md) |  |
 |  [PositionalArguments](./program-builder.positionalarguments.md) |  |
@@ -27,6 +27,7 @@ See [ProgramBuilder](./program-builder.programbuilder.md)<!-- -->.
 |  [ProgramWithAction](./program-builder.programwithaction.md) |  |
 |  [ProgramWithSubcommands](./program-builder.programwithsubcommands.md) |  |
 |  [TooManyArgumentsError](./program-builder.toomanyargumentserror.md) |  |
+|  [UnrecognizedSubcommandError](./program-builder.unrecognizedsubcommanderror.md) |  |
 |  [ValuedFlag](./program-builder.valuedflag.md) |  |
 
 ## Interfaces
@@ -34,8 +35,8 @@ See [ProgramBuilder](./program-builder.programbuilder.md)<!-- -->.
 |  Interface | Description |
 |  --- | --- |
 |  [IAnyFlag](./program-builder.ianyflag.md) |  |
-|  [IFlagMetadata](./program-builder.iflagmetadata.md) |  |
-|  [IFlagOptions](./program-builder.iflagoptions.md) |  |
+|  [IBooleanFlagMetadata](./program-builder.ibooleanflagmetadata.md) |  |
+|  [IBooleanFlagOptions](./program-builder.ibooleanflagoptions.md) |  |
 |  [IOptionalValuedFlagOptions](./program-builder.ioptionalvaluedflagoptions.md) | Extend [IValuedFlagCommonOptions](./program-builder.ivaluedflagcommonoptions.md) with the default value for a flag. |
 |  [IPositionalArgumentMetadata](./program-builder.ipositionalargumentmetadata.md) |  |
 |  [IProgramBaseOptions](./program-builder.iprogrambaseoptions.md) |  |

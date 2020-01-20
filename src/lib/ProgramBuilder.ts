@@ -18,7 +18,9 @@ import { convertString, convertInt, convertFloat } from "./converters";
 import BooleanFlag from "./BooleanFlag";
 import { Complete } from "./utils";
 import ProgramWithAction from "./ProgramWithAction";
-import ProgramWithSubcommands, { ProgramSubcommandMap } from "./ProgramWithSubcommands";
+import ProgramWithSubcommands, {
+  ProgramSubcommandMap
+} from "./ProgramWithSubcommands";
 
 export type ExtendProgramBuilderWithOptional<
   T,
@@ -40,34 +42,34 @@ export type ExtendProgramBuilderWithRequired<
  * Create a new ProgramBuilder with {@link ProgramBuilder.newBuilder}, then define flags
  * using the instance methods. Finally, call {@link ProgramBuilder.build} to get an
  * executable Program.
- * 
+ *
  * There are a few categories to configure:
- * 
+ *
  * ### Positional arguments
- * 
+ *
  * Use `arg` or `optionalArg` to define positional arguments.
- * 
+ *
  * Example:
- * 
+ *
  * ```typescript
  * const program = ProgramBuilder.newBuilder()
  *   .arg('filename', { description: 'The filename to use' })
  *   .optionalArg('extraFilename')
  *   .build();
  * ```
- * 
+ *
  * Invoked as:
- * 
+ *
  * ```
  * $ my-program foo.txt bar.txt
  * ```
- * 
+ *
  * ### Boolean flags
- * 
+ *
  * Use `flag` to define a boolean flag that is set by its presence.
- * 
+ *
  * ### Valued flags
- * 
+ *
  * Use methods like `stringFlag` and `intFlag` to define "valued" flags,
  * known as options in other CLI libraries. For these, the user must specify a value
  * immediately following the flag, like "--count 42". The value is converted to
@@ -108,10 +110,10 @@ export default class ProgramBuilder<T> extends ProgramBase {
 
   /**
    * Add a positional argument to the program.
-   * 
+   *
    * @param dest - The destination key into which the argument value will be stored.
    * @param options - See {@link IPositionalArgumentMetadata}.
-   * 
+   *
    * @remarks
    * The order in which you call `arg` on a ProgramBuilder matters.
    */
@@ -125,7 +127,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
 
   /**
    * Add an optional positional argument to the program.
-   * 
+   *
    * @param dest - The destination key into which the argument value will be stored.
    * @param options - See {@link IPositionalArgumentMetadata}.
    */
@@ -283,6 +285,12 @@ export default class ProgramBuilder<T> extends ProgramBase {
       )
     );
     return this as any;
+  }
+
+  apply<U extends T>(
+    fn: (builder: ProgramBuilder<T>) => ProgramBuilder<U>
+  ): ProgramBuilder<U> {
+    return fn(this);
   }
 
   /**

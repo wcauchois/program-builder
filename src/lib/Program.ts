@@ -7,6 +7,7 @@ import BooleanFlag from "./BooleanFlag";
 import { ProgramMain } from "./types";
 import TableWriter from "./TableWriter";
 import ArgumentParser from "./ArgumentParser";
+import ProgramHelpers from "./ProgramHelpers";
 
 /**
  * A built program that can parse arguments and execute a main function
@@ -26,20 +27,22 @@ import ArgumentParser from "./ArgumentParser";
  * ```
  */
 export default class Program<T> extends ProgramBase {
-
-  static readonly helpArgumentsSet = new Set(["-h", "--help"]);
+  private readonly helpers: ProgramHelpers;
 
   constructor(options: IProgramBaseOptions) {
     super(options);
+    this.helpers = new ProgramHelpers();
   }
 
-  generateHelpText() {
+  generateHelpText(extraUsage?: string) {
     let buffer = "";
-    const haveAnyFlags = this.valuedFlags.length > 0 || this.booleanFlags.length > 0;
+    const haveAnyFlags =
+      this.valuedFlags.length > 0 || this.booleanFlags.length > 0;
 
     // Usage
     const usageParts = [
-      path.basename(process.argv[1]),
+      this.helpers.getProgramName(),
+      extraUsage,
       haveAnyFlags ? "[options]" : undefined,
       this.positionalArguments.nonEmpty
         ? this.positionalArguments.getSpecForUsage()
@@ -66,22 +69,17 @@ export default class Program<T> extends ProgramBase {
     return buffer;
   }
 
-  private isHelpRequested(args: string[]) {
-    return args.length > 0 && Program.helpArgumentsSet.has(args[0]);
-  }
-
-  printHelp() {
-    const helpText = this.generateHelpText();
-    console.log(helpText);
-  }
-
-  async execOrThrow(main: ProgramMain<T>, rawArgs?: string[]) {
+  async execOrThrow(
+    main: ProgramMain<T>,
+    rawArgs?: string[],
+    extraUsage?: string
+  ) {
     if (!rawArgs) {
       rawArgs = process.argv.slice(2);
     }
 
-    if (this.isHelpRequested(rawArgs)) {
-      this.printHelp();
+    if (this.helpers.isHelpRequested(rawArgs)) {
+      console.log(this.generateHelpText(extraUsage));
       return;
     }
 
@@ -89,23 +87,8 @@ export default class Program<T> extends ProgramBase {
     await main(parsedArgs);
   }
 
-  private formatError(err: any) {
-    if (typeof err.message === "string") {
-      return err.message;
-    } else if (typeof err === "string") {
-      return err;
-    } else {
-      return util.inspect(err);
-    }
-  }
-
   exec(main: ProgramMain<T>, rawArgs?: string[]) {
-    this.execOrThrow(main, rawArgs)
-      .then(() => process.exit(0))
-      .catch(err => {
-        console.error(this.formatError(err));
-        process.exit(1);
-      });
+    this.helpers.execAndExit(() => this.execOrThrow(main, rawArgs));
   }
 
   parseArgs(rawArgs: string[]): T {
@@ -117,7 +100,7 @@ export default class Program<T> extends ProgramBase {
 
     parser.consumeAll(rawArgs);
     parser.validate();
-    
+
     return parser.parsedArgs as T;
   }
 }

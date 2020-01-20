@@ -15,9 +15,10 @@ class ArgumentParser {
         this.flagsByName = new Map(options.valuedFlags
             .flatMap(vflag => vflag.names.map(name => [name, vflag]))
             .concat(options.booleanFlags.flatMap(flag => flag.allNames.map(name => [name, flag]))));
-        this.requiredArgumentStack = [];
-        this.optionalArgumentStack = [];
+        this.requiredArgumentStack = options.positionalArguments.required.slice();
+        this.optionalArgumentStack = options.positionalArguments.optional.slice();
         this.unspecifiedRequiredValuedFlags = options.valuedFlags.filter(flag => flag.metadata.required);
+        this.unspecifiedBooleanFlags = options.booleanFlags;
     }
     consume(currentArg) {
         if (this.state.kind === "ConsumingValuedFlag") {
@@ -33,6 +34,7 @@ class ArgumentParser {
                 }
                 if (flag instanceof BooleanFlag_1.default) {
                     this.parsedArgs[flag.dest] = flag.isPositiveName(currentArg); // Else, it is a negative name.
+                    this.unspecifiedBooleanFlags = this.unspecifiedBooleanFlags.filter(x => x !== flag);
                 }
                 else if (flag instanceof ValuedFlag_1.default) {
                     this.state = {
@@ -63,8 +65,14 @@ class ArgumentParser {
             utils_1.expectUnreachable(this.state);
         }
     }
+    setUnspecifiedBooleanFlags() {
+        for (const flag of this.unspecifiedBooleanFlags) {
+            this.parsedArgs[flag.dest] = flag.default;
+        }
+    }
     consumeAll(args) {
         args.forEach(arg => this.consume(arg));
+        this.setUnspecifiedBooleanFlags();
     }
     validate() {
         if (this.state.kind === "ConsumingValuedFlag") {

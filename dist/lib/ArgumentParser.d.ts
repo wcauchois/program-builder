@@ -23,8 +23,10 @@ export default class ArgumentParser {
     private readonly requiredArgumentStack;
     private readonly optionalArgumentStack;
     private unspecifiedRequiredValuedFlags;
+    private unspecifiedBooleanFlags;
     constructor(options: IArgumentParserOptions);
     consume(currentArg: string): void;
+    setUnspecifiedBooleanFlags(): void;
     consumeAll(args: string[]): void;
     validate(): void;
 }

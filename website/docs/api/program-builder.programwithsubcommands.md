@@ -29,5 +29,7 @@ The constructor for this class is marked as internal. Third-party code should no
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
+|  [determineSubcommand(args)](./program-builder.programwithsubcommands.determinesubcommand.md) |  |  |
 |  [exec(rawArgs)](./program-builder.programwithsubcommands.exec.md) |  |  |
 |  [execOrThrow(rawArgs)](./program-builder.programwithsubcommands.execorthrow.md) |  |  |
+|  [generateHelpText()](./program-builder.programwithsubcommands.generatehelptext.md) |  |  |

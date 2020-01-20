@@ -135,6 +135,9 @@ class ProgramBuilder extends ProgramBase_1.default {
         this.booleanFlags.push(new BooleanFlag_1.default(options.dest, !inverted ? names : [], inverted ? [] : names, inverted, metadata, ++this.flagNumber));
         return this;
     }
+    apply(fn) {
+        return fn(this);
+    }
     /**
      * Build and return a {@link Program}.
      */

@@ -3,6 +3,7 @@
  *
  * @packageDocumentation
  */
+
 import ProgramBuilder, {
   ExtendProgramBuilderWithRequired,
   ExtendProgramBuilderWithOptional
@@ -32,7 +33,8 @@ import {
   ProgramError,
   ArgumentError,
   FlagParseError,
-  TooManyArgumentsError
+  TooManyArgumentsError,
+  UnrecognizedSubcommandError
 } from "./lib/errors";
 import FlagDocumentation from "./lib/FlagDocumentation";
 import TableWriter, { ITableWriterOptions } from "./lib/TableWriter";
@@ -48,17 +50,17 @@ export {
   IOptionalValuedFlagOptions,
   Converter,
   IRequiredValuedFlagOptions,
-  IBooleanFlagOptions as IFlagOptions,
+  IBooleanFlagOptions,
   ProgramMain,
   ProgramWithAction,
   Program,
   IProgramBaseOptions,
   ValuedFlag,
   PositionalArguments,
-  BooleanFlag as Flag,
+  BooleanFlag,
   IProgramMetadata,
   IValuedFlagCommonOptions,
-  IBooleanFlagMetadata as IFlagMetadata,
+  IBooleanFlagMetadata,
   IAnyFlag,
   IValuedFlagMetadata,
   PositionalArgument,
@@ -69,5 +71,6 @@ export {
   FlagDocumentation,
   TableWriter,
   ITableWriterOptions,
-  ProgramWithSubcommands
+  ProgramWithSubcommands,
+  UnrecognizedSubcommandError
 };

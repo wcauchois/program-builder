@@ -12,7 +12,7 @@ hide_title: true
 <b>Signature:</b>
 
 ```typescript
-execOrThrow(main: ProgramMain<T>, rawArgs?: string[]): Promise<void>;
+execOrThrow(main: ProgramMain<T>, rawArgs?: string[], extraUsage?: string): Promise<void>;
 ```
 
 ## Parameters
@@ -21,6 +21,7 @@ execOrThrow(main: ProgramMain<T>, rawArgs?: string[]): Promise<void>;
 |  --- | --- | --- |
 |  main | <code>ProgramMain&lt;T&gt;</code> |  |
 |  rawArgs | <code>string[]</code> |  |
+|  extraUsage | <code>string</code> |  |
 
 <b>Returns:</b>
 

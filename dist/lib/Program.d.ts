@@ -18,13 +18,10 @@ import { ProgramMain } from "./types";
  * ```
  */
 export default class Program<T> extends ProgramBase {
-    static readonly helpArgumentsSet: Set<string>;
+    private readonly helpers;
     constructor(options: IProgramBaseOptions);
-    generateHelpText(): string;
-    private isHelpRequested;
-    printHelp(): void;
-    execOrThrow(main: ProgramMain<T>, rawArgs?: string[]): Promise<void>;
-    private formatError;
+    generateHelpText(extraUsage?: string): string;
+    execOrThrow(main: ProgramMain<T>, rawArgs?: string[], extraUsage?: string): Promise<void>;
     exec(main: ProgramMain<T>, rawArgs?: string[]): void;
     parseArgs(rawArgs: string[]): T;
 }

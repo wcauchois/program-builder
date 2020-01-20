@@ -12,8 +12,15 @@ hide_title: true
 <b>Signature:</b>
 
 ```typescript
-generateHelpText(): string;
+generateHelpText(extraUsage?: string): string;
 ```
+
+## Parameters
+
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  extraUsage | <code>string</code> |  |
+
 <b>Returns:</b>
 
 `string`
