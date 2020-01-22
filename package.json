@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\"",
+    "format": "prettier --write \"{src,scripts}/**/*.ts\"",
     "run-example": "./scripts/run_example.sh",
     "docsonly": "node scripts/make-docs.js",
     "docs": "yarn build && yarn docsonly",
@@ -34,6 +34,7 @@
     "@microsoft/api-extractor": "^7.7.5",
     "@types/jest": "^24.9.0",
     "@types/node": "^13.1.4",
+    "escape-string-regexp": "^2.0.0",
     "fs-extra": "^8.1.0",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",

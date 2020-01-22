@@ -10,7 +10,10 @@ sidebar_label: Examples
 
 This document specifies examples of using ProgramBuilder that should exemplify common use-cases.
 
-Some examples may omit the `program.exec()` part of using ProgramBuilder.
+Sometimes an example invocation is presented using [ts-node](https://github.com/TypeStrong/ts-node)
+and assuming that the main file is called `main.ts`.
+
+import { Invocations } from "./examples_support";
 
 # Specifying your main function ahead of your builder
 
@@ -29,6 +32,7 @@ function main(args: Arguments<typeof program>) {
 }
 
 const program = ProgramBuilder.newBuilder().build();
+program.exec(main);
 ```
 
 # Positional arguments
@@ -40,6 +44,8 @@ The first argument is the destination key into which the argument value will be 
 `.arg` is used to specify required arguments. If not enough required arguments are provided
 to the program, it will exit with a non-zero code.
 
+<>{/* invoke(pos): [[], ["hello", "world"]] */}</>
+
 ```typescript
 const program = ProgramBuilder.newBuilder()
   .arg("foo")
@@ -48,8 +54,11 @@ const program = ProgramBuilder.newBuilder()
 
 program.exec(args => {
   // args: { foo: string, bar: string | undefined }
+  console.log('Args are:', args);
 });
 ```
+
+<Invocations name="pos" />
 
 # Promise-returning main functions
 
@@ -78,11 +87,20 @@ The second argument is a list of options for the flag. The only required one of 
 is `dest`, which indicates where to store the flag value within the arguments object
 that is passed to your main function.
 
+<>{/* invoke(bool): [[], ["-v"]] */}</>
+
 ```typescript
 const program = ProgramBuilder.newBuilder()
   .flag("-v,--verbose", { dest: "verbose" })
   .build();
+
+program.exec(args => {
+  // args: { verbose: boolean }
+  console.log('Args are:', args)
+});
 ```
+
+<Invocations name="bool" />
 
 # Valued flags
 
@@ -94,20 +112,21 @@ to the desired type of the flag: string, integer, etc.
 
 The typed value is then stored in the specified `dest`.
 
+<>{/* invoke(valued): [[], ["--count", "2", "--name", "bill"], ["--count", "invalid", "--name", "bob"]] */}</>
+
 ```typescript
 const program = ProgramBuilder.newBuilder()
   .intFlag("--count", { dest: "count" })
   .stringFlag("--name", { dest: "name" })
   .build();
 
-// args is typed as: { count: number, name: string }
+program.exec(args => {
+  // args: { count: number, name: string }
+  console.log('Args are:', args);
+});
 ```
 
-Example invocation:
-
-```
-$ ts-node program.ts --count 2 --name hi
-```
+<Invocations name="valued" />
 
 The current types of valued flags are:
 
@@ -129,7 +148,10 @@ const program = ProgramBuilder.newBuilder()
   .intFlag("--optionalCount", { dest: "optionalCount", default: 0 })
   .build();
 
-program.exec(args => console.log(args));
+program.exec(args => {
+  // args: { count: number, name: string }
+  console.log('Args are:', args);
+});
 ```
 
 # Adding a Description
@@ -137,11 +159,17 @@ program.exec(args => console.log(args));
 Call [`.description()`](api/program-builder.programbuilder.description.md) on a ProgramBuilder
 to set the program's description to be used in help text generation.
 
+<>{/* invoke(desc): [["-h"]] */}</>
+
 ```typescript
 const program = ProgramBuilder.newBuilder()
   .description(`My awesome program`)
   .build();
+
+program.exec(() => {});
 ```
+
+<Invocations name="desc" />
 
 # Subcommands
 
