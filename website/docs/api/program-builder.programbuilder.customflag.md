@@ -9,6 +9,8 @@ hide_title: true
 
 ## ProgramBuilder.customFlag() method
 
+Add an optional custom valued flag to the program.
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,9 +21,9 @@ customFlag<K extends string, V>(name: string, options: INullableValuedFlagOption
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  name | <code>string</code> |  |
-|  options | <code>INullableValuedFlagOptions&lt;K, V&gt;</code> |  |
-|  converter | <code>Converter&lt;V&gt;</code> |  |
+|  name | <code>string</code> | The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, <code>&quot;-i,--input&quot;</code>. |
+|  options | <code>INullableValuedFlagOptions&lt;K, V&gt;</code> | See [INullableValuedFlagOptions](./program-builder.inullablevaluedflagoptions.md)<!-- -->. |
+|  converter | <code>Converter&lt;V&gt;</code> | A [Converter](./program-builder.converter.md) capable of converting a string to the desired type. |
 
 <b>Returns:</b>
 

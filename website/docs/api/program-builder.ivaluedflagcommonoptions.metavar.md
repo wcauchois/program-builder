@@ -9,7 +9,7 @@ hide_title: true
 
 ## IValuedFlagCommonOptions.metavar property
 
-A metavariable for the flag used in help text generation. Defaults to [IValuedFlagCommonOptions.dest](./program-builder.ivaluedflagcommonoptions.dest.md)<!-- -->.
+A metavariable for the flag used in help text generation. Defaults to `dest`<!-- -->.
 
 <b>Signature:</b>
 

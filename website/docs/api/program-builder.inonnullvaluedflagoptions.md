@@ -9,6 +9,8 @@ hide_title: true
 
 ## INonNullValuedFlagOptions interface
 
+See [IValuedFlagCommonOptions](./program-builder.ivaluedflagcommonoptions.md)<!-- -->.
+
 <b>Signature:</b>
 
 ```typescript

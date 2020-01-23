@@ -23,4 +23,4 @@ export interface IValuedFlagCommonOptions<K extends string>
 |  --- | --- | --- |
 |  [description](./program-builder.ivaluedflagcommonoptions.description.md) | <code>string</code> | A description for the flag used in help text generation. |
 |  [dest](./program-builder.ivaluedflagcommonoptions.dest.md) | <code>K</code> | The destination key in the final arguments object into which this argument's value will be stored. |
-|  [metavar](./program-builder.ivaluedflagcommonoptions.metavar.md) | <code>string</code> | A metavariable for the flag used in help text generation. Defaults to [IValuedFlagCommonOptions.dest](./program-builder.ivaluedflagcommonoptions.dest.md)<!-- -->. |
+|  [metavar](./program-builder.ivaluedflagcommonoptions.metavar.md) | <code>string</code> | A metavariable for the flag used in help text generation. Defaults to <code>dest</code>. |

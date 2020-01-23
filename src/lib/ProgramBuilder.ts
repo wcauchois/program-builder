@@ -75,6 +75,21 @@ export type ExtendProgramBuilderWithRequired<
  * known as options in other CLI libraries. For these, the user must specify a value
  * immediately following the flag, like "--count 42". The value is converted to
  * a type indicated by the name of the method.
+ *
+ * ### Getting the Arguments type
+ *
+ * You can use the {@link Arguments} type helper to get the type of the arguments
+ * for a program. This is helpful if you want to define your main function separately.
+ *
+ * ```typescript
+ * const program = ProgramBuilder.newBuilder().build();
+ *
+ * function main(args: Arguments<typeof program>) {
+ *   // Do things with args.
+ * }
+ *
+ * program.exec(main);
+ * ```
  */
 export default class ProgramBuilder<T> extends ProgramBase {
   private flagNumber: number;
@@ -142,12 +157,30 @@ export default class ProgramBuilder<T> extends ProgramBase {
     return this as any;
   }
 
+  /**
+   * Add an optional custom valued flag to the program.
+   *
+   * @param name - The name for the flag, including leading dashes. Multiple alternative
+   * names may be specified by separating them within the string by commas. For example,
+   * `"-i,--input"`.
+   * @param options - See {@link INullableValuedFlagOptions}.
+   * @param converter - A {@link Converter} capable of converting a string to the desired type.
+   */
   customFlag<K extends string, V>(
     name: string,
     options: INullableValuedFlagOptions<K, V>,
     converter: Converter<V>
   ): ExtendProgramBuilderWithOptional<T, K, V>;
 
+  /**
+   * Add a required custom valued flag to the program.
+   *
+   * @param name - The name for the flag, including leading dashes. Multiple alternative
+   * names may be specified by separating them within the string by commas. For example,
+   * `"-i,--input"`.
+   * @param options - See {@link INonNullValuedFlagOptions}.
+   * @param converter - A {@link Converter} capable of converting a string to the desired type.
+   */
   customFlag<K extends string, V>(
     name: string,
     options: INonNullValuedFlagOptions<K, V>,
@@ -288,6 +321,10 @@ export default class ProgramBuilder<T> extends ProgramBase {
     return this as any;
   }
 
+  /**
+   * Apply a function to this program builder. This can be used to factor
+   * out common argument patterns.
+   */
   apply<U extends T>(
     fn: (builder: ProgramBuilder<T>) => ProgramBuilder<U>
   ): ProgramBuilder<U> {
@@ -310,7 +347,8 @@ export default class ProgramBuilder<T> extends ProgramBase {
   }
 
   /**
-   * Build a {@link ProgramWithSubcommands} using a map of {@link ProgramWithAction}s.
+   * Build a {@link ProgramWithSubcommands} using a map of {@link ProgramWithAction}s as created
+   * by calling `ProgramBuilder.bind`.
    */
   static buildWithSubcommands(
     subcommandMap: ProgramSubcommandMap,

@@ -1057,7 +1057,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "@wcauchois/program-builder!INonNullValuedFlagOptions:interface",
-          "docComment": "",
+          "docComment": "/**\n * See {@link IValuedFlagCommonOptions}.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1144,7 +1144,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "@wcauchois/program-builder!INullableValuedFlagOptions:interface",
-          "docComment": "",
+          "docComment": "/**\n * See {@link IValuedFlagCommonOptions}.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1591,7 +1591,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@wcauchois/program-builder!IValuedFlagCommonOptions#metavar:member",
-              "docComment": "/**\n * A metavariable for the flag used in help text generation. Defaults to {@link IValuedFlagCommonOptions.dest}.\n */\n",
+              "docComment": "/**\n * A metavariable for the flag used in help text generation. Defaults to `dest`.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2722,7 +2722,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@wcauchois/program-builder!ProgramBuilder:class",
-          "docComment": "/**\n * Entry point to the library and the way to start constructing a {@link Program} to be executed.\n *\n * @remarks\n *\n * Create a new ProgramBuilder with {@link ProgramBuilder.newBuilder}, then define flags using the instance methods. Finally, call {@link ProgramBuilder.build} to get an executable Program.\n *\n * There are a few categories to configure:\n *\n * ### Positional arguments\n *\n * Use `arg` or `optionalArg` to define positional arguments.\n *\n * Example:\n * ```typescript\n * const program = ProgramBuilder.newBuilder()\n *   .arg('filename', { description: 'The filename to use' })\n *   .optionalArg('extraFilename')\n *   .build();\n * ```\n *\n * Invoked as:\n * ```\n * $ my-program foo.txt bar.txt\n * ```\n *\n * ### Boolean flags\n *\n * Use `flag` to define a boolean flag that is set by its presence.\n *\n * ### Valued flags\n *\n * Use methods like `stringFlag` and `intFlag` to define \"valued\" flags, known as options in other CLI libraries. For these, the user must specify a value immediately following the flag, like \"--count 42\". The value is converted to a type indicated by the name of the method.\n */\n",
+          "docComment": "/**\n * Entry point to the library and the way to start constructing a {@link Program} to be executed.\n *\n * @remarks\n *\n * Create a new ProgramBuilder with {@link ProgramBuilder.newBuilder}, then define flags using the instance methods. Finally, call {@link ProgramBuilder.build} to get an executable Program.\n *\n * There are a few categories to configure:\n *\n * ### Positional arguments\n *\n * Use `arg` or `optionalArg` to define positional arguments.\n *\n * Example:\n * ```typescript\n * const program = ProgramBuilder.newBuilder()\n *   .arg('filename', { description: 'The filename to use' })\n *   .optionalArg('extraFilename')\n *   .build();\n * ```\n *\n * Invoked as:\n * ```\n * $ my-program foo.txt bar.txt\n * ```\n *\n * ### Boolean flags\n *\n * Use `flag` to define a boolean flag that is set by its presence.\n *\n * ### Valued flags\n *\n * Use methods like `stringFlag` and `intFlag` to define \"valued\" flags, known as options in other CLI libraries. For these, the user must specify a value immediately following the flag, like \"--count 42\". The value is converted to a type indicated by the name of the method.\n *\n * ### Getting the Arguments type\n *\n * You can use the {@link Arguments} type helper to get the type of the arguments for a program. This is helpful if you want to define your main function separately.\n * ```typescript\n * const program = ProgramBuilder.newBuilder().build();\n *\n * function main(args: Arguments<typeof program>) {\n *   // Do things with args.\n * }\n *\n * program.exec(main);\n * ```\n *\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2757,7 +2757,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#apply:member(1)",
-              "docComment": "",
+              "docComment": "/**\n * Apply a function to this program builder. This can be used to factor out common argument patterns.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3018,7 +3018,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder.buildWithSubcommands:member(1)",
-              "docComment": "/**\n * Build a {@link ProgramWithSubcommands} using a map of {@link ProgramWithAction}s.\n */\n",
+              "docComment": "/**\n * Build a {@link ProgramWithSubcommands} using a map of {@link ProgramWithAction}s as created by calling `ProgramBuilder.bind`.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3080,7 +3080,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#customFlag:member(1)",
-              "docComment": "",
+              "docComment": "/**\n * Add an optional custom valued flag to the program.\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, `\"-i,--input\"`.\n *\n * @param options - See {@link INullableValuedFlagOptions}.\n *\n * @param converter - A {@link Converter} capable of converting a string to the desired type.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3201,7 +3201,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@wcauchois/program-builder!ProgramBuilder#customFlag:member(2)",
-              "docComment": "",
+              "docComment": "/**\n * Add a required custom valued flag to the program.\n *\n * @param name - The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, `\"-i,--input\"`.\n *\n * @param options - See {@link INonNullValuedFlagOptions}.\n *\n * @param converter - A {@link Converter} capable of converting a string to the desired type.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

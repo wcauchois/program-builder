@@ -37,8 +37,8 @@ See [ProgramBuilder](./program-builder.programbuilder.md)<!-- -->.
 |  [IAnyFlag](./program-builder.ianyflag.md) |  |
 |  [IBooleanFlagMetadata](./program-builder.ibooleanflagmetadata.md) |  |
 |  [IBooleanFlagOptions](./program-builder.ibooleanflagoptions.md) |  |
-|  [INonNullValuedFlagOptions](./program-builder.inonnullvaluedflagoptions.md) |  |
-|  [INullableValuedFlagOptions](./program-builder.inullablevaluedflagoptions.md) |  |
+|  [INonNullValuedFlagOptions](./program-builder.inonnullvaluedflagoptions.md) | See [IValuedFlagCommonOptions](./program-builder.ivaluedflagcommonoptions.md)<!-- -->. |
+|  [INullableValuedFlagOptions](./program-builder.inullablevaluedflagoptions.md) | See [IValuedFlagCommonOptions](./program-builder.ivaluedflagcommonoptions.md)<!-- -->. |
 |  [IPositionalArgumentMetadata](./program-builder.ipositionalargumentmetadata.md) |  |
 |  [IProgramBaseOptions](./program-builder.iprogrambaseoptions.md) |  |
 |  [IProgramMetadata](./program-builder.iprogrammetadata.md) |  |

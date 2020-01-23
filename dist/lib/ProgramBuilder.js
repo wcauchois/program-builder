@@ -52,6 +52,21 @@ const ProgramWithSubcommands_1 = __importDefault(require("./ProgramWithSubcomman
  * known as options in other CLI libraries. For these, the user must specify a value
  * immediately following the flag, like "--count 42". The value is converted to
  * a type indicated by the name of the method.
+ *
+ * ### Getting the Arguments type
+ *
+ * You can use the {@link Arguments} type helper to get the type of the arguments
+ * for a program. This is helpful if you want to define your main function separately.
+ *
+ * ```typescript
+ * const program = ProgramBuilder.newBuilder().build();
+ *
+ * function main(args: Arguments<typeof program>) {
+ *   // Do things with args.
+ * }
+ *
+ * program.exec(main);
+ * ```
  */
 class ProgramBuilder extends ProgramBase_1.default {
     constructor(options) {
@@ -135,6 +150,10 @@ class ProgramBuilder extends ProgramBase_1.default {
         this.booleanFlags.push(new BooleanFlag_1.default(options.dest, !inverted ? names : [], inverted ? [] : names, inverted, metadata, ++this.flagNumber));
         return this;
     }
+    /**
+     * Apply a function to this program builder. This can be used to factor
+     * out common argument patterns.
+     */
     apply(fn) {
         return fn(this);
     }
@@ -152,7 +171,8 @@ class ProgramBuilder extends ProgramBase_1.default {
         return new ProgramWithAction_1.default(this, action);
     }
     /**
-     * Build a {@link ProgramWithSubcommands} using a map of {@link ProgramWithAction}s.
+     * Build a {@link ProgramWithSubcommands} using a map of {@link ProgramWithAction}s as created
+     * by calling `ProgramBuilder.bind`.
      */
     static buildWithSubcommands(subcommandMap, metadata = {}) {
         return new ProgramWithSubcommands_1.default(subcommandMap, metadata);

@@ -9,7 +9,7 @@ hide_title: true
 
 ## ProgramBuilder.buildWithSubcommands() method
 
-Build a [ProgramWithSubcommands](./program-builder.programwithsubcommands.md) using a map of [ProgramWithAction](./program-builder.programwithaction.md)<!-- -->s.
+Build a [ProgramWithSubcommands](./program-builder.programwithsubcommands.md) using a map of [ProgramWithAction](./program-builder.programwithaction.md)<!-- -->s as created by calling `ProgramBuilder.bind`<!-- -->.
 
 <b>Signature:</b>
 

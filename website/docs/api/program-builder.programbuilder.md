@@ -50,17 +50,32 @@ Use `flag` to define a boolean flag that is set by its presence.
 
 Use methods like `stringFlag` and `intFlag` to define "valued" flags, known as options in other CLI libraries. For these, the user must specify a value immediately following the flag, like "--count 42". The value is converted to a type indicated by the name of the method.
 
+### Getting the Arguments type
+
+You can use the [Arguments](./program-builder.arguments.md) type helper to get the type of the arguments for a program. This is helpful if you want to define your main function separately.
+
+```typescript
+const program = ProgramBuilder.newBuilder().build();
+
+function main(args: Arguments<typeof program>) {
+  // Do things with args.
+}
+
+program.exec(main);
+
+```
+
 ## Methods
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [apply(fn)](./program-builder.programbuilder.apply.md) |  |  |
+|  [apply(fn)](./program-builder.programbuilder.apply.md) |  | Apply a function to this program builder. This can be used to factor out common argument patterns. |
 |  [arg(dest, options)](./program-builder.programbuilder.arg.md) |  | Add a positional argument to the program. |
 |  [bind(action)](./program-builder.programbuilder.bind.md) |  | Bind the ProgramBuilder to an action and return a [ProgramWithAction](./program-builder.programwithaction.md) suitable for use constructing subcommands. |
 |  [build()](./program-builder.programbuilder.build.md) |  | Build and return a [Program](./program-builder.program.md)<!-- -->. |
-|  [buildWithSubcommands(subcommandMap, metadata)](./program-builder.programbuilder.buildwithsubcommands.md) | <code>static</code> | Build a [ProgramWithSubcommands](./program-builder.programwithsubcommands.md) using a map of [ProgramWithAction](./program-builder.programwithaction.md)<!-- -->s. |
-|  [customFlag(name, options, converter)](./program-builder.programbuilder.customflag.md) |  |  |
-|  [customFlag(name, options, converter)](./program-builder.programbuilder.customflag_1.md) |  |  |
+|  [buildWithSubcommands(subcommandMap, metadata)](./program-builder.programbuilder.buildwithsubcommands.md) | <code>static</code> | Build a [ProgramWithSubcommands](./program-builder.programwithsubcommands.md) using a map of [ProgramWithAction](./program-builder.programwithaction.md)<!-- -->s as created by calling <code>ProgramBuilder.bind</code>. |
+|  [customFlag(name, options, converter)](./program-builder.programbuilder.customflag.md) |  | Add an optional custom valued flag to the program. |
+|  [customFlag(name, options, converter)](./program-builder.programbuilder.customflag_1.md) |  | Add a required custom valued flag to the program. |
 |  [description(newDescription)](./program-builder.programbuilder.description.md) |  | Set the program description. |
 |  [flag(name, options)](./program-builder.programbuilder.flag.md) |  | Add a boolean-valued flag to the program (sometimes known as a "switch"). |
 |  [floatFlag(name, options)](./program-builder.programbuilder.floatflag.md) |  | Add an optional valued flag to the program. |

@@ -28,13 +28,19 @@ export interface IValuedFlagCommonOptions<K extends string> {
     description?: string;
     /**
      * A metavariable for the flag used in help text generation. Defaults
-     * to {@link IValuedFlagCommonOptions.dest}.
+     * to `dest`.
      */
     metavar?: string;
 }
+/**
+ * See {@link IValuedFlagCommonOptions}.
+ */
 export interface INonNullValuedFlagOptions<K extends string, V> extends IValuedFlagCommonOptions<K> {
     default?: V;
 }
+/**
+ * See {@link IValuedFlagCommonOptions}.
+ */
 export interface INullableValuedFlagOptions<K extends string, V> extends IValuedFlagCommonOptions<K> {
     default: null;
 }

@@ -9,6 +9,8 @@ hide_title: true
 
 ## ProgramBuilder.apply() method
 
+Apply a function to this program builder. This can be used to factor out common argument patterns.
+
 <b>Signature:</b>
 
 ```typescript
