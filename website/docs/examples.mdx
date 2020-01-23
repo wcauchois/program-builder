@@ -4,8 +4,6 @@ title: Examples
 sidebar_label: Examples
 ---
 
-# Table of Contents
-
 # Introduction
 
 This document specifies examples of using ProgramBuilder that should exemplify common use-cases.
@@ -15,7 +13,7 @@ and assuming that the main file is called `main.ts`.
 
 import { Invocations } from "./examples_support";
 
-# Positional arguments
+## Positional arguments
 
 Positional arguments are specified using the `.arg` or `.optionalArg` methods.
 
@@ -40,7 +38,7 @@ program.exec(args => {
 
 <Invocations name="pos" />
 
-# Promise-returning main functions
+## Promise-returning main functions
 
 The function that you pass to `exec` can be an `async` or Promise-returning function.
 
@@ -55,7 +53,7 @@ program.exec(async args => {
 });
 ```
 
-# Specifying your main function ahead of your builder
+## Specifying your main function ahead of your builder
 
 If you call `program.exec` with a lambda, its `args` argument will automatically assume
 the correct type of the program's arguments.
@@ -75,7 +73,7 @@ const program = ProgramBuilder.newBuilder().build();
 program.exec(main);
 ```
 
-# Boolean flags
+## Boolean flags
 
 Use `.flag()` to specify a boolean flag. The first argument is the name of the flag,
 including leading dashes (ex: `"--count"`).
@@ -102,7 +100,7 @@ program.exec(args => {
 
 <Invocations name="bool" />
 
-# Valued flags
+## Valued flags
 
 Flags can also take on a value, which the user specifies by providing a string
 immediately succeeding the flag on the commandline.
@@ -136,7 +134,7 @@ The current types of valued flags are:
 - [`customFlag`](api/program-builder.programbuilder.customflag.md) – allows you to provide your own
   converter function from a string to your custom type.
 
-# Optional vs Required Flags
+## Optional vs Required Flags
 
 Valued flags are required unless a `default` is specified. If a required flag
 isn't provided, the program will exit with a non-zero return code.
@@ -165,7 +163,7 @@ program.exec(args => {
 
 <Invocations name="opt_vs_required" />
 
-# Adding descriptions
+## Adding descriptions
 
 Call [`.description()`](api/program-builder.programbuilder.description.md) on a ProgramBuilder
 to set the program's description to be used in help text generation.
@@ -188,7 +186,7 @@ program.exec(() => {});
 
 <Invocations name="desc" />
 
-# Custom flags
+## Custom flags
 
 For valued flags, you may also provide your own custom converter function from a
 string into your desired type.
@@ -224,7 +222,7 @@ program.exec(args => {
 
 <Invocations name="custom" />
 
-# Subcommands
+## Subcommands
 
 Use [`ProgramBuilder.buildWithSubcommands`](api/program-builder.programbuilder.buildwithsubcommands.md)
 to create a program with multiple sub-commands. This accepts a map from subcommand name to a
