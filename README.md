@@ -8,7 +8,13 @@ This is a TypeScript-first library for building type safe command-line interface
 
 You define your arguments and keyword arguments using a fluent [builder](https://en.wikipedia.org/wiki/Builder_pattern), which gives you a `Program` object. You can then define a `main` function in terms of the strongly typed arguments of that `Program`, and finally execute the main function against your program which will parse and provide commandline arguments.
 
-[Documentation Website](https://program-builder.js.org) | [API Docs](https://program-builder.js.org/docs/api/program-builder)
+[Documentation Website](https://program-builder.js.org) | [Examples](https://program-builder.js.org/docs/examples) | [API Docs](https://program-builder.js.org/docs/api/program-builder)
+
+## Installation
+
+```
+npm install @wcauchois/program-builder
+```
 
 ## Features
 
