@@ -178,7 +178,7 @@ Add a `description` key to the options for a flag or an argument to set a descri
 const program = ProgramBuilder.newBuilder()
   .description(`My awesome program`)
   .arg('filename', { description: `Awesome description of a filename` })
-  .arg('optarg', { description: `This argument is optional` })
+  .optionalArg('optarg', { description: `This argument is optional` })
   .flag('--enable', { dest: 'enable', description: `Awesome description of the --enable flag` })
   .flag('--longboi', { dest: 'longboi', description: `Text is automatically wrapped. Text is automatically wrapped. Text is automatically wrapped. Text is automatically wrapped.` })
   .build();
