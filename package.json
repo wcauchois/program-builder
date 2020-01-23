@@ -14,7 +14,7 @@
     "gen-examples": "ts-node scripts/generateExampleInvocations.ts"
   },
   "types": "dist/index.d.ts",
-  "homepage": "https://program-builder.netlify.com",
+  "homepage": "https://program-builder.js.org",
   "repository": {
     "type": "git",
     "url": "https://github.com/wcauchois/program-builder.git"
