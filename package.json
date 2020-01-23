@@ -1,6 +1,6 @@
 {
   "name": "@wcauchois/program-builder",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "scripts": {
     "build": "rm -rf dist && tsc && rm -rf dist/{examples,scripts} && mv dist/src/* dist/ && rmdir dist/src",
