@@ -23,3 +23,7 @@ function rightPad(s, n) {
     return r;
 }
 exports.rightPad = rightPad;
+function getSurroundingChars(required) {
+    return required ? ["<", ">"] : ["[", "]"];
+}
+exports.getSurroundingChars = getSurroundingChars;

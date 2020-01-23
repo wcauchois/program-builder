@@ -27,4 +27,15 @@ export default class PositionalArguments {
       .concat(this.optional.map(x => `[${x.destOrMetavar}]`))
       .join(" ");
   }
+
+  get haveAnyDescription() {
+    return (
+      this.required.some(arg => arg.description) ||
+      this.optional.some(arg => arg.description)
+    );
+  }
+
+  get all() {
+    return this.required.concat(this.optional);
+  }
 }

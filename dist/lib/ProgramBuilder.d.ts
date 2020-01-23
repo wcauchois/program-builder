@@ -1,10 +1,10 @@
 import ProgramBase from "./ProgramBase";
 import Program from "./Program";
-import { IRequiredValuedFlagOptions, IOptionalValuedFlagOptions, IPositionalArgumentMetadata, Converter, IBooleanFlagOptions, ProgramMain } from "./types";
+import { INonNullValuedFlagOptions, INullableValuedFlagOptions, IPositionalArgumentMetadata, Converter, IBooleanFlagOptions, ProgramMain, IProgramWithSubcommandsMetadata } from "./types";
 import ProgramWithAction from "./ProgramWithAction";
 import ProgramWithSubcommands, { ProgramSubcommandMap } from "./ProgramWithSubcommands";
 export declare type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<T & {
-    [P in K]?: U;
+    [P in K]: U | null;
 }>;
 export declare type ExtendProgramBuilderWithRequired<T, K extends string, U> = ProgramBuilder<T & {
     [P in K]: U;
@@ -78,42 +78,42 @@ export default class ProgramBuilder<T> extends ProgramBase {
      * @param options - See {@link IPositionalArgumentMetadata}.
      */
     optionalArg<K extends string>(dest: K, options?: IPositionalArgumentMetadata): ExtendProgramBuilderWithOptional<T, K, string>;
-    customFlag<K extends string, V>(name: string, options: IOptionalValuedFlagOptions<K, V>, converter: Converter<V>): ExtendProgramBuilderWithOptional<T, K, V>;
-    customFlag<K extends string, V>(name: string, options: IRequiredValuedFlagOptions<K, V>, converter: Converter<V>): ExtendProgramBuilderWithRequired<T, K, V>;
+    customFlag<K extends string, V>(name: string, options: INullableValuedFlagOptions<K, V>, converter: Converter<V>): ExtendProgramBuilderWithOptional<T, K, V>;
+    customFlag<K extends string, V>(name: string, options: INonNullValuedFlagOptions<K, V>, converter: Converter<V>): ExtendProgramBuilderWithRequired<T, K, V>;
     /**
      * Add an optional valued flag to the program.
      *
      * @param name - The name for the flag, including leading dashes. Multiple alternative
      * names may be specified by separating them within the string by commas. For example,
      * `"-i,--input"`.
-     * @param options - See {@link IOptionalValuedFlagOptions}.
+     * @param options - See {@link INullableValuedFlagOptions}.
      */
-    stringFlag<K extends string>(name: string, options: IOptionalValuedFlagOptions<K, string>): ExtendProgramBuilderWithOptional<T, K, string>;
+    stringFlag<K extends string>(name: string, options: INullableValuedFlagOptions<K, string>): ExtendProgramBuilderWithOptional<T, K, string>;
     /**
      * Add a required valued flag to the program.
      *
      * @param name - The name for the flag, including leading dashes. Multiple alternative
      * names may be specified by separating them within the string by commas. For example,
      * `"-i,--input"`.
-     * @param options - See {@link IRequiredValuedFlagOptions}.
+     * @param options - See {@link INonNullValuedFlagOptions}.
      */
-    stringFlag<K extends string>(name: string, options: IRequiredValuedFlagOptions<K, string>): ExtendProgramBuilderWithRequired<T, K, string>;
+    stringFlag<K extends string>(name: string, options: INonNullValuedFlagOptions<K, string>): ExtendProgramBuilderWithRequired<T, K, string>;
     /**
      * {@inheritdoc ProgramBuilder.(stringFlag:1)}
      */
-    intFlag<K extends string>(name: string, options: IOptionalValuedFlagOptions<K, number>): ExtendProgramBuilderWithOptional<T, K, number>;
+    intFlag<K extends string>(name: string, options: INullableValuedFlagOptions<K, number>): ExtendProgramBuilderWithOptional<T, K, number>;
     /**
      * {@inheritdoc ProgramBuilder.(stringFlag:2)}
      */
-    intFlag<K extends string>(name: string, options: IRequiredValuedFlagOptions<K, number>): ExtendProgramBuilderWithRequired<T, K, number>;
+    intFlag<K extends string>(name: string, options: INonNullValuedFlagOptions<K, number>): ExtendProgramBuilderWithRequired<T, K, number>;
     /**
      * {@inheritdoc ProgramBuilder.(stringFlag:1)}
      */
-    floatFlag<K extends string>(name: string, options: IOptionalValuedFlagOptions<K, number>): ExtendProgramBuilderWithOptional<T, K, number>;
+    floatFlag<K extends string>(name: string, options: INullableValuedFlagOptions<K, number>): ExtendProgramBuilderWithOptional<T, K, number>;
     /**
      * {@inheritdoc ProgramBuilder.(stringFlag:2)}
      */
-    floatFlag<K extends string>(name: string, options: IRequiredValuedFlagOptions<K, number>): ExtendProgramBuilderWithRequired<T, K, number>;
+    floatFlag<K extends string>(name: string, options: INonNullValuedFlagOptions<K, number>): ExtendProgramBuilderWithRequired<T, K, number>;
     /**
      * Add a boolean-valued flag to the program (sometimes known as a "switch").
      *
@@ -136,7 +136,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
     /**
      * Build a {@link ProgramWithSubcommands} using a map of {@link ProgramWithAction}s.
      */
-    static buildWithSubcommands(subcommandMap: ProgramSubcommandMap): ProgramWithSubcommands;
+    static buildWithSubcommands(subcommandMap: ProgramSubcommandMap, metadata?: IProgramWithSubcommandsMetadata): ProgramWithSubcommands;
     /**
      * Create a new ProgramBuilder instance.
      */

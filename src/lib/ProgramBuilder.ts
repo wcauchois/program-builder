@@ -4,13 +4,14 @@ import Program from "./Program";
 import {
   ValuedFlagOptions,
   IValuedFlagMetadata,
-  IRequiredValuedFlagOptions,
-  IOptionalValuedFlagOptions,
+  INonNullValuedFlagOptions,
+  INullableValuedFlagOptions,
   IPositionalArgumentMetadata,
   Converter,
   IBooleanFlagOptions,
   IBooleanFlagMetadata,
-  ProgramMain
+  ProgramMain,
+  IProgramWithSubcommandsMetadata
 } from "./types";
 import ValuedFlag from "./ValuedFlag";
 import PositionalArguments from "./PositionalArguments";
@@ -26,7 +27,7 @@ export type ExtendProgramBuilderWithOptional<
   T,
   K extends string,
   U
-> = ProgramBuilder<T & { [P in K]?: U }>;
+> = ProgramBuilder<T & { [P in K]: U | null }>;
 
 export type ExtendProgramBuilderWithRequired<
   T,
@@ -121,7 +122,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
     dest: K,
     options: IPositionalArgumentMetadata = {}
   ): ExtendProgramBuilderWithRequired<T, K, string> {
-    this.positionalArguments.push(new PositionalArgument(dest, options));
+    this.positionalArguments.push(new PositionalArgument(dest, options, true));
     return this as any;
   }
 
@@ -136,20 +137,20 @@ export default class ProgramBuilder<T> extends ProgramBase {
     options: IPositionalArgumentMetadata = {}
   ): ExtendProgramBuilderWithOptional<T, K, string> {
     this.positionalArguments.pushOptional(
-      new PositionalArgument(dest, options)
+      new PositionalArgument(dest, options, false)
     );
     return this as any;
   }
 
   customFlag<K extends string, V>(
     name: string,
-    options: IOptionalValuedFlagOptions<K, V>,
+    options: INullableValuedFlagOptions<K, V>,
     converter: Converter<V>
   ): ExtendProgramBuilderWithOptional<T, K, V>;
 
   customFlag<K extends string, V>(
     name: string,
-    options: IRequiredValuedFlagOptions<K, V>,
+    options: INonNullValuedFlagOptions<K, V>,
     converter: Converter<V>
   ): ExtendProgramBuilderWithRequired<T, K, V>;
 
@@ -178,11 +179,11 @@ export default class ProgramBuilder<T> extends ProgramBase {
    * @param name - The name for the flag, including leading dashes. Multiple alternative
    * names may be specified by separating them within the string by commas. For example,
    * `"-i,--input"`.
-   * @param options - See {@link IOptionalValuedFlagOptions}.
+   * @param options - See {@link INullableValuedFlagOptions}.
    */
   stringFlag<K extends string>(
     name: string,
-    options: IOptionalValuedFlagOptions<K, string>
+    options: INullableValuedFlagOptions<K, string>
   ): ExtendProgramBuilderWithOptional<T, K, string>;
 
   /**
@@ -191,11 +192,11 @@ export default class ProgramBuilder<T> extends ProgramBase {
    * @param name - The name for the flag, including leading dashes. Multiple alternative
    * names may be specified by separating them within the string by commas. For example,
    * `"-i,--input"`.
-   * @param options - See {@link IRequiredValuedFlagOptions}.
+   * @param options - See {@link INonNullValuedFlagOptions}.
    */
   stringFlag<K extends string>(
     name: string,
-    options: IRequiredValuedFlagOptions<K, string>
+    options: INonNullValuedFlagOptions<K, string>
   ): ExtendProgramBuilderWithRequired<T, K, string>;
 
   stringFlag<K extends string>(
@@ -210,7 +211,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
    */
   intFlag<K extends string>(
     name: string,
-    options: IOptionalValuedFlagOptions<K, number>
+    options: INullableValuedFlagOptions<K, number>
   ): ExtendProgramBuilderWithOptional<T, K, number>;
 
   /**
@@ -218,7 +219,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
    */
   intFlag<K extends string>(
     name: string,
-    options: IRequiredValuedFlagOptions<K, number>
+    options: INonNullValuedFlagOptions<K, number>
   ): ExtendProgramBuilderWithRequired<T, K, number>;
 
   intFlag<K extends string>(
@@ -233,7 +234,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
    */
   floatFlag<K extends string>(
     name: string,
-    options: IOptionalValuedFlagOptions<K, number>
+    options: INullableValuedFlagOptions<K, number>
   ): ExtendProgramBuilderWithOptional<T, K, number>;
 
   /**
@@ -241,7 +242,7 @@ export default class ProgramBuilder<T> extends ProgramBase {
    */
   floatFlag<K extends string>(
     name: string,
-    options: IRequiredValuedFlagOptions<K, number>
+    options: INonNullValuedFlagOptions<K, number>
   ): ExtendProgramBuilderWithRequired<T, K, number>;
 
   floatFlag<K extends string>(
@@ -311,8 +312,11 @@ export default class ProgramBuilder<T> extends ProgramBase {
   /**
    * Build a {@link ProgramWithSubcommands} using a map of {@link ProgramWithAction}s.
    */
-  static buildWithSubcommands(subcommandMap: ProgramSubcommandMap) {
-    return new ProgramWithSubcommands(subcommandMap);
+  static buildWithSubcommands(
+    subcommandMap: ProgramSubcommandMap,
+    metadata: IProgramWithSubcommandsMetadata = {}
+  ) {
+    return new ProgramWithSubcommands(subcommandMap, metadata);
   }
 
   /**

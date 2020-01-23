@@ -3,3 +3,8 @@ src
 api
 website
 examples
+scripts
+Dockerfile
+docker-compose.yml
+netlify.toml
+jest.config.ts

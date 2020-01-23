@@ -10,30 +10,10 @@ sidebar_label: Examples
 
 This document specifies examples of using ProgramBuilder that should exemplify common use-cases.
 
-Sometimes an example invocation is presented using [ts-node](https://github.com/TypeStrong/ts-node)
+Example invocations of the CLI program are presented using [ts-node](https://github.com/TypeStrong/ts-node)
 and assuming that the main file is called `main.ts`.
 
 import { Invocations } from "./examples_support";
-
-# Specifying your main function ahead of your builder
-
-If you call `program.exec` with a lambda, its `args` argument will automatically assume
-the correct type of the program's arguments.
-
-However, if you want to specify your main function separately, you must use the
-`Arguments<T>` type helper and pass `typeof program`.
-
-`typeof` returns the TypeScript type of a variable, and the `Arguments` helper
-(part of ProgramBuilder) unwraps the arguments type from a `Program` object.
-
-```typescript
-function main(args: Arguments<typeof program>) {
-  // Do stuff
-}
-
-const program = ProgramBuilder.newBuilder().build();
-program.exec(main);
-```
 
 # Positional arguments
 
@@ -44,7 +24,7 @@ The first argument is the destination key into which the argument value will be 
 `.arg` is used to specify required arguments. If not enough required arguments are provided
 to the program, it will exit with a non-zero code.
 
-<>{/* invoke(pos): [[], ["hello", "world"]] */}</>
+<>{/* #invoke(pos): [[], ["hello"], ["hello", "world"]] */}</>
 
 ```typescript
 const program = ProgramBuilder.newBuilder()
@@ -53,7 +33,7 @@ const program = ProgramBuilder.newBuilder()
   .build();
 
 program.exec(args => {
-  // args: { foo: string, bar: string | undefined }
+  // args: { foo: string, bar: string | null }
   console.log('Args are:', args);
 });
 ```
@@ -75,6 +55,26 @@ program.exec(async args => {
 });
 ```
 
+# Specifying your main function ahead of your builder
+
+If you call `program.exec` with a lambda, its `args` argument will automatically assume
+the correct type of the program's arguments.
+
+However, if you want to specify your main function separately, you must use the
+`Arguments<T>` type helper and pass `typeof program`.
+
+`typeof` returns the TypeScript type of a variable, and the `Arguments` helper
+(part of ProgramBuilder) unwraps the arguments type from a `Program` object.
+
+```typescript
+function main(args: Arguments<typeof program>) {
+  // Do stuff
+}
+
+const program = ProgramBuilder.newBuilder().build();
+program.exec(main);
+```
+
 # Boolean flags
 
 Use `.flag()` to specify a boolean flag. The first argument is the name of the flag,
@@ -87,7 +87,7 @@ The second argument is a list of options for the flag. The only required one of 
 is `dest`, which indicates where to store the flag value within the arguments object
 that is passed to your main function.
 
-<>{/* invoke(bool): [[], ["-v"]] */}</>
+<>{/* #invoke(bool): [[], ["-v"]] */}</>
 
 ```typescript
 const program = ProgramBuilder.newBuilder()
@@ -112,7 +112,7 @@ to the desired type of the flag: string, integer, etc.
 
 The typed value is then stored in the specified `dest`.
 
-<>{/* invoke(valued): [[], ["--count", "2", "--name", "bill"], ["--count", "invalid", "--name", "bob"]] */}</>
+<>{/* #invoke(valued): [[], ["--count", "2", "--name", "bill"], ["--count", "invalid", "--name", "bob"]] */}</>
 
 ```typescript
 const program = ProgramBuilder.newBuilder()
@@ -139,31 +139,48 @@ The current types of valued flags are:
 # Optional vs Required Flags
 
 Valued flags are required unless a `default` is specified. If a required flag
-isn't provided, the program will exit with a non-zero return code. Required flags
-will be typed as non-undefined, whereas optional flags will be typed as `type | undefined`.
+isn't provided, the program will exit with a non-zero return code.
+
+The default may be `null`, in which case the flag is typed as `T | null`, or it
+may be a value of the appropriate type, in which case that value will be assumed
+in the case that the flag is omitted.
+
+In help text, required flags are denoted by surrounding the variable in `<braces>`,
+whereas optional flags are denoted by surrounding the variable in `[brackets]`.
+
+<>{/* #invoke(opt_vs_required): [[], ["-a", "1"], ["-h"]] */}</>
 
 ```typescript
 const program = ProgramBuilder.newBuilder()
-  .intFlag("--count", { dest: "count" })
-  .intFlag("--optionalCount", { dest: "optionalCount", default: 0 })
+  .intFlag('-a', { dest: 'a' })
+  .intFlag('-b', { dest: 'b', default: 0 })
+  .intFlag('-c', { dest: 'c', default: null })
   .build();
 
 program.exec(args => {
-  // args: { count: number, name: string }
+  // args: { a: number, b: number, c: number | null }
   console.log('Args are:', args);
 });
 ```
 
-# Adding a Description
+<Invocations name="opt_vs_required" />
+
+# Adding descriptions
 
 Call [`.description()`](api/program-builder.programbuilder.description.md) on a ProgramBuilder
 to set the program's description to be used in help text generation.
 
-<>{/* invoke(desc): [["-h"]] */}</>
+Add a `description` key to the options for a flag or an argument to set a description there.
+
+<>{/* #invoke(desc): [["-h"]] */}</>
 
 ```typescript
 const program = ProgramBuilder.newBuilder()
   .description(`My awesome program`)
+  .arg('filename', { description: `Awesome description of a filename` })
+  .arg('optarg', { description: `This argument is optional` })
+  .flag('--enable', { dest: 'enable', description: `Awesome description of the --enable flag` })
+  .flag('--longboi', { dest: 'longboi', description: `Text is automatically wrapped. Text is automatically wrapped. Text is automatically wrapped. Text is automatically wrapped.` })
   .build();
 
 program.exec(() => {});
@@ -171,19 +188,61 @@ program.exec(() => {});
 
 <Invocations name="desc" />
 
+# Custom flags
+
+For valued flags, you may also provide your own custom converter function from a
+string into your desired type.
+
+This is how `intFlag` and `floatFlag`, etc are implemented.
+
+To activate this functionality, use the `customFlag` method, which is similar to
+the other methods but takes a third argument which is a converter function.
+
+The converter function should adhere to the [Converter](api/program-builder.converter.md)
+type's signature — it takes in two arguments, the string input and the argument name,
+and returns the converted value.
+
+If the input is invalid, you should throw an `Error` and use the `argName` to enrich
+your error message.
+
+The return type of the converter (`<T>`) will be added to the `ProgramBuilder`'s type.
+
+<>{/* #invoke(custom): [["--jsonInput", "{\"hello\": \"world\"}"]] */}</>
+
+```typescript
+const jsonConverter: Converter<any> = (input, argName) => JSON.parse(input);
+
+const program = ProgramBuilder.newBuilder()
+  .customFlag('--jsonInput', { dest: 'json' }, jsonConverter)
+  .build();
+
+program.exec(args => {
+  // args: { json: any }
+  console.log('Args are:', args);
+});
+```
+
+<Invocations name="custom" />
+
 # Subcommands
 
-Use `ProgramBuilder.buildWithSubcommands` to create a program with multiple sub-commands.
-This accepts a map from subcommand name to a `ProgramWithAction` representing the subcommand
+Use [`ProgramBuilder.buildWithSubcommands`](api/program-builder.programbuilder.buildwithsubcommands.md)
+to create a program with multiple sub-commands. This accepts a map from subcommand name to a
+[`ProgramWithAction`](api/program-builder.programwithaction.md) representing the subcommand
 flags and the action to be performed when executing the subcommand.
 
-A `ProgramWithAction` can be created by calling `.bind()` on a `ProgramBuilder` instead of
-`.build()`. `.bind()` accepts a `MainFunction` as its argument, indicating the function to be
-called when that subcommand is specified.
+A `ProgramWithAction` can be created by calling [`.bind()`](website/docs/api/program-builder.programbuilder.bind.md)
+on a `ProgramBuilder` instead of `.build()`. `.bind()` accepts a `MainFunction` as its argument,
+indicating the function to be called when that subcommand is specified.
 
 The map can be multiply nested, for subcommands that have child-subcommands which are separated
 by spaces. For example `{nested: {subcommand: someProgram}}` would result in a subcommand named
 `"nested subcommand"`.
+
+The second argument to `buildWithSubcommands` is an optional metadata object which can contain,
+for example, the overall program description.
+
+<>{/* #invoke(subcommand): [["-h"], ["generate", "-h"], ["generate", "foo.txt"], ["this", "is", "nested", "-h"], ["this", "is", "nested", "-x"]] */}</>
 
 ```typescript
 function generateMain(args: Arguments<typeof generate>) {
@@ -219,9 +278,13 @@ const program = ProgramBuilder.buildWithSubcommands({
       nested
     }
   }
+}, {
+  description: `A description of my subcommand`
 });
 
 // Execute the program. Note this doesn't take a main function, like
 // a normal Program.exec().
 program.exec();
 ```
+
+<Invocations name="subcommand" />

@@ -19,12 +19,19 @@ class ValuedFlag {
         this.metadata = metadata;
         this.order = order;
     }
+    get default() {
+        return this.metadata.default;
+    }
+    get required() {
+        return this.metadata.required;
+    }
     get firstName() {
         return this.names[0];
     }
     getDocumentation() {
-        const nameSpec = `${this.names.join(", ")} [${this.metadata.metavar ||
-            this.dest}]`;
+        const [lchar, rchar] = utils_1.getSurroundingChars(this.required);
+        const nameSpec = `${this.names.join(", ")} ${lchar}${this.metadata
+            .metavar || this.dest}${rchar}`;
         return new FlagDocumentation_1.default(nameSpec, this.metadata.description);
     }
 }

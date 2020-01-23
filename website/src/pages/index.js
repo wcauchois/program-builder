@@ -19,7 +19,7 @@ const features = [
         <CodeBlock type="typescript">
           {`args: {
   filename: string;
-  count: number | undefined;
+  count: number | null;
   force: boolean;
   quiet: boolean;
 }`}

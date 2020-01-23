@@ -39,26 +39,19 @@ export interface IValuedFlagCommonOptions<K extends string> {
   metavar?: string;
 }
 
-export interface IRequiredValuedFlagOptions<K extends string, V>
+export interface INonNullValuedFlagOptions<K extends string, V>
   extends IValuedFlagCommonOptions<K> {
-  default?: undefined;
+  default?: V;
 }
 
-/**
- * Extend {@link IValuedFlagCommonOptions} with the default value
- * for a flag.
- */
-export interface IOptionalValuedFlagOptions<K extends string, V>
+export interface INullableValuedFlagOptions<K extends string, V>
   extends IValuedFlagCommonOptions<K> {
-  /**
-   * The default value for the flag.
-   */
-  default: V;
+  default: null;
 }
 
 export type ValuedFlagOptions<K extends string, V> =
-  | IRequiredValuedFlagOptions<K, V>
-  | IOptionalValuedFlagOptions<K, V>;
+  | INonNullValuedFlagOptions<K, V>
+  | INullableValuedFlagOptions<K, V>;
 
 export interface IProgramMetadata {
   description?: string;
@@ -78,3 +71,7 @@ export interface IAnyFlag {
 }
 
 export type ProgramMain<T> = ((args: T) => Promise<void>) | ((args: T) => void);
+
+export interface IProgramWithSubcommandsMetadata {
+  description?: string;
+}

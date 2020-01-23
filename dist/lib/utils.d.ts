@@ -15,3 +15,4 @@ export declare type Complete<T> = {
 export declare function isFlag(arg: string): boolean;
 export declare function expectUnreachable(x: never): void;
 export declare function rightPad(s: string, n: number): string;
+export declare function getSurroundingChars(required: boolean): [string, string];

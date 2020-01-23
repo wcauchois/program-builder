@@ -12,16 +12,17 @@ import { Arguments } from "./lib/arguments";
 import ProgramBase, { IProgramBaseOptions } from "./lib/ProgramBase";
 import {
   IPositionalArgumentMetadata,
-  IOptionalValuedFlagOptions,
+  INullableValuedFlagOptions,
   Converter,
-  IRequiredValuedFlagOptions,
+  INonNullValuedFlagOptions,
   IBooleanFlagOptions,
   ProgramMain,
   IProgramMetadata,
   IValuedFlagCommonOptions,
   IValuedFlagMetadata,
   IAnyFlag,
-  IBooleanFlagMetadata
+  IBooleanFlagMetadata,
+  IProgramWithSubcommandsMetadata
 } from "./lib/types";
 import ProgramWithAction from "./lib/ProgramWithAction";
 import Program from "./lib/Program";
@@ -38,7 +39,9 @@ import {
 } from "./lib/errors";
 import FlagDocumentation from "./lib/FlagDocumentation";
 import TableWriter, { ITableWriterOptions } from "./lib/TableWriter";
-import ProgramWithSubcommands from "./lib/ProgramWithSubcommands";
+import ProgramWithSubcommands, {
+  ProgramSubcommandMap
+} from "./lib/ProgramWithSubcommands";
 
 export {
   ProgramBuilder,
@@ -47,9 +50,9 @@ export {
   IPositionalArgumentMetadata,
   ExtendProgramBuilderWithRequired,
   ExtendProgramBuilderWithOptional,
-  IOptionalValuedFlagOptions,
+  INullableValuedFlagOptions,
   Converter,
-  IRequiredValuedFlagOptions,
+  INonNullValuedFlagOptions,
   IBooleanFlagOptions,
   ProgramMain,
   ProgramWithAction,
@@ -72,5 +75,7 @@ export {
   TableWriter,
   ITableWriterOptions,
   ProgramWithSubcommands,
-  UnrecognizedSubcommandError
+  UnrecognizedSubcommandError,
+  ProgramSubcommandMap,
+  IProgramWithSubcommandsMetadata
 };

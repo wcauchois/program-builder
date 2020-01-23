@@ -1,5 +1,5 @@
 import { IValuedFlagMetadata, Converter, IAnyFlag } from "./types";
-import { isFlag } from "./utils";
+import { isFlag, getSurroundingChars } from "./utils";
 import FlagDocumentation from "./FlagDocumentation";
 
 export default class ValuedFlag implements IAnyFlag {
@@ -8,6 +8,14 @@ export default class ValuedFlag implements IAnyFlag {
   readonly metadata: IValuedFlagMetadata;
   readonly converter: Converter<any>;
   readonly order: number;
+
+  get default() {
+    return this.metadata.default;
+  }
+
+  get required() {
+    return this.metadata.required;
+  }
 
   constructor(
     names: string[],
@@ -39,8 +47,9 @@ export default class ValuedFlag implements IAnyFlag {
   }
 
   getDocumentation() {
-    const nameSpec = `${this.names.join(", ")} [${this.metadata.metavar ||
-      this.dest}]`;
+    const [lchar, rchar] = getSurroundingChars(this.required);
+    const nameSpec = `${this.names.join(", ")} ${lchar}${this.metadata
+      .metavar || this.dest}${rchar}`;
     return new FlagDocumentation(nameSpec, this.metadata.description);
   }
 }

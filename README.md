@@ -27,14 +27,14 @@ You define your arguments and keyword arguments using a fluent [builder](https:/
 const program = ProgramBuilder.newBuilder()
   .arg('filename', { description: `A file name` })
   .optionalArg('extraFilename', { description: `An additional optional file name`})
-  .intFlag('--count,-c', { dest: 'count', default: 0, description: `A count` })
+  .intFlag('--optionalCount,-c', { dest: 'optionalCount', default: null, description: `A count` })
   .intFlag('--requiredCount', { dest: 'requiredCount', description: `A count that is required` })
   .build();
 
 function main(args: Arguments<typeof program>) {
   console.log(`filename is: ${args.filename}`); // args.filename: string
-  console.log(`extraFilename is: ${args.extraFilename}`); // args.extraFilename: string | undefined
-  console.log(`count is: ${args.count}`); // args.count: number | undefined
+  console.log(`extraFilename is: ${args.extraFilename}`); // args.extraFilename: string | null
+  console.log(`optionalCount is: ${args.count}`); // args.optionalCount: number | null
   console.log(`requiredCount is: ${args.requiredCount}`); // args.requiredCount: number
 }
 
@@ -57,3 +57,16 @@ Options:
   --count, -c [count]              A count
   --requiredCount [requiredCount]  A count that is required
 ```
+
+## Beta Software
+
+As of January 2020, Program Builder is a very young library! That said, I think it occupies a valuable
+niche offering better type safety than [yargs](https://www.npmjs.com/package/yargs) or
+[commander](https://www.npmjs.com/package/commander) with less verbosity than
+[ts-command-line](https://www.npmjs.com/package/@microsoft/ts-command-line).
+
+The argument parsing library that gives me the most joy is Python's [argparse](https://docs.python.org/3/library/argparse.html)
+and I'm striving to create something similarly lightweight but powerful for TypeScript.
+
+At this stage your feedback is extremely valuable, and if you have
+anything to say, _please_ [file an issue](https://github.com/wcauchois/program-builder/issues/new)!

@@ -1,11 +1,11 @@
-import { ProgramBuilder, Arguments } from "../../src";
+import { ProgramBuilder, Arguments, Converter } from "../../src";
+
+const jsonConverter: Converter<any> = (input, argName) => JSON.parse(input);
 
 const program = ProgramBuilder.newBuilder()
-  .intFlag("--count", { dest: "count" })
-  .intFlag("--optionalCount", { dest: "optionalCount", default: 0 })
+  .customFlag('--jsonInput', { dest: 'json' }, jsonConverter)
   .build();
 
 program.exec(args => {
-  // args: { count: number, name: string }
   console.log('Args are:', args);
 });

@@ -29,7 +29,8 @@ export default class ArgumentParser {
   private readonly flagsByName: Map<string, ValuedFlag | BooleanFlag>;
   private readonly requiredArgumentStack: PositionalArgument[];
   private readonly optionalArgumentStack: PositionalArgument[];
-  private unspecifiedRequiredValuedFlags: ValuedFlag[];
+  private unspecifiedRequiredFlags: ValuedFlag[];
+  private unspecifiedOptionalFlags: ValuedFlag[];
   private unspecifiedBooleanFlags: BooleanFlag[];
 
   constructor(options: IArgumentParserOptions) {
@@ -56,8 +57,11 @@ export default class ArgumentParser {
     this.requiredArgumentStack = options.positionalArguments.required.slice();
     this.optionalArgumentStack = options.positionalArguments.optional.slice();
 
-    this.unspecifiedRequiredValuedFlags = options.valuedFlags.filter(
+    this.unspecifiedRequiredFlags = options.valuedFlags.filter(
       flag => flag.metadata.required
+    );
+    this.unspecifiedOptionalFlags = options.valuedFlags.filter(
+      flag => !flag.metadata.required
     );
     this.unspecifiedBooleanFlags = options.booleanFlags;
   }
@@ -69,7 +73,7 @@ export default class ArgumentParser {
         currentArg,
         this.state.flagNameUsed
       );
-      this.unspecifiedRequiredValuedFlags = this.unspecifiedRequiredValuedFlags.filter(
+      this.unspecifiedRequiredFlags = this.unspecifiedRequiredFlags.filter(
         x => x !== flag
       );
       this.state = { kind: "Default" };
@@ -110,15 +114,23 @@ export default class ArgumentParser {
     }
   }
 
-  setUnspecifiedBooleanFlags() {
+  setUnspecified() {
     for (const flag of this.unspecifiedBooleanFlags) {
       this.parsedArgs[flag.dest] = flag.default;
+    }
+
+    for (const flag of this.unspecifiedOptionalFlags) {
+      this.parsedArgs[flag.dest] = flag.default;
+    }
+
+    for (const arg of this.optionalArgumentStack) {
+      this.parsedArgs[arg.dest] = null;
     }
   }
 
   consumeAll(args: string[]) {
     args.forEach(arg => this.consume(arg));
-    this.setUnspecifiedBooleanFlags();
+    this.setUnspecified();
   }
 
   validate() {
@@ -134,9 +146,9 @@ export default class ArgumentParser {
       );
     }
 
-    if (this.unspecifiedRequiredValuedFlags.length > 0) {
+    if (this.unspecifiedRequiredFlags.length > 0) {
       throw new ArgumentError(
-        `The following required flags were not specified: ${this.unspecifiedRequiredValuedFlags
+        `The following required flags were not specified: ${this.unspecifiedRequiredFlags
           .map(x => x.firstName)
           .join(", ")}`
       );

@@ -36,3 +36,7 @@ export function rightPad(s: string, n: number) {
   }
   return r;
 }
+
+export function getSurroundingChars(required: boolean): [string, string] {
+  return required ? ["<", ">"] : ["[", "]"];
+}

@@ -26,11 +26,13 @@ export default class ValuedFlag implements IAnyFlag
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [converter](./program-builder.valuedflag.converter.md) |  | <code>Converter&lt;any&gt;</code> |  |
+|  [default](./program-builder.valuedflag.default.md) |  | <code>any</code> |  |
 |  [dest](./program-builder.valuedflag.dest.md) |  | <code>string</code> |  |
 |  [firstName](./program-builder.valuedflag.firstname.md) |  | <code>string</code> |  |
 |  [metadata](./program-builder.valuedflag.metadata.md) |  | <code>IValuedFlagMetadata</code> |  |
 |  [names](./program-builder.valuedflag.names.md) |  | <code>string[]</code> |  |
 |  [order](./program-builder.valuedflag.order.md) |  | <code>number</code> |  |
+|  [required](./program-builder.valuedflag.required.md) |  | <code>boolean</code> |  |
 
 ## Methods
 

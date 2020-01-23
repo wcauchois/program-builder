@@ -5,6 +5,7 @@ import {
   UnspecifiedSubcommandError
 } from "./errors";
 import TableWriter from "./TableWriter";
+import { IProgramWithSubcommandsMetadata } from "./types";
 
 export type ProgramSubcommandMap = {
   [subcommandName: string]: ProgramWithAction<any> | ProgramSubcommandMap;
@@ -26,20 +27,30 @@ function flattenSubcommandMap(
 export default class ProgramWithSubcommands {
   readonly subcommandMap: ProgramSubcommandMap;
   private readonly helpers: ProgramHelpers;
+  readonly metadata: IProgramWithSubcommandsMetadata;
 
   /**
    * @internal
    */
-  constructor(subcommandMap: ProgramSubcommandMap) {
+  constructor(
+    subcommandMap: ProgramSubcommandMap,
+    metadata: IProgramWithSubcommandsMetadata
+  ) {
     this.subcommandMap = subcommandMap;
+    this.metadata = metadata;
     this.helpers = new ProgramHelpers();
   }
 
   generateHelpText(): string {
     let buffer = "";
 
-    buffer += `Usage: ${this.helpers.getProgramName()} COMMAND [options]\n\n`;
+    buffer += `Usage: ${this.helpers.getProgramName()} COMMAND [options]`;
 
+    if (this.metadata.description) {
+      buffer += `\n\n${this.metadata.description}`;
+    }
+
+    buffer += "\n\n";
     const allSubcommands = flattenSubcommandMap(this.subcommandMap);
     const tw = new TableWriter();
     for (const [subcommandNameParts, subcommand] of allSubcommands) {

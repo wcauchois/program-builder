@@ -19,13 +19,18 @@ class ProgramWithSubcommands {
     /**
      * @internal
      */
-    constructor(subcommandMap) {
+    constructor(subcommandMap, metadata) {
         this.subcommandMap = subcommandMap;
+        this.metadata = metadata;
         this.helpers = new ProgramHelpers_1.default();
     }
     generateHelpText() {
         let buffer = "";
-        buffer += `Usage: ${this.helpers.getProgramName()} COMMAND [options]\n\n`;
+        buffer += `Usage: ${this.helpers.getProgramName()} COMMAND [options]`;
+        if (this.metadata.description) {
+            buffer += `\n\n${this.metadata.description}`;
+        }
+        buffer += "\n\n";
         const allSubcommands = flattenSubcommandMap(this.subcommandMap);
         const tw = new TableWriter_1.default();
         for (const [subcommandNameParts, subcommand] of allSubcommands) {

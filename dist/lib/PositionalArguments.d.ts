@@ -7,4 +7,6 @@ export default class PositionalArguments {
     pushOptional(arg: PositionalArgument): void;
     get nonEmpty(): boolean;
     getSpecForUsage(): string;
+    get haveAnyDescription(): boolean;
+    get all(): PositionalArgument[];
 }

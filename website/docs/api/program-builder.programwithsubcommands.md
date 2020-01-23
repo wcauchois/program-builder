@@ -23,6 +23,7 @@ The constructor for this class is marked as internal. Third-party code should no
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
+|  [metadata](./program-builder.programwithsubcommands.metadata.md) |  | <code>IProgramWithSubcommandsMetadata</code> |  |
 |  [subcommandMap](./program-builder.programwithsubcommands.subcommandmap.md) |  | <code>ProgramSubcommandMap</code> |  |
 
 ## Methods

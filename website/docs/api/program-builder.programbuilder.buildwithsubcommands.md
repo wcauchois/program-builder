@@ -14,7 +14,7 @@ Build a [ProgramWithSubcommands](./program-builder.programwithsubcommands.md) us
 <b>Signature:</b>
 
 ```typescript
-static buildWithSubcommands(subcommandMap: ProgramSubcommandMap): ProgramWithSubcommands;
+static buildWithSubcommands(subcommandMap: ProgramSubcommandMap, metadata?: IProgramWithSubcommandsMetadata): ProgramWithSubcommands;
 ```
 
 ## Parameters
@@ -22,6 +22,7 @@ static buildWithSubcommands(subcommandMap: ProgramSubcommandMap): ProgramWithSub
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  subcommandMap | <code>ProgramSubcommandMap</code> |  |
+|  metadata | <code>IProgramWithSubcommandsMetadata</code> |  |
 
 <b>Returns:</b>
 

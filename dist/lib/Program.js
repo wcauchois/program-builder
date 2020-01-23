@@ -46,6 +46,13 @@ class Program extends ProgramBase_1.default {
         if (this.programMetadata.description) {
             buffer += `\n\n${this.programMetadata.description}`;
         }
+        // Arguments
+        if (this.positionalArguments.haveAnyDescription) {
+            buffer += "\n\nArguments:\n";
+            const tw = new TableWriter_1.default();
+            this.positionalArguments.all.forEach(arg => arg.writeDocumentationTo(tw));
+            buffer += tw.toString();
+        }
         // Flags
         if (haveAnyFlags) {
             const allFlagsSorted = this.valuedFlags.concat(this.booleanFlags);

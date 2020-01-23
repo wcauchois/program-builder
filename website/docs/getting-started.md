@@ -15,6 +15,12 @@ Program Builder is a library for building command-line interfaces in
 yarn add @wcauchois/program-builder
 ```
 
+or using npm,
+
+```
+npm install @wcauchois/program-builder
+```
+
 # Basic Usage
 
 `ProgramBuilder` uses the builder pattern to construct a `Program` object that can

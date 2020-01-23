@@ -12,7 +12,7 @@ hide_title: true
 <b>Signature:</b>
 
 ```typescript
-customFlag<K extends string, V>(name: string, options: IRequiredValuedFlagOptions<K, V>, converter: Converter<V>): ExtendProgramBuilderWithRequired<T, K, V>;
+customFlag<K extends string, V>(name: string, options: INonNullValuedFlagOptions<K, V>, converter: Converter<V>): ExtendProgramBuilderWithRequired<T, K, V>;
 ```
 
 ## Parameters
@@ -20,7 +20,7 @@ customFlag<K extends string, V>(name: string, options: IRequiredValuedFlagOption
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  name | <code>string</code> |  |
-|  options | <code>IRequiredValuedFlagOptions&lt;K, V&gt;</code> |  |
+|  options | <code>INonNullValuedFlagOptions&lt;K, V&gt;</code> |  |
 |  converter | <code>Converter&lt;V&gt;</code> |  |
 
 <b>Returns:</b>

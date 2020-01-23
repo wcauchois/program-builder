@@ -88,7 +88,7 @@ class ProgramBuilder extends ProgramBase_1.default {
      * The order in which you call `arg` on a ProgramBuilder matters.
      */
     arg(dest, options = {}) {
-        this.positionalArguments.push(new PositionalArgument_1.default(dest, options));
+        this.positionalArguments.push(new PositionalArgument_1.default(dest, options, true));
         return this;
     }
     /**
@@ -98,7 +98,7 @@ class ProgramBuilder extends ProgramBase_1.default {
      * @param options - See {@link IPositionalArgumentMetadata}.
      */
     optionalArg(dest, options = {}) {
-        this.positionalArguments.pushOptional(new PositionalArgument_1.default(dest, options));
+        this.positionalArguments.pushOptional(new PositionalArgument_1.default(dest, options, false));
         return this;
     }
     customFlag(name, options, converter) {
@@ -154,8 +154,8 @@ class ProgramBuilder extends ProgramBase_1.default {
     /**
      * Build a {@link ProgramWithSubcommands} using a map of {@link ProgramWithAction}s.
      */
-    static buildWithSubcommands(subcommandMap) {
-        return new ProgramWithSubcommands_1.default(subcommandMap);
+    static buildWithSubcommands(subcommandMap, metadata = {}) {
+        return new ProgramWithSubcommands_1.default(subcommandMap, metadata);
     }
     /**
      * Create a new ProgramBuilder instance.

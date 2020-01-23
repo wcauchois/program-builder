@@ -25,6 +25,8 @@ export default class PositionalArguments
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
+|  [all](./program-builder.positionalarguments.all.md) |  | <code>PositionalArgument[]</code> |  |
+|  [haveAnyDescription](./program-builder.positionalarguments.haveanydescription.md) |  | <code>boolean</code> |  |
 |  [nonEmpty](./program-builder.positionalarguments.nonempty.md) |  | <code>boolean</code> |  |
 |  [optional](./program-builder.positionalarguments.optional.md) |  | <code>PositionalArgument[]</code> |  |
 |  [required](./program-builder.positionalarguments.required.md) |  | <code>PositionalArgument[]</code> |  |

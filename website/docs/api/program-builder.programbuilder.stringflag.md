@@ -14,7 +14,7 @@ Add an optional valued flag to the program.
 <b>Signature:</b>
 
 ```typescript
-stringFlag<K extends string>(name: string, options: IOptionalValuedFlagOptions<K, string>): ExtendProgramBuilderWithOptional<T, K, string>;
+stringFlag<K extends string>(name: string, options: INullableValuedFlagOptions<K, string>): ExtendProgramBuilderWithOptional<T, K, string>;
 ```
 
 ## Parameters
@@ -22,7 +22,7 @@ stringFlag<K extends string>(name: string, options: IOptionalValuedFlagOptions<K
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  name | <code>string</code> | The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, <code>&quot;-i,--input&quot;</code>. |
-|  options | <code>IOptionalValuedFlagOptions&lt;K, string&gt;</code> | See [IOptionalValuedFlagOptions](./program-builder.ioptionalvaluedflagoptions.md)<!-- -->. |
+|  options | <code>INullableValuedFlagOptions&lt;K, string&gt;</code> | See [INullableValuedFlagOptions](./program-builder.inullablevaluedflagoptions.md)<!-- -->. |
 
 <b>Returns:</b>
 

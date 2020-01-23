@@ -55,6 +55,14 @@ export default class Program<T> extends ProgramBase {
       buffer += `\n\n${this.programMetadata.description}`;
     }
 
+    // Arguments
+    if (this.positionalArguments.haveAnyDescription) {
+      buffer += "\n\nArguments:\n";
+      const tw = new TableWriter();
+      this.positionalArguments.all.forEach(arg => arg.writeDocumentationTo(tw));
+      buffer += tw.toString();
+    }
+
     // Flags
     if (haveAnyFlags) {
       const allFlagsSorted = (this.valuedFlags as Array<
@@ -66,6 +74,7 @@ export default class Program<T> extends ProgramBase {
       allFlagsSorted.forEach(f => f.getDocumentation().writeTo(tw));
       buffer += tw.toString();
     }
+
     return buffer;
   }
 

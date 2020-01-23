@@ -14,7 +14,7 @@ Constructs a new instance of the `PositionalArgument` class
 <b>Signature:</b>
 
 ```typescript
-constructor(dest: string, metadata: IPositionalArgumentMetadata);
+constructor(dest: string, metadata: IPositionalArgumentMetadata, required: boolean);
 ```
 
 ## Parameters
@@ -23,3 +23,4 @@ constructor(dest: string, metadata: IPositionalArgumentMetadata);
 |  --- | --- | --- |
 |  dest | <code>string</code> |  |
 |  metadata | <code>IPositionalArgumentMetadata</code> |  |
+|  required | <code>boolean</code> |  |

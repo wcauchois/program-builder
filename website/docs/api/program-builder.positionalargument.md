@@ -19,12 +19,14 @@ export default class PositionalArgument
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)(dest, metadata)](./program-builder.positionalargument._constructor_.md) |  | Constructs a new instance of the <code>PositionalArgument</code> class |
+|  [(constructor)(dest, metadata, required)](./program-builder.positionalargument._constructor_.md) |  | Constructs a new instance of the <code>PositionalArgument</code> class |
 
 ## Properties
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
+|  [description](./program-builder.positionalargument.description.md) |  | <code>string &#124; undefined</code> |  |
 |  [dest](./program-builder.positionalargument.dest.md) |  | <code>string</code> |  |
 |  [destOrMetavar](./program-builder.positionalargument.destormetavar.md) |  | <code>string</code> |  |
 |  [metadata](./program-builder.positionalargument.metadata.md) |  | <code>IPositionalArgumentMetadata</code> |  |
+|  [required](./program-builder.positionalargument.required.md) |  | <code>boolean</code> |  |

@@ -14,7 +14,7 @@ Add a required valued flag to the program.
 <b>Signature:</b>
 
 ```typescript
-floatFlag<K extends string>(name: string, options: IRequiredValuedFlagOptions<K, number>): ExtendProgramBuilderWithRequired<T, K, number>;
+floatFlag<K extends string>(name: string, options: INonNullValuedFlagOptions<K, number>): ExtendProgramBuilderWithRequired<T, K, number>;
 ```
 
 ## Parameters
@@ -22,7 +22,7 @@ floatFlag<K extends string>(name: string, options: IRequiredValuedFlagOptions<K,
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  name | <code>string</code> | The name for the flag, including leading dashes. Multiple alternative names may be specified by separating them within the string by commas. For example, <code>&quot;-i,--input&quot;</code>. |
-|  options | <code>IRequiredValuedFlagOptions&lt;K, number&gt;</code> | See [IRequiredValuedFlagOptions](./program-builder.irequiredvaluedflagoptions.md)<!-- -->. |
+|  options | <code>INonNullValuedFlagOptions&lt;K, number&gt;</code> | See [INonNullValuedFlagOptions](./program-builder.inonnullvaluedflagoptions.md)<!-- -->. |
 
 <b>Returns:</b>
 

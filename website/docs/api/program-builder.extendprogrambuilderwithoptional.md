@@ -13,6 +13,6 @@ hide_title: true
 
 ```typescript
 export declare type ExtendProgramBuilderWithOptional<T, K extends string, U> = ProgramBuilder<T & {
-    [P in K]?: U;
+    [P in K]: U | null;
 }>;
 ```
