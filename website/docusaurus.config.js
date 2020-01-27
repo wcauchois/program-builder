@@ -1,5 +1,6 @@
 const toc = require('remark-toc');
 module.exports = {
+  plugins: ['@docusaurus/plugin-google-analytics'],
   title: 'Program Builder',
   tagline: 'A TypeScript library for building command-line interfaces',
   url: 'https://program-builder.netlify.com',
@@ -26,6 +27,9 @@ module.exports = {
       links: [],
       copyright: `Copyright © ${new Date().getFullYear()} Bill Cauchois. Built with Docusaurus.`,
     },
+    googleAnalytics: {
+      trackingID: 'UA-40112696-2'
+    }
   },
   presets: [
     [
